@@ -1,14 +1,14 @@
-import { useState, useEffect, useMemo } from 'react';
-import TrainingForm from 'components/TrainingForm';
+// import { useState, useEffect, useMemo } from 'react';
+// import TrainingForm from 'components/TrainingForm';
 import PropTypes from 'prop-types';
 
 const MyTraining = ({
-  isFormVisible,
-  toggleForm,
-  handleStartChange,
-  handleFinishChange,
-  start,
-  finish,
+  // isFormVisible,
+  // toggleForm,
+  // handleStartChange,
+  // handleFinishChange,
+  // start,
+  // finish,
 }) => {
 };
 
