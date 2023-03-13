@@ -1,9 +1,9 @@
 // import PropTypes from 'prop-types';
 
-const BooksListFilledMobile = ({ books, onClick }) => {
-  return 
+// const BooksListFilledMobile = ({ books, onClick }) => {
+//   return 
   
-};
+// };
 
 
-export default BooksListFilledMobile;
+// export default BooksListFilledMobile;
