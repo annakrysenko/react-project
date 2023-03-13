@@ -5,18 +5,20 @@ import { toast } from 'react-toastify';
 axios.defaults.baseURL = 'https://bookread-backend.goit.global';
 const token = {
     set(token) {
-        axios.defaults.headers.common.Authorization = `Bearer ${token}`;
+        axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
     },
     unset(token) {
-        axios.defaults.headers.common.Authorization = '';
+        axios.defaults.headers.common['Authorization'] = '';
     },
 };
 
 export const register = createAsyncThunk(
     'auth/register',
     async (credentials, { rejectWithValue }) => {
+        console.log(credentials)
         try {
             const { data } = await axios.post('/auth/register', credentials);
+
             token.set(data.token);
             return data
         } catch (e) {
