@@ -1,4 +1,4 @@
-import PropTypes from 'prop-types';
+// import PropTypes from 'prop-types';
 
 const TableRow = ({ id, title, author, year, pages, onClick }) => {
   return (
