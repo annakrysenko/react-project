@@ -43,4 +43,4 @@
 //   onClick: PropTypes.func.isRequired,
 // };
 
-export default BookCard;
+// export default BookCard;
