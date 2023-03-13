@@ -24,6 +24,7 @@ const BookCard = ({ id, title, author, year, pages, onClick }) => {
             <td>Стор.:</td>
             <td>{pages}</td>
           </tr>
+          
         </tbody>
       </StyledTable>
       <StyledDeleteButton htmlType="button" onClick={() => onClick(id)}>
