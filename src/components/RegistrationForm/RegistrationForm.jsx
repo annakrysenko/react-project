@@ -30,7 +30,7 @@ const validationSchema = yup.object().shape({
       /^([a-zA-Z0-9@.!#$%&’*+/=?^_`{|}~-])*$/,
       'Password must not contain spaces'
     )
-    .min(5, 'Password is too short - should be 5 chars minimum')
+    .min(8, 'Password is too short - should be 5 chars minimum')
     .max(30, 'Password must contain no more than 30 characters')
     .required('Password is a required field'),
   repeatPassword: yup
