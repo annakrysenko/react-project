@@ -7,7 +7,7 @@ const token = {
   set(token) {
     axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
   },
-  unset(token) {
+  unset() {
     axios.defaults.headers.common['Authorization'] = '';
   },
 };
@@ -34,7 +34,6 @@ export const logIn = createAsyncThunk(
   async (credentials, { rejectWithValue }) => {
     try {
       const { data } = await axios.post('/auth/login', credentials);
-      console.log(data);
       token.set(data.accessToken);
       return data;
     } catch (e) {
@@ -61,14 +60,13 @@ export const fetchCurrentUser = createAsyncThunk(
   async (_, thunkAPI) => {
     const state = thunkAPI.getState();
     const persistedToken = state.auth.token;
-
     if (persistedToken === null) {
       return thunkAPI.rejectWithValue('Unable to fetch user');
     }
 
     try {
       token.set(persistedToken);
-      const { data } = await axios.post('/users/current');
+      const { data } = await axios.post('/user');
       return data;
     } catch (e) {
       return thunkAPI.rejectWithValue(e.message);

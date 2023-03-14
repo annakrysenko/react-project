@@ -1,9 +1,16 @@
 import React from 'react';
 import TimerYear from 'components/Timers/TimerYear';
 import TimerGoal from 'components/Timers/TimerGoal';
+
+
+import Statistics from 'components/Statistics/Statistics';
+
+
 import { Modal } from 'components/Modal/Modal';
 import { useState } from 'react';
+
 import { TimerMainContainer } from 'components/Timers/TimerYear/TimerYear.styled';
+
 // import { useState, useEffect, useCallback } from 'react';
 
 // import myGoal from 'components/MyGoal/MyGoal';
@@ -22,12 +29,14 @@ const Training = () => {
   };
   // =============================================
   return (
+
+    
     <>
       <TimerMainContainer>
         <TimerYear />
         <TimerGoal />
       </TimerMainContainer>
-
+      <Statistics/>
       {/* ====== ПРИКЛАД ВИКОРИСТАННЯ МОДАЛКИ =====*/}
       <button onClick={toggleModal}>Open modal</button>
       {isShowModal && (
@@ -37,6 +46,7 @@ const Training = () => {
         // ===========================================
       )}
     </>
+
   );
 };
 

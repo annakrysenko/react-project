@@ -3,8 +3,8 @@ import {
   fetchCurrentUser,
   logIn,
   loginWithGoogle,
-  logOut,
   register,
+  logOut,
 } from './authOperation';
 
 const initialState = {
@@ -13,18 +13,15 @@ const initialState = {
   isLoggedIn: false,
   isFetchingCurrentUser: false,
   error: null,
+  isRegistratedIn: false,
 };
 const authSlice = createSlice({
   name: 'auth',
   initialState,
   extraReducers: {
     [register.fulfilled](state, { payload }) {
-      // console.log('payload===>', payload);
-      // console.log('payload.data', payload.data);
       const { name, email } = payload.data.userData;
       state.user = { name, email };
-      // console.log('state.user===>', state.user);
-      // console.log('payload.data', payload.data);
       state.token = payload.data.accessToken;
       state.isLoggedIn = true;
     },
@@ -32,12 +29,29 @@ const authSlice = createSlice({
       state.error = payload;
     },
 
+    [register.rejected](state, { payload }) {
+      state.error = payload;
+    },
+
     [logIn.fulfilled](state, { payload }) {
-      state.user = payload.user;
+      state.user = payload.userData;
       state.token = payload.accessToken;
       state.isLoggedIn = true;
     },
     [logIn.rejected](state, { payload }) {
+      state.error = payload;
+    },
+
+    [fetchCurrentUser.pending](state) {
+      state.isFetchingCurrentUser = true;
+    },
+    [fetchCurrentUser.fulfilled](state, { payload }) {
+      state.user = payload;
+      state.isLoggedIn = true;
+      state.isFetchingCurrentUser = false;
+    },
+    [fetchCurrentUser.rejected](state, { payload }) {
+      state.isFetchingCurrentUser = false;
       state.error = payload;
     },
 
