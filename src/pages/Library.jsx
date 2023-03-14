@@ -4,9 +4,9 @@ import React from 'react';
 const Library = () => {
   return (
     <>
- <LibraryForm />
+      <LibraryForm />
     </>
-  )
+  );
 };
 
 export default Library;

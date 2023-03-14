@@ -10,9 +10,9 @@ export const WrapperOverlay = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: ${({ theme }) => theme.colors.modalBackground};
-  z-index: 10;
+  background-color: rgba(0, 0, 0, 0.8);
 `;
-// export const WrapperModal = styled(Container)`
-//   background-color: ${({ theme }) => theme.colors.white};
-// `;
+export const WrapperModal = styled.div`
+  padding: 20px;
+  background-color: ${({ theme }) => theme.colors.white};
+`;

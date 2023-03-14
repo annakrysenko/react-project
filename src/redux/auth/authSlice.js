@@ -1,8 +1,11 @@
-
-
 import { createSlice } from '@reduxjs/toolkit';
-import { fetchCurretUser, logIn, loginWithGoogle, logOut, register } from "./authOperation";
-
+import {
+    fetchCurretUser,
+    logIn,
+    loginWithGoogle,
+    logOut,
+    register,
+} from './authOperation';
 
 const initialState = {
     user: { name: null, email: null },
@@ -10,15 +13,18 @@ const initialState = {
     isLoggedIn: false,
     isFetchingCurrentUser: false,
     error: null,
+    isRegistratedIn: false,
 };
 const authSlice = createSlice({
     name: 'auth',
     initialState,
     extraReducers: {
         [register.fulfilled](state, { payload }) {
-            state.user = payload.user;
-            state.token = payload.token;
+            console.log(payload)
+            state.user = payload.userData;
+            state.token = payload.accessToken;
             state.isLoggedIn = true;
+            state.isRegistratedIn = true;
 
         },
         [register.rejected](state, { payload }) {
@@ -26,8 +32,8 @@ const authSlice = createSlice({
         },
 
         [logIn.fulfilled](state, { payload }) {
-            state.user = payload.user;
-            state.token = payload.token;
+            state.user = payload.userData;
+            state.token = payload.accessToken;
             state.isLoggedIn = true;
         },
         [logIn.rejected](state, { payload }) {
@@ -62,5 +68,4 @@ const authSlice = createSlice({
     },
 });
 
-export const authReducer = authSlice.reducer
-
+export const authReducer = authSlice.reducer;

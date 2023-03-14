@@ -5,7 +5,6 @@ import { useDispatch } from 'react-redux';
 import { getIsLoggedIn } from 'redux/auth/authSelectors';
 import { Link } from 'react-router-dom';
 import { logIn } from 'redux/auth/authOperation';
-// import AboutApp from 'components/AboutApp/AboutApp';
 
 const validationSchema = yup.object().shape({
   email: yup
@@ -79,7 +78,7 @@ const LoginForm = () => {
                     id="password"
                     name="password"
                     type="password"
-                    placeholder="Пароль"
+                    placeholder="Password"
                     autoComplete="off"
                   />
                   <ErrorMessage name="password" component="div" />

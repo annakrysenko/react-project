@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { createAsyncThunk } from "@reduxjs/toolkit";
+import { createAsyncThunk } from '@reduxjs/toolkit';
 import { toast } from 'react-toastify';
 
 axios.defaults.baseURL = 'https://bookread-backend.goit.global';
@@ -7,7 +7,7 @@ const token = {
     set(token) {
         axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
     },
-    unset(token) {
+    unset() {
         axios.defaults.headers.common['Authorization'] = '';
     },
 };
@@ -18,8 +18,10 @@ export const register = createAsyncThunk(
         console.log(credentials)
         try {
             const { data } = await axios.post('/auth/register', credentials);
-
-            token.set(data.token);
+            const { email, password } = credentials
+            const responce = await axios.post('/auth/login', { email, password })
+            console.log(responce)
+            token.set(responce.data.accessToken);
             return data
         } catch (e) {
             toast.error('Please, try again!');
@@ -33,7 +35,7 @@ export const logIn = createAsyncThunk(
     async (credentials, { rejectWithValue }) => {
         try {
             const { data } = await axios.post('/auth/login', credentials);
-            token.set(data.token);
+            token.set(data.accessToken);
             return data;
         } catch (e) {
             toast.error('Email or password is wrong, please try again!');
@@ -51,7 +53,7 @@ export const logOut = createAsyncThunk(
         } catch (e) {
             return rejectWithValue(e.message);
         }
-    },
+    }
 );
 
 export const fetchCurretUser = createAsyncThunk(
@@ -66,7 +68,7 @@ export const fetchCurretUser = createAsyncThunk(
 
         try {
             token.set(persistedToken);
-            const { data } = await axios.post('/users/current');
+            const { data } = await axios.post('/user');
             return data;
         } catch (e) {
             return thunkAPI.rejectWithValue(e.message);
@@ -78,12 +80,11 @@ export const loginWithGoogle = createAsyncThunk(
     'auth/loginwithgoogle',
     async (credentials, { rejectWithValue }) => {
         try {
-            const { data } = await axios.get('/auth/google')
+            const { data } = await axios.get('/auth/google');
             token.set(credentials.data.token);
             return data;
         } catch (e) {
-            return rejectWithValue(e)
+            return rejectWithValue(e);
         }
-    },
+    }
 );
-
