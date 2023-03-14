@@ -1,9 +1,10 @@
-import Books from 'components/Library/TableRead/TableRead';
+
+import BooksTable from 'components/Library/BooksTable/BooksTable';
 import React from 'react';
 
 
 const Library = () => {
-  return <div>Library</div>;
+  return <BooksTable></BooksTable>;
 };
 
 export default Library;
