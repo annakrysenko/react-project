@@ -1,6 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
 import {
-  fetchCurretUser,
+  fetchCurrentUser,
   logIn,
   loginWithGoogle,
   logOut,
@@ -19,9 +19,13 @@ const authSlice = createSlice({
   initialState,
   extraReducers: {
     [register.fulfilled](state, { payload }) {
-      console.log(payload);
-      state.user = payload.user;
-      state.token = payload.accessToken;
+      // console.log('payload===>', payload);
+      // console.log('payload.data', payload.data);
+      const { name, email } = payload.data.userData;
+      state.user = { name, email };
+      // console.log('state.user===>', state.user);
+      // console.log('payload.data', payload.data);
+      state.token = payload.data.accessToken;
       state.isLoggedIn = true;
     },
     [register.rejected](state, { payload }) {
@@ -46,15 +50,15 @@ const authSlice = createSlice({
       state.error = payload;
     },
 
-    [fetchCurretUser.pending](state) {
+    [fetchCurrentUser.pending](state) {
       state.isFetchingCurrentUser = true;
     },
-    [fetchCurretUser.fulfilled](state, { payload }) {
+    [fetchCurrentUser.fulfilled](state, { payload }) {
       state.user = payload;
       state.isLoggedIn = true;
       state.isFetchingCurrentUser = false;
     },
-    [fetchCurretUser.rejected](state, { payload }) {
+    [fetchCurrentUser.rejected](state, { payload }) {
       state.isFetchingCurrentUser = false;
       state.error = payload;
     },

@@ -17,8 +17,11 @@ export const register = createAsyncThunk(
   async (credentials, { rejectWithValue }) => {
     console.log(credentials);
     try {
-      const { data } = await axios.post('/auth/register', credentials);
-      return data;
+      await axios.post('/auth/register', credentials);
+      const { email, password } = credentials;
+      const response = await axios.post('/auth/login', { email, password });
+      token.set(response.data.accessToken);
+      return response;
     } catch (e) {
       toast.error('Please, try again!');
       return rejectWithValue(e.message);
@@ -53,7 +56,7 @@ export const logOut = createAsyncThunk(
   }
 );
 
-export const fetchCurretUser = createAsyncThunk(
+export const fetchCurrentUser = createAsyncThunk(
   'auth/refresh',
   async (_, thunkAPI) => {
     const state = thunkAPI.getState();

@@ -4,3 +4,6 @@
 // export const getIsLoggedIn = state => (state.auth.accessToken = true);
 
 export const getIsLoggedIn = state => state.auth.isLoggedIn;
+export const getAccessToken = state => state.auth.token;
+export const getUserName = state => state.auth.user.name;
+export const getfetchCurrentUser = state => state.auth.isFetchingUser;
