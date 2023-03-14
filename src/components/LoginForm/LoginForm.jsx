@@ -83,7 +83,7 @@ const LoginForm = () => {
                     id="password"
                     name="password"
                     type="password"
-                    placeholder="Пароль"
+                    placeholder="Password"
                     autoComplete="off"
                   />
                   <ErrorMessage name="password" component="div" />

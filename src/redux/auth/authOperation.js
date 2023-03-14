@@ -66,7 +66,7 @@ export const fetchCurretUser = createAsyncThunk(
 
         try {
             token.set(persistedToken);
-            const { data } = await axios.post('/users/current');
+            const { data } = await axios.post('/auth/refresh');
             return data;
         } catch (e) {
             return thunkAPI.rejectWithValue(e.message);

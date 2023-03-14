@@ -2,7 +2,7 @@ import { Form, ErrorMessage, Field, Formik } from 'formik';
 import * as yup from 'yup';
 import { useDispatch, useSelector } from 'react-redux';
 import {  Link } from 'react-router-dom';
-import { register } from 'redux/auth/authOperation';
+import { logIn, register } from 'redux/auth/authOperation';
 import { getIsLoggedIn } from 'redux/auth/authSelectors';
 
 const validationSchema = yup.object().shape({
@@ -51,15 +51,24 @@ const RegistrationForm = () => {
   const isLoggedIn = useSelector(getIsLoggedIn);
  
 
-  
+  const handleSubmit = async (values, actions) => {
+  const { password, name, email } = values;
+  const registrationData = { name, email, password };
+  const response = dispatch(register(registrationData));
+  if (response.payload && response.payload.token) {
+    localStorage.setItem('token', response.payload.token);
+    dispatch(logIn());
+  }
+  isLoggedIn && actions.resetForm();
+};
 
-    const handleSubmit = (values, actions) => {
-        const { password,  name, email } = values;
-       const registrationData = { name, email, password };
-    dispatch(register(registrationData));
+  //   const handleSubmit = (values, actions) => {
+  //       const { password,  name, email } = values;
+  //      const registrationData = { name, email, password };
+  //   dispatch(register(registrationData));
 
-    isLoggedIn && actions.resetForm();
-  };
+  //   isLoggedIn && actions.resetForm();
+  // };
 
 
   return (
@@ -84,7 +93,7 @@ const RegistrationForm = () => {
                     id="name"
                     name="name"
                     type="text"
-                    placeholder="..."
+                    placeholder="Name"
                     autoComplete="off"
                   />
                   <ErrorMessage name="name" component="div" />
