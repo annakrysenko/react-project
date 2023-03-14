@@ -14,14 +14,22 @@ const token = {
 
 export const register = createAsyncThunk(
     'auth/register',
+    // async (credentials, { rejectWithValue }) => {
+    //     console.log(credentials)
+    //     try {
+    //         const { data } = await axios.post('/auth/register', credentials);
+    //         const { email, password } = credentials
+    //         const responce = await axios.post('/auth/login', { email, password })
+    //         console.log(responce)
+    //         token.set(responce.data.accessToken);
+    //         return data
     async (credentials, { rejectWithValue }) => {
-        console.log(credentials)
         try {
-            const { data } = await axios.post('/auth/register', credentials);
-            const { email, password } = credentials
-            const responce = await axios.post('/auth/login', { email, password })
-            console.log(responce)
-            token.set(responce.data.accessToken);
+            const password = credentials.password;
+            const email = credentials.email;
+            await axios.post('/auth/register', credentials);
+            const { data } = await axios.post('/auth/login', { email, password });
+            token.set(data.accessToken);
             return data
         } catch (e) {
             toast.error('Please, try again!');
