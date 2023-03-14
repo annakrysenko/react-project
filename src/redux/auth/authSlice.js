@@ -1,5 +1,6 @@
 
-import { createSlice } from "@reduxjs/toolkit";
+
+import { createSlice } from '@reduxjs/toolkit';
 import { fetchCurretUser, logIn, loginWithGoogle, logOut, register } from "./authOperation";
 
 
@@ -62,3 +63,4 @@ const authSlice = createSlice({
 });
 
 export const authReducer = authSlice.reducer
+

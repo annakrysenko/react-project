@@ -1,7 +1,12 @@
-import React from 'react';
+// import React from 'react';
+// import { useState, useEffect, useCallback } from 'react';
 
-const Training = () => {
-  return <div>Training</div>;
-};
+// import myGoal from 'components/MyGoal/MyGoal';
+// import Training from 'components/MyTraining';
 
-export default Training;
+
+// const Training = () => {
+//   return <div>Training</div>;
+// };
+
+// export default Training;
