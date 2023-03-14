@@ -46,29 +46,18 @@ const initialValues = {
   repeatPassword: '',
 };
 
+
 const RegistrationForm = () => {
   const dispatch = useDispatch();
   const isLoggedIn = useSelector(getIsLoggedIn);
  
+    const handleSubmit = (values, actions) => {
+        const { password,  name, email } = values;
+       const registrationData = { name, email, password };
+    dispatch(register(registrationData));
 
-  const handleSubmit = async (values, actions) => {
-  const { password, name, email } = values;
-  const registrationData = { name, email, password };
-  const response = dispatch(register(registrationData));
-  if (response.payload && response.payload.token) {
-    localStorage.setItem('token', response.payload.token);
-    dispatch(logIn());
-  }
-  isLoggedIn && actions.resetForm();
-};
-
-  //   const handleSubmit = (values, actions) => {
-  //       const { password,  name, email } = values;
-  //      const registrationData = { name, email, password };
-  //   dispatch(register(registrationData));
-
-  //   isLoggedIn && actions.resetForm();
-  // };
+    isLoggedIn && actions.resetForm();
+  };
 
 
   return (
