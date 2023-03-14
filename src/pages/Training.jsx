@@ -1,6 +1,7 @@
 import React from 'react';
 import TimerYear from 'components/Timers/TimerYear';
 import TimerGoal from 'components/Timers/TimerGoal';
+import { TimerMainContainer } from 'components/Timers/TimerYear/TimerYear.styled';
 // import { useState, useEffect, useCallback } from 'react';
 
 // import myGoal from 'components/MyGoal/MyGoal';
@@ -8,10 +9,10 @@ import TimerGoal from 'components/Timers/TimerGoal';
 
 const Training = () => {
   return (
-    <div>
+    <TimerMainContainer>
       <TimerYear />
       <TimerGoal />
-    </div>
+    </TimerMainContainer>
   );
 };
 
