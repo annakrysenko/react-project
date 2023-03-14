@@ -1,7 +1,14 @@
 import React from 'react';
-
+import { DivStyled, TextStyled, AuthorStyled } from './AboutAppStyled.js';
 const AboutApp = () => {
-  return <div>AboutApp</div>;
+  return (
+    <DivStyled>
+      <TextStyled>
+        Books are the ships of thoughts, wandering through the waves of time.
+      </TextStyled>
+      <AuthorStyled>Francis Bacon</AuthorStyled>
+    </DivStyled>
+  );
 };
 
 export default AboutApp;
