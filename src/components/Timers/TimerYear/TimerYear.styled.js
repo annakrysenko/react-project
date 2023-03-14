@@ -8,10 +8,6 @@ export const TimerMainContainer = styled.div`
     margin-top: 40px;
   }
 
-  /* display: flex;
-  flex-direction: column;
-  align-items: center; */
-
   @media (max-width: 1280px) {
     justify-content: center;
   }
@@ -24,10 +20,16 @@ export const TimerMainContainer = styled.div`
 
 export const TimerYearContainer = styled.div`
   @media ${device.mobile} and (max-width: 768px) {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     margin-top: 20px;
   }
 
   @media ${device.tablet} {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     margin-right: 32px;
   }
 
@@ -44,14 +46,8 @@ export const TimerHeader = styled.h1`
   font-size: 14px;
   line-height: 1.2;
   color: ${theme.colors.secondaryFontColor};
-  width: 241px;
+  width: max-content;
   margin-bottom: 8px;
-  margin-left: auto;
-  margin-right: auto;
-
-  /* @media ${device.tablet} {
-    font-size: 25px;
-  } */
 `;
 
 export const TimerWrapper = styled.div`
