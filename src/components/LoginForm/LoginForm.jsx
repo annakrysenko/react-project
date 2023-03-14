@@ -5,6 +5,7 @@ import { useDispatch } from 'react-redux';
 import { getIsLoggedIn } from 'redux/auth/authSelectors';
 import { Link } from 'react-router-dom';
 import { logIn } from 'redux/auth/authOperation';
+// import AboutApp from 'components/AboutApp/AboutApp';
 
 const validationSchema = yup.object().shape({
   email: yup
@@ -38,20 +39,16 @@ const initialValues = {
 const LoginForm = () => {
   const dispatch = useDispatch();
   const isLoggedIn = useSelector(getIsLoggedIn);
- 
 
   const handleSubmit = (values, actions) => {
-
     dispatch(logIn(values));
 
     isLoggedIn && actions.resetForm();
   };
 
-
   return (
     <>
       <div>
-       
         <Formik
           initialValues={initialValues}
           validationSchema={validationSchema}
@@ -60,7 +57,6 @@ const LoginForm = () => {
           {({ isValid, touched }) => {
             return (
               <Form name="LoginForm">
-                
                 <div>
                   <label htmlFor="email">
                     Email <span>*</span>
