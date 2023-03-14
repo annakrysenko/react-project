@@ -1,4 +1,4 @@
-import Container from 'components/Container/Container.styled';
+// import Container from 'components/Container/Container.styled';
 import styled from 'styled-components';
 
 export const WrapperOverlay = styled.div`
@@ -13,6 +13,6 @@ export const WrapperOverlay = styled.div`
   background-color: ${({ theme }) => theme.colors.modalBackground};
   z-index: 10;
 `;
-export const WrapperModal = styled(Container)`
-  background-color: ${({ theme }) => theme.colors.white};
-`;
+// export const WrapperModal = styled(Container)`
+//   background-color: ${({ theme }) => theme.colors.white};
+// `;
