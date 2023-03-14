@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import theme from 'styles/theme';
-import device from 'styles/deviveSize';
+import device from 'styles/deviceSize';
 
 export const DivStyled = styled.div`
   display: flex;

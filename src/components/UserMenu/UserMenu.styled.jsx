@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import device from 'styles/deviveSize';
+import device from 'styles/deviceSize';
 import { NavLink } from 'react-router-dom';
 
 export const HoverBtn = styled.button`

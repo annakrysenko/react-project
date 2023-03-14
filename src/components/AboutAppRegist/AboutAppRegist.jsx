@@ -8,9 +8,9 @@ import {
   LiStyled,
   //   ButtonsDiv,
   //   LinkStyled,
-} from './AboutApp.styled';
+} from './AboutAppRegistStyled.js';
 
-const AboutApp = () => {
+const AboutAppRegistr = () => {
   //   const { isMobile } = useMatchMedia();
 
   return (
@@ -42,4 +42,4 @@ const AboutApp = () => {
   );
 };
 
-export default AboutApp;
+export default AboutAppRegistr;
