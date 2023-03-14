@@ -3,7 +3,7 @@ import { configureStore } from '@reduxjs/toolkit';
 import { persistStore, persistReducer } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
 import { authReducer } from './auth/authSlice';
-import { booksReducer } from './book/book-slice';
+import { booksReducer } from './books/booksSlice';
 
 const authPersistConfig = {
   key: 'auth',

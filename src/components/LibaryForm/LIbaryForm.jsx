@@ -1,6 +1,6 @@
 import { useDispatch } from 'react-redux';
 // import { getBooks } from 'redux/book/book-selectors';
-import { createBook } from 'redux/book/book-operations';
+import { createBook } from 'redux/books/bookOperations';
 // import {
 //   AuthorInput,
 //   Box,
@@ -17,8 +17,6 @@ import { createBook } from 'redux/book/book-operations';
 import { useState } from 'react';
 
 const LibraryForm = () => {
-  // const books = useSelector(getBooks);
-
   const dispatch = useDispatch();
 
   const [title, SetTitle] = useState('');
@@ -53,43 +51,59 @@ const LibraryForm = () => {
 
   const handleSubmit = evt => {
     evt.preventDefault();
-    console.log(title);
     dispatch(createBook({ title, author, publishYear, pagesTotal }));
   };
 
   return (
-    <form autoComplete="off" onSubmit={handleSubmit}>
-      <input
-        name="title"
-        label="Book title"
-        required
-        onChange={handleChange}
-        value={title}
-        placeholder="..."
-      />
+    <>
+      <form autoComplete="off" onSubmit={handleSubmit}>
+        <label htmlFor="title">
+          Book title
+          <input
+            name="title"
+            // label="Book title"
+            required
+            onChange={handleChange}
+            value={title}
+            // placeholder="..."
+          />
+        </label>
 
-      <input
-        name="author"
-        label="Author"
-        onChange={handleChange}
-        value={author}
-      ></input>
-      <input
-        name="publishYear"
-        label="Publication date"
-        onChange={handleChange}
-        value={publishYear}
-        placeholder="..."
-      ></input>
-      <input
-        name="totalPages"
-        label="Amount of pages"
-        onChange={handleChange}
-        value={pagesTotal}
-        placeholder="..."
-      ></input>
-      <button type="submit">Add</button>
-    </form>
+        <label htmlFor="author">
+          Author
+          <input
+            name="author"
+            // label="Author"
+            onChange={handleChange}
+            value={author}
+          ></input>
+        </label>
+
+        <label htmlFor="publishYear">
+          Publication date
+          <input
+            name="publishYear"
+            // label="Publication date"
+            onChange={handleChange}
+            value={publishYear}
+            // placeholder="..."
+          ></input>
+        </label>
+
+        <label htmlFor="totalPages">
+          Amount of pages
+          <input
+            name="totalPages"
+            // label="Amount of pages"
+            onChange={handleChange}
+            value={pagesTotal}
+            // placeholder="..."
+          ></input>
+        </label>
+
+        <button type="submit">Add</button>
+      </form>
+    </>
   );
 };
 export default LibraryForm;

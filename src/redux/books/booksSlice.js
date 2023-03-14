@@ -1,5 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { createBook } from './book-operations';
+import { createBook } from './bookOperations';
 
 const initialState = {
   books: [],
@@ -10,11 +10,9 @@ const booksSlice = createSlice({
   initialState,
   extraReducers: {
     [createBook.fulfilled](state, { payload }) {
-      state.books.push(payload.newBook);
+      state.books.push(payload);
     },
-    // [fetchBooks.fulfilled](_, action) {
-    //   return action.payload;
-    // },
+
     // [deleteBook.fulfilled](state, action) {
     //   return state.filter(item => item._id !== action.payload._id);
     // },

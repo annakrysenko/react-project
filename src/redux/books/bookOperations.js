@@ -6,28 +6,14 @@ const createBook = createAsyncThunk(
   async (book, { rejectWithValue }) => {
     try {
       const resp = await axios.post('/book', book);
-      console.log(resp.data);
-      return resp.data;
+      return resp.data.newBook;
     } catch (error) {
       rejectWithValue(error);
     }
   }
 );
 
-const fetchBooks = createAsyncThunk(
-  'books/get',
-  async (_, { rejectWithValue }) => {
-    try {
-      const { data } = await axios.get('/planning');
-      console.log(data);
-      return data;
-    } catch (error) {
-      rejectWithValue(error);
-    }
-  }
-);
-
-export { createBook, fetchBooks };
+export { createBook };
 
 // const deleteBook = createAsyncThunk(
 //   'books/delete',
