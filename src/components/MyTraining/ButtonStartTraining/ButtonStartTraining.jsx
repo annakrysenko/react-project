@@ -3,7 +3,7 @@
 // import { ButtonStartStyled } from './ButtonStartTraining.styled';
 
 
-// export const StartTrainingButton = ({ onClick, disabled }) => {
+// export const ButtonStartTraining = ({ onClick, disabled }) => {
 //     return (
 //         <ButtonStartStyled htmlType="button" onClick={onClick} disabled={disabled}>
 //             Почати тренування
