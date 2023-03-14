@@ -1,12 +1,18 @@
-// import React from 'react';
+import React from 'react';
+import TimerYear from 'components/Timers/TimerYear';
+import TimerGoal from 'components/Timers/TimerGoal';
 // import { useState, useEffect, useCallback } from 'react';
 
 // import myGoal from 'components/MyGoal/MyGoal';
 // import Training from 'components/MyTraining';
 
+const Training = () => {
+  return (
+    <div>
+      <TimerYear />
+      <TimerGoal />
+    </div>
+  );
+};
 
-// const Training = () => {
-//   return <div>Training</div>;
-// };
-
-// export default Training;
+export default Training;

@@ -3,7 +3,9 @@
 import { ReactComponent as Home } from 'images/svg/home.svg';
 import { ReactComponent as Library } from 'images/svg/library.svg';
 import { ReactComponent as Line } from 'images/svg/line.svg';
-import { HomeLink, HoverBtn, LibraryLink, LineStyled, LogoName, UserNameStyled } from './UserMenu.styled';
+import { HomeLink, HoverBtn, LibraryLink, LineStyled, 
+       // LogoName, UserNameStyled 
+       } from './UserMenu.styled';
 
 
 export const UserMenu = () => {
