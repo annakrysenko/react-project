@@ -33,3 +33,6 @@ export default theme;
 
 // ПРИКЛАД ВИКОРИСТАННЯ
 // color: ${({ theme }) => theme.colors.white};
+
+// або ось так
+// color: ${theme.colors.white};
