@@ -1,7 +1,6 @@
-import { Form, ErrorMessage, Field, Formik } from 'formik';
+import {  Formik } from 'formik';
 import * as yup from 'yup';
 import { useDispatch, useSelector } from 'react-redux';
-import {  Link } from 'react-router-dom';
 import {  register } from 'redux/auth/authOperation';
 import { getIsLoggedIn } from 'redux/auth/authSelectors';
 import {
@@ -84,8 +83,9 @@ const RegistrationForm = () => {
 
   return (
     <>
-      <div>
-     
+      <Container>
+        <BgContainer>
+     <Wrapper>
         <Formik
           initialValues={initialValues}
           validationSchema={validationSchema}
@@ -93,10 +93,10 @@ const RegistrationForm = () => {
         >
           {({ isValid, touched }) => {
             return (
-              <Form name="SignupForm">
+              <FormnWrapper name="SignupForm">
                
 
-                <div>
+                <FieldWrapper>
                   <FieldLabel htmlFor="name">
                     Name <span>*</span>
                   </FieldLabel>
@@ -107,10 +107,10 @@ const RegistrationForm = () => {
                     placeholder="name"
                     // autoComplete="off"
                   />
-                  <ErrorMessage name="name" component="div" />
-                </div>
+                  <Error name="name" component="div" />
+                </FieldWrapper>
 
-                <div>
+                <FieldWrapper>
                   <FieldLabel htmlFor="email">
                     Email <AccentSpan>*</AccentSpan>
                   </FieldLabel>
@@ -122,9 +122,9 @@ const RegistrationForm = () => {
                     // autoComplete="off"
                   />
                   <Error name="email" component="div" />
-                </div>
+                </FieldWrapper>
 
-                <div>
+                <FieldWrapper>
                   <FieldLabel htmlFor="password">
                     Password <AccentSpan>*</AccentSpan>
                   </FieldLabel>
@@ -138,9 +138,9 @@ const RegistrationForm = () => {
                   />
              
                   <Error name="password" component="div" />
-                </div>
+                </FieldWrapper>
 
-                <div>
+                <FieldWrapper>
                   <FieldLabel htmlFor="repeatPassword">
                     Confirm password <AccentSpan>*</AccentSpan>
                   </FieldLabel>
@@ -153,7 +153,7 @@ const RegistrationForm = () => {
                     onPaste={e => e.preventDefault()}
                   />
                   <Error name="repeatPassword" component="div" />
-                </div>
+                </FieldWrapper>
 
                 <Button
                   type="submit"
@@ -172,11 +172,13 @@ const RegistrationForm = () => {
                   <p> Already have an account?{' '}</p>
                   <StyledLink to="/login">Log in</StyledLink>
                 </div>
-              </Form>
+              </FormnWrapper>
             );
           }}
-        </Formik>
-      </div>
+            </Formik>
+            </Wrapper>
+          </BgContainer>
+      </Container>
     </>
   );
 };

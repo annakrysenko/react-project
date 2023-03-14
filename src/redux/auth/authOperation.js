@@ -14,28 +14,19 @@ const token = {
 
 export const register = createAsyncThunk(
     'auth/register',
-    // async (credentials, { rejectWithValue }) => {
-    //     console.log(credentials)
-    //     try {
-    //         const { data } = await axios.post('/auth/register', credentials);
-    //         const { email, password } = credentials
-    //         const responce = await axios.post('/auth/login', { email, password })
-    //         console.log(responce)
-    //         token.set(responce.data.accessToken);
-    //         return data
     async (credentials, { rejectWithValue }) => {
+        console.log(credentials);
         try {
-            const password = credentials.password;
-            const email = credentials.email;
             await axios.post('/auth/register', credentials);
-            const { data } = await axios.post('/auth/login', { email, password });
-            token.set(data.accessToken);
-            return data
+            const { email, password } = credentials;
+            const response = await axios.post('/auth/login', { email, password });
+            token.set(response.data.accessToken);
+            return response;
         } catch (e) {
             toast.error('Please, try again!');
             return rejectWithValue(e.message);
         }
-    },
+    }
 );
 
 export const logIn = createAsyncThunk(
@@ -49,7 +40,7 @@ export const logIn = createAsyncThunk(
             toast.error('Email or password is wrong, please try again!');
             return rejectWithValue(e.message);
         }
-    },
+    }
 );
 
 export const logOut = createAsyncThunk(
@@ -64,12 +55,11 @@ export const logOut = createAsyncThunk(
     }
 );
 
-export const fetchCurretUser = createAsyncThunk(
+export const fetchCurrentUser = createAsyncThunk(
     'auth/refresh',
     async (_, thunkAPI) => {
         const state = thunkAPI.getState();
         const persistedToken = state.auth.token;
-
         if (persistedToken === null) {
             return thunkAPI.rejectWithValue('Unable to fetch user');
         }
@@ -81,7 +71,7 @@ export const fetchCurretUser = createAsyncThunk(
         } catch (e) {
             return thunkAPI.rejectWithValue(e.message);
         }
-    },
+    }
 );
 
 export const loginWithGoogle = createAsyncThunk(
