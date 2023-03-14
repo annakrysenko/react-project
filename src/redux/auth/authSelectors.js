@@ -4,3 +4,4 @@
 // export const getIsLoggedIn = state => (state.auth.accessToken = true);
 
 export const getIsLoggedIn = state => state.auth.isLoggedIn;
+export const getIsRegistrated = state => state.auth.isRegistratedIn;

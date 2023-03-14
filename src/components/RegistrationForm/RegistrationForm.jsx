@@ -2,8 +2,10 @@ import { Form, ErrorMessage, Field, Formik } from 'formik';
 import * as yup from 'yup';
 import { useDispatch, useSelector } from 'react-redux';
 import {  Link } from 'react-router-dom';
-import { register } from 'redux/auth/authOperation';
-import { getIsLoggedIn } from 'redux/auth/authSelectors';
+import {  register } from 'redux/auth/authOperation';
+import { getIsLoggedIn} from 'redux/auth/authSelectors';
+
+
 
 const validationSchema = yup.object().shape({
   name: yup
@@ -46,17 +48,23 @@ const initialValues = {
   repeatPassword: '',
 };
 
+
 const RegistrationForm = () => {
   const dispatch = useDispatch();
   const isLoggedIn = useSelector(getIsLoggedIn);
- 
+  // const isRegistrated = useSelector(getIsRegistrated);
 
+  // useEffect(() => {
+  // isRegistrated && dispatch(logIn)
   
+  // },[isRegistrated])
 
-    const handleSubmit = (values, actions) => {
+
+    const handleSubmit = async (values, actions) => {
         const { password,  name, email } = values;
        const registrationData = { name, email, password };
-    dispatch(register(registrationData));
+      const registretion = await dispatch(register(registrationData));
+      console.log(registretion)
 
     isLoggedIn && actions.resetForm();
   };
@@ -84,7 +92,7 @@ const RegistrationForm = () => {
                     id="name"
                     name="name"
                     type="text"
-                    placeholder="..."
+                    placeholder="Name"
                     autoComplete="off"
                   />
                   <ErrorMessage name="name" component="div" />
