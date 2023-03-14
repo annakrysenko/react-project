@@ -9,6 +9,7 @@ import {
   TitleInput,
   Wrapper,
 } from './LibaryForm.styled';
+import * as yup from 'yup';
 // import { useSelector } from 'react-redux';
 // import { useDispatch } from 'react-redux';
 import { useState } from 'react';
@@ -45,10 +46,16 @@ const LibraryForm = () => {
     }
   };
 
+  const resetedForm=()=>{
+    SetTitle('')
+    SetAthor('')
+    SetPublishYear('')
+    SetTotalPages('')
+  }
   const handleSubmit = (evt) => {
         evt.preventDefault();
       // dispatch(addContact({ title,author,publishYear,totalPages}));
-     
+      resetedForm()
       };
 
   return (
