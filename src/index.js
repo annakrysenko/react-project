@@ -12,6 +12,7 @@ import { ThemeProvider } from 'styled-components';
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
+<<<<<<< Updated upstream
     <Provider store={store}>
       <ThemeProvider theme={theme}>
         <PersistGate persistor={persistor}>
@@ -20,6 +21,18 @@ root.render(
           </BrowserRouter>
         </PersistGate>
       </ThemeProvider>
+=======
+    <Provider
+    store={store}
+    >
+      <PersistGate
+      persistor={persistor}
+      >
+        <BrowserRouter>
+          <App />
+        </BrowserRouter>
+      </PersistGate>
+>>>>>>> Stashed changes
     </Provider>
   </React.StrictMode>
 );
