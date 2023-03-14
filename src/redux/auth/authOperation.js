@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { createAsyncThunk } from "@reduxjs/toolkit";
+import { createAsyncThunk } from '@reduxjs/toolkit';
 import { toast } from 'react-toastify';
 
 axios.defaults.baseURL = 'https://bookread-backend.goit.global';
@@ -53,7 +53,7 @@ export const logOut = createAsyncThunk(
         } catch (e) {
             return rejectWithValue(e.message);
         }
-    },
+    }
 );
 
 export const fetchCurretUser = createAsyncThunk(
@@ -80,12 +80,11 @@ export const loginWithGoogle = createAsyncThunk(
     'auth/loginwithgoogle',
     async (credentials, { rejectWithValue }) => {
         try {
-            const { data } = await axios.get('/auth/google')
+            const { data } = await axios.get('/auth/google');
             token.set(credentials.data.token);
             return data;
         } catch (e) {
-            return rejectWithValue(e)
+            return rejectWithValue(e);
         }
-    },
+    }
 );
-

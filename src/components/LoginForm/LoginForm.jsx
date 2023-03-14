@@ -38,20 +38,16 @@ const initialValues = {
 const LoginForm = () => {
   const dispatch = useDispatch();
   const isLoggedIn = useSelector(getIsLoggedIn);
- 
 
   const handleSubmit = (values, actions) => {
-
     dispatch(logIn(values));
 
     isLoggedIn && actions.resetForm();
   };
 
-
   return (
     <>
       <div>
-       
         <Formik
           initialValues={initialValues}
           validationSchema={validationSchema}
@@ -60,7 +56,6 @@ const LoginForm = () => {
           {({ isValid, touched }) => {
             return (
               <Form name="LoginForm">
-                
                 <div>
                   <label htmlFor="email">
                     Email <span>*</span>

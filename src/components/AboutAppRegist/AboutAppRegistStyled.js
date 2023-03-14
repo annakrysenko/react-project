@@ -1,9 +1,9 @@
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 
-import device from 'styles/device';
-import { theme } from 'styles';
-import listStyleImage from 'images/svg/list-style-image.svg';
+import listStyleImage from '../../images/svg/list-style-image.svg';
+import device from 'styles/deviceSize';
+import theme from 'styles/theme';
 
 export const DivStyled = styled.div`
   display: flex;
