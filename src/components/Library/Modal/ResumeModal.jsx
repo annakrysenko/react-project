@@ -57,6 +57,14 @@
 // export default useRatingModal;
 
 
-const useRatingModal = () => { }
+// const useRatingModal = () => { }
 
-export default useRatingModal;
+// export default useRatingModal;
+
+import React from 'react'
+
+export const ResumeModal = () => {
+  return (
+    <div>ResumeModal</div>
+  )
+}

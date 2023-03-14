@@ -83,53 +83,125 @@
 
 
 
-// import { flexRender } from '@tanstack/react-table';
-// import {Modal} from 'components/Modal/Modal';
+import { flexRender } from '@tanstack/react-table';
+import Modal from 'components/Modal/Modal';
+import {ResumeModal} from 'components/Library/Modal/ResumeModal';
+import BookDetails from './BooksDetails';
+
+export const Books = ({ title, status, data }) => {
+  const { table, isModalVisible, bookId, onModalClose } = BookDetails(
+    status,
+    data
+  );
+
+  return (
+    <div>
+      <h3>{title}</h3>
+      <table>
+        <thead>
+          {table.getHeaderGroups().map(headerGroup => (
+            <tr key={headerGroup.id}>
+              {headerGroup.headers.map(header => (
+                <th key={header.id}>
+                  {header.isPlaceholder
+                    ? null
+                    : flexRender(
+                        header.column.columnDef.header,
+                        header.getContext()
+                      )}
+                </th>
+              ))}
+            </tr>
+          ))}
+        </thead>
+        <tbody>
+          {table.getRowModel().rows.map(row => (
+            <tr key={row.id}>
+              {row.getVisibleCells().map(cell => (
+                <td key={cell.id}>
+                  {flexRender(cell.column.columnDef.cell, cell.getContext())}
+                </td>
+              ))}
+            </tr>
+          ))}
+        </tbody>
+      </table>
+      {isModalVisible && (
+        <Modal onClose={onModalClose}>
+          <ResumeModal onClose={onModalClose} bookId={bookId} />
+        </Modal>
+      )}
+    </div>
+  );
+};
+
+
+
+
+
+
+// import React, { useState } from 'react';
+// import { useTable } from 'react-table';
+// import Modal from 'components/Modal/Modal';
 // import RatingModal from 'components/Library/Modal/ResumeModal';
-// // import { StyledTable, StyledTitle, Wrapper } from './BooksTable.styled';
-// import useTable from './BooksDetails';
+// // import { StyledTable, StyledTitle, Wrapper } from './ReadTable.styled';
 
 // const ReadTable = ({ title, status, data }) => {
-//   const { table, isModalVisible, bookId, onModalClose } = useTable(
-//     status,
-//     data
-//   );
+//   const [isModalVisible, setIsModalVisible] = useState(false);
+//   const [bookId, setBookId] = useState(null);
+//   const { getTableProps, getTableBodyProps, headerGroups, rows, prepareRow } =
+//     useTable({
+//       columns: status.map((column) => ({
+//         Header: column.header,
+//         accessor: column.accessor,
+//         Cell: column.cell,
+//       })),
+//       data,
+//     });
+
+//   const handleModalClose = () => {
+//     setIsModalVisible(false);
+//     setBookId(null);
+//   };
+
+//   const handleRatingClick = (bookId) => {
+//     setIsModalVisible(true);
+//     setBookId(bookId);
+//   };
 
 //   return (
 //     <div>
 //       <h3>{title}</h3>
-//       <table>
+//       <table {...getTableProps()}>
 //         <thead>
-//           {table.getHeaderGroups().map(headerGroup => (
-//             <tr key={headerGroup.id}>
-//               {headerGroup.headers.map(header => (
-//                 <th key={header.id}>
-//                   {header.isPlaceholder
-//                     ? null
-//                     : flexRender(
-//                         header.column.columnDef.header,
-//                         header.getContext()
-//                       )}
+//           {headerGroups.map((headerGroup) => (
+//             <tr {...headerGroup.getHeaderGroupProps()} key={headerGroup.id}>
+//               {headerGroup.headers.map((column) => (
+//                 <th {...column.getHeaderProps()} key={column.id}>
+//                   {column.render('Header')}
 //                 </th>
 //               ))}
 //             </tr>
 //           ))}
 //         </thead>
-//         <tbody>
-//           {table.getRowModel().rows.map(row => (
-//             <tr key={row.id}>
-//               {row.getVisibleCells().map(cell => (
-//                 <td key={cell.id}>
-//                   {flexRender(cell.column.columnDef.cell, cell.getContext())}
-//                 </td>
-//               ))}
-//             </tr>
-//           ))}
+//         <tbody {...getTableBodyProps()}>
+//           {rows.map((row) => {
+//             prepareRow(row);
+//             return (
+//               <tr {...row.getRowProps()} key={row.id}>
+//                 {row.cells.map((cell) => (
+//                   <td {...cell.getCellProps()} key={cell.id}>
+//                     {cell.render('Cell')}
+//                   </td>
+//                 ))}
+//               </tr>
+//             );
+//           })}
 //         </tbody>
 //       </table>
 //       {isModalVisible && (
-//         <Modal onClose={onModalClose}>
-//           <RatingModal onClose={onModalClose} bookId={bookId} />
+//         <Modal onClose={handleModalClose}>
+//           <RatingModal onClose={handleModalClose} bookId={bookId} />
 //         </Modal>
 //       )}
 //     </div>
@@ -137,78 +209,3 @@
 // };
 
 // export default ReadTable;
-
-
-
-
-
-
-import React, { useState } from 'react';
-import { useTable } from 'react-table';
-import {Modal} from 'components/Modal/Modal';
-import RatingModal from 'components/Library/Modal/ResumeModal';
-// import { StyledTable, StyledTitle, Wrapper } from './ReadTable.styled';
-
-const ReadTable = ({ title, status, data }) => {
-  const [isModalVisible, setIsModalVisible] = useState(false);
-  const [bookId, setBookId] = useState(null);
-  const { getTableProps, getTableBodyProps, headerGroups, rows, prepareRow } =
-    useTable({
-      columns: status.map((column) => ({
-        Header: column.header,
-        accessor: column.accessor,
-        Cell: column.cell,
-      })),
-      data,
-    });
-
-  const handleModalClose = () => {
-    setIsModalVisible(false);
-    setBookId(null);
-  };
-
-  const handleRatingClick = (bookId) => {
-    setIsModalVisible(true);
-    setBookId(bookId);
-  };
-
-  return (
-    <div>
-      <h3>{title}</h3>
-      <table {...getTableProps()}>
-        <thead>
-          {headerGroups.map((headerGroup) => (
-            <tr {...headerGroup.getHeaderGroupProps()} key={headerGroup.id}>
-              {headerGroup.headers.map((column) => (
-                <th {...column.getHeaderProps()} key={column.id}>
-                  {column.render('Header')}
-                </th>
-              ))}
-            </tr>
-          ))}
-        </thead>
-        <tbody {...getTableBodyProps()}>
-          {rows.map((row) => {
-            prepareRow(row);
-            return (
-              <tr {...row.getRowProps()} key={row.id}>
-                {row.cells.map((cell) => (
-                  <td {...cell.getCellProps()} key={cell.id}>
-                    {cell.render('Cell')}
-                  </td>
-                ))}
-              </tr>
-            );
-          })}
-        </tbody>
-      </table>
-      {isModalVisible && (
-        <Modal onClose={handleModalClose}>
-          <RatingModal onClose={handleModalClose} bookId={bookId} />
-        </Modal>
-      )}
-    </div>
-  );
-};
-
-export default ReadTable;

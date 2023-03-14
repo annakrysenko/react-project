@@ -5,12 +5,12 @@ import {
 } from '@tanstack/react-table';
 // import { ReactComponent as BookIconOrange } from '../assets/Flat.svg';
 // import { ReactComponent as BookIconGrey } from '../assets/Group.svg';
-// import EllipsisText from 'react-ellipsis-text';
+import EllipsisText from 'react-ellipsis-text';
 // import { StyledBookTitle, StyledBtn, StyledIconBox } from './ReadTable.styled';
 import { useCallback, useMemo, useState } from 'react';
 import { Rate } from 'antd';
 
-const useTable = (status, data) => {
+const BookDetails = (status, data) => {
   const [isModalVisible, setIsModalVisible] = useState(false);
   const [bookId, setBookId] = useState(null);
   const toggleModal = useCallback(
@@ -28,27 +28,27 @@ const useTable = (status, data) => {
   const columns = useMemo(
     () => [
       columnHelper.accessor('title', {
-        header: 'Назва книги',
+        header: 'Book title',
         cell: info => (
           <div>
             <div>
-              {/* {status ? <BookIconOrange /> : <BookIconGrey />} */}
+              {status ? 'Orange' : 'Grey'}
             </div>
-            {/* <EllipsisText text={info.getValue()} length={50} /> */}
+            <EllipsisText text={info.getValue()} length={50} />
           </div>
         ),
       }),
       columnHelper.accessor('author', {
-        header: 'Автор',
+        header: 'Author',
       }),
       columnHelper.accessor('publication', {
-        header: 'Рік',
+        header: 'Year',
       }),
       columnHelper.accessor('pages', {
-        header: 'Стор.',
+        header: 'Pages.',
       }),
       columnHelper.accessor('rating', {
-        header: 'Рейтинг книги',
+        header: 'Rating',
         cell: info => (
           <Rate
             style={{ width: '120px', fontSize: '17px' }}
@@ -67,7 +67,7 @@ const useTable = (status, data) => {
               toggleModal();
             }}
           >
-            Резюме
+            Resume
           </button>
         ),
       }),
@@ -84,4 +84,4 @@ const useTable = (status, data) => {
   return { table, isModalVisible, bookId, onModalClose };
 };
 
-export default useTable;
+export default BookDetails;
