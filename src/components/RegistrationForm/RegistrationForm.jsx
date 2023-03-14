@@ -2,10 +2,10 @@ import { Form, ErrorMessage, Field, Formik } from 'formik';
 import * as yup from 'yup';
 import { useDispatch, useSelector } from 'react-redux';
 import {  Link } from 'react-router-dom';
-import { logIn, register } from 'redux/auth/authOperation';
-import { getIsLoggedIn, getIsRegistrated } from 'redux/auth/authSelectors';
-import { useEffect } from 'react';
-import { async } from 'q';
+import {  register } from 'redux/auth/authOperation';
+import { getIsLoggedIn} from 'redux/auth/authSelectors';
+
+
 
 const validationSchema = yup.object().shape({
   name: yup
