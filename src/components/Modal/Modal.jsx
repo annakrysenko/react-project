@@ -1,30 +1,31 @@
 import React, { useEffect } from 'react';
 import { createPortal } from 'react-dom';
-import { WrapperOverlay } from './Modal.styled';
+import { WrapperModal, WrapperOverlay } from './Modal.styled';
 
-const modalRoot = document.querySelector('#modalRoot');
+const modalRoot = document.querySelector('#modal-root');
 
-export default function Modal({ onClose, children }) {
+export const Modal = ({ children, toggleModal, closeModal }) => {
   useEffect(() => {
-    const handleKeydown = e => {
-      if (e.code === 'Escape') {
-        onClose();
-      }
-    };
-    window.addEventListener('keydown', handleKeydown);
+    window.addEventListener('keydown', handleKeyDown);
     return () => {
-      window.removeEventListener('keydown', handleKeydown);
+      window.removeEventListener('keydown', handleKeyDown);
     };
-  }, [onClose]);
+  });
 
-  const handleBackdropClick = e => {
-    if (e.target === e.currentTarget) {
-      onClose();
+  const handleKeyDown = e => {
+    if (e.code === 'Escape') {
+      closeModal();
     }
   };
 
   return createPortal(
-    <WrapperOverlay onClick={handleBackdropClick}>{children}</WrapperOverlay>,
+    <WrapperOverlay
+      onClick={e => {
+        e.target === e.currentTarget && toggleModal(e);
+      }}
+    >
+      <WrapperModal>{children}</WrapperModal>
+    </WrapperOverlay>,
     modalRoot
   );
-}
+};
