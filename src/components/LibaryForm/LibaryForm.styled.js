@@ -40,7 +40,7 @@ export const TitleInput = styled(StyledInput)`
 
 export const AuthorInput = styled(StyledInput)`
   @media (min-width: 768) {
-    width: 336px;
+    width: 337px;
   }
   @media (min-width: 1200) {
     width: 250px;
