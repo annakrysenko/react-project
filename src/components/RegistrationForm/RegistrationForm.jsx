@@ -3,7 +3,9 @@ import * as yup from 'yup';
 import { useDispatch, useSelector } from 'react-redux';
 import {  Link } from 'react-router-dom';
 import { logIn, register } from 'redux/auth/authOperation';
-import { getIsLoggedIn } from 'redux/auth/authSelectors';
+import { getIsLoggedIn, getIsRegistrated } from 'redux/auth/authSelectors';
+import { useEffect } from 'react';
+import { async } from 'q';
 
 const validationSchema = yup.object().shape({
   name: yup
@@ -50,11 +52,19 @@ const initialValues = {
 const RegistrationForm = () => {
   const dispatch = useDispatch();
   const isLoggedIn = useSelector(getIsLoggedIn);
- 
-    const handleSubmit = (values, actions) => {
+  // const isRegistrated = useSelector(getIsRegistrated);
+
+  // useEffect(() => {
+  // isRegistrated && dispatch(logIn)
+  
+  // },[isRegistrated])
+
+
+    const handleSubmit = async (values, actions) => {
         const { password,  name, email } = values;
        const registrationData = { name, email, password };
-    dispatch(register(registrationData));
+      const registretion = await dispatch(register(registrationData));
+      console.log(registretion)
 
     isLoggedIn && actions.resetForm();
   };

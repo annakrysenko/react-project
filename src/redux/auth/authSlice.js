@@ -10,15 +10,18 @@ const initialState = {
     isLoggedIn: false,
     isFetchingCurrentUser: false,
     error: null,
+    isRegistratedIn: false,
 };
 const authSlice = createSlice({
     name: 'auth',
     initialState,
     extraReducers: {
         [register.fulfilled](state, { payload }) {
-            state.user = payload.user;
-            state.token = payload.token;
+            console.log(payload)
+            state.user = payload.userData;
+            state.token = payload.accessToken;
             state.isLoggedIn = true;
+            state.isRegistratedIn = true;
 
         },
         [register.rejected](state, { payload }) {
