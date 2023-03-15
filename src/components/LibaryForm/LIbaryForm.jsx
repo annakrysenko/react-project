@@ -1,7 +1,7 @@
 import { useDispatch } from 'react-redux';
 // import { getBooks } from 'redux/book/book-selectors';
-import { createBook } from 'redux/books/bookOperations';
-import { LABEL,INPUT,FORM,Button,BOX} from './LibaryForm.styled';
+import { createBook } from 'redux/books/booksOperations';
+import { LABEL, INPUT, FORM, Button, BOX } from './LibaryForm.styled';
 import * as yup from 'yup';
 // import { useSelector } from 'react-redux';
 import {BsArrowLeft} from 'react-icons/bs'
@@ -11,21 +11,21 @@ const LibraryForm = () => {
   const dispatch = useDispatch();
   const date = new Date();
   const year = date.getFullYear();
-  const  schema = yup.object().shape({
+  const schema = yup.object().shape({
     title: yup
       .string()
-      .required("Mandatory field")
+      .required('Mandatory field')
       .max(50, 'The field cannot contain more than 50 characters'),
-    author: yup.string().required("Mandatory field"),
+    author: yup.string().required('Mandatory field'),
     publishYear: yup
       .number()
       .typeError('The field can only contain numbers')
       .max(year, `The year of publication cannot be greater ${year}`)
       .positive('The field can contain only positive numbers'),
-      totalPages: yup
+    totalPages: yup
       .number()
       .typeError('The field can only contain numbers')
-      .required("Mandatory field")
+      .required('Mandatory field')
       .max(9999, 'The number of pages can be less or equal 9999')
       .positive('The field can contain only positive numbers'),
   });
@@ -60,7 +60,12 @@ const LibraryForm = () => {
 
           <LABEL htmlFor="publishYear">
             Publication date
-            <INPUT name="publishYear" placeholder="..." type="number" required />
+            <INPUT
+              name="publishYear"
+              placeholder="..."
+              type="number"
+              required
+            />
             <ErrorMessage name="publishYear" component="div" />
           </LABEL>
 
