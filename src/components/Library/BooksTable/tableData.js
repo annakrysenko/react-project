@@ -1,11 +1,4 @@
-import LibraryForm from 'components/LibaryForm/LIbaryForm';
-
-
-// import ReadTable from 'components/Library/BooksTable/BooksTable';
-import { Books } from 'components/Library/BooksTable/BooksTable';
-import React from 'react';
-
-const tableData = [
+export const tableData = [
   {
     title: 'Book1',
     author: 'Mike',
@@ -30,7 +23,7 @@ const tableData = [
     rating: 5,
     id: 3,
   },
-   {
+  {
     title: 'Book1',
     author: 'Mike',
     publication: 2022,
@@ -55,14 +48,3 @@ const tableData = [
     id: 3,
   },
 ];
-
-const Library = () => {
-  return (
-    <>
-      <LibraryForm />
-      <Books title="My Book" status={true} data={tableData}/>
-    </>
-  );
-};
-
-export default Library;

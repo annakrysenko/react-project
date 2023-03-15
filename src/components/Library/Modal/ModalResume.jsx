@@ -7,13 +7,13 @@ import {
   StyledRatingResumeText,
   StyledRatingText,
   StyledTextArea,
-} from './RatingModal.styled';
+} from './ModalResume.styled';
 
-import Loader from 'components/Loader';
+import {Loader} from 'components//Library/Modal/Loader';
 import { Form, Rate } from 'antd';
-import useRatingModal from './useRatingModal';
+import useRatingModal from './UseModalResume';
 
-const RatingModal = ({ onClose, bookId }) => {
+const ModalOpenResume = ({ onClose, bookId }) => {
   const {
     isLoading,
     error,
@@ -83,4 +83,4 @@ const RatingModal = ({ onClose, bookId }) => {
     </>
   );
 };
-export default RatingModal;
+export default ModalOpenResume;

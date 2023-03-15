@@ -84,8 +84,12 @@
 
 
 import { flexRender } from '@tanstack/react-table';
-import Modal from 'components/Modal/Modal';
-import {ResumeModal} from 'components/Library/Modal/ResumeModal';
+import {Modal} from 'components/Modal/Modal';
+import { useEffect } from 'react';
+import { useSelector } from 'react-redux';
+import { getBooks } from 'redux/books/bookSelectors';
+import { ResumeModal } from '../Modal/ResumeModal';
+// import {ModalOpenResume} from 'components/Library/Modal/ModalOpenResume';
 import BookDetails from './BooksDetails';
 
 export const Books = ({ title, status, data }) => {
@@ -93,6 +97,9 @@ export const Books = ({ title, status, data }) => {
     status,
     data
   );
+
+  const books = useSelector(getBooks)
+  useEffect(()=> {console.log(books);},[books])
 
   return (
     <div>
