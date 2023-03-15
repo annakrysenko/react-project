@@ -3,10 +3,10 @@ import {
   getCoreRowModel,
   useReactTable,
 } from '@tanstack/react-table';
-// import { ReactComponent as BookIconOrange } from '../assets/Flat.svg';
-// import { ReactComponent as BookIconGrey } from '../assets/Group.svg';
+import { ReactComponent as BookOrange } from '../BooksIcon/Flat.svg';
+import { ReactComponent as BookGrey } from '../BooksIcon/Group.svg';
 import EllipsisText from 'react-ellipsis-text';
-// import { StyledBookTitle, StyledBtn, StyledIconBox } from './ReadTable.styled';
+// import { StyledBookTitle, StyledBtn, StyledIconBox } from './BooksTable.styled';
 import { useCallback, useMemo, useState } from 'react';
 import { Rate } from 'antd';
 
@@ -32,7 +32,7 @@ const BookDetails = (status, data) => {
         cell: info => (
           <div>
             <div>
-              {status ? 'Orange' : 'Grey'}
+              {status ? <BookOrange /> : <BookGrey />}
             </div>
             <EllipsisText text={info.getValue()} length={50} />
           </div>
@@ -45,7 +45,7 @@ const BookDetails = (status, data) => {
         header: 'Year',
       }),
       columnHelper.accessor('pages', {
-        header: 'Pages.',
+        header: 'Pages',
       }),
       columnHelper.accessor('rating', {
         header: 'Rating',

@@ -1,18 +1,18 @@
-import LibraryForm from './LibraryForm/LibraryForm';
-import MobileTable from './MobileTable/MobileTable';
+import LibraryForm from '../LibraryForm/LibraryForm';
+import MobileTable from '../MobileBooks/MobileBooks';
 import Table from './Table/Table';
 import ReadTable from './ReadTable/ReadTable';
-import Container from 'components/Container';
+// import Container from 'components/Container';
 // import {
 //   MobileAddBtn,
 //   StyledButton,
-//   StyledSection,
+//   StyledSection, 
 //   TextStyled,
 //   TextStyledPrimary,
 // } from './LibraryComponent.styled';
 import useLibraryComponent from './useLibraryComponent';
-import { ReactComponent as PlusIcon } from './assets/plus.svg';
-import EmtpyLibraryText from 'components/modals/EmtpyLibraryText';
+import { ReactComponent as PlusIcon } from '../BooksIcon/plus.svg';
+import EmtpyLibraryText from 'components/Modal/EmtpyLibraryText';
 
 const LibraryComponent = () => {
   const {
@@ -28,7 +28,7 @@ const LibraryComponent = () => {
 
   return (
     <>
-      <Container>
+      <div>
         {error && <p>{error?.data?.message}</p>}
         {!isLoading && (
           <section>
@@ -36,24 +36,24 @@ const LibraryComponent = () => {
               <>
                 {!isEmpty && (
                   <>
-                    <p>Бібліотека пуста.</p>
-                    <span>Додайте книжки до бібліотеки.</span>
+                    <p>Library empty</p>
+                    <span>Add</span>
                   </>
                 )}
 
                 {!!alreadyBooks.length && (
                   <MobileTable
-                    title={'Прочитано'}
+                    title={'Already read'}
                     status={false}
                     data={alreadyBooks}
                   />
                 )}
                 {!!nowBooks.length && (
-                  <MobileTable title={'Читаю'} status={true} data={nowBooks} />
+                  <MobileTable title={'reading now'} status={true} data={nowBooks} />
                 )}
                 {!!planBooks.length && (
                   <MobileTable
-                    title={'Маю намір прочитати'}
+                    title={'Going to read'}
                     status={false}
                     data={planBooks}
                   />
@@ -72,18 +72,18 @@ const LibraryComponent = () => {
                 <LibraryForm />
                 {!!alreadyBooks.length && (
                   <ReadTable
-                    title={'Прочитано'}
+                    title={'Already read'}
                     status={false}
                     data={alreadyBooks}
                   />
                 )}
                 <EmtpyLibraryText isEmptyLibrary={isEmpty} />
                 {!!nowBooks.length && (
-                  <Table title={'Читаю'} status={true} data={nowBooks} />
+                  <Table title={'reading now'} status={true} data={nowBooks} />
                 )}
                 {!!planBooks.length && (
                   <Table
-                    title={'Маю намір прочитати'}
+                    title={'Going to read'}
                     status={false}
                     data={planBooks}
                   />
@@ -92,18 +92,18 @@ const LibraryComponent = () => {
             )}
 
             {isEmpty && (
-              <StyledButton
+              <button
                 type="primary"
                 onClick={() => {
                   navigate('/training');
                 }}
               >
                 Моє тренування
-              </StyledButton>
+              </button>
             )}
           </section>
         )}
-      </Container>
+      </div>
     </>
   );
 };

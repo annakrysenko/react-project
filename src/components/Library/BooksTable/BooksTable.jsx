@@ -91,6 +91,7 @@ import { getBooks } from 'redux/books/bookSelectors';
 import { ResumeModal } from '../Modal/ResumeModal';
 // import {ModalOpenResume} from 'components/Library/Modal/ModalOpenResume';
 import BookDetails from './BooksDetails';
+import { StyledTable, StyledTitle, Wrapper } from './BooksTable.styled';
 
 export const Books = ({ title, status, data }) => {
   const { table, isModalVisible, bookId, onModalClose } = BookDetails(
@@ -102,9 +103,9 @@ export const Books = ({ title, status, data }) => {
   useEffect(()=> {console.log(books);},[books])
 
   return (
-    <div>
-      <h3>{title}</h3>
-      <table>
+    <Wrapper>
+      <StyledTitle>{title}</StyledTitle>
+      <StyledTable>
         <thead>
           {table.getHeaderGroups().map(headerGroup => (
             <tr key={headerGroup.id}>
@@ -122,7 +123,17 @@ export const Books = ({ title, status, data }) => {
           ))}
         </thead>
         <tbody>
-          {table.getRowModel().rows.map(row => (
+          {books.map(book => {
+            console.log(book);
+            return <tr key={book._id}>
+              <td>{book.title}</td>
+              <td>{book.author}</td>
+               <td>{book.publishYear}</td>
+              <td>{book.pagesTotal}</td>
+  </tr>
+})}
+
+          {/* {table.getRowModel().rows.map(row => (
             <tr key={row.id}>
               {row.getVisibleCells().map(cell => (
                 <td key={cell.id}>
@@ -130,15 +141,15 @@ export const Books = ({ title, status, data }) => {
                 </td>
               ))}
             </tr>
-          ))}
+          ))} */}
         </tbody>
-      </table>
+      </StyledTable>
       {isModalVisible && (
         <Modal onClose={onModalClose}>
           <ResumeModal onClose={onModalClose} bookId={bookId} />
         </Modal>
       )}
-    </div>
+    </Wrapper>
   );
 };
 
