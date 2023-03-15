@@ -3,11 +3,7 @@ import { useEffect } from "react";
 import { Modal } from "components/Modal/Modal";
 import theme from "styles/theme";
 import {
-  ModalContainer,
   ModalContent,
-  ModalHeader,
-  ModalTitle,
-  // ModalCloseButton,
   ModalText,
   ModalDiv,
   ModalButton,
