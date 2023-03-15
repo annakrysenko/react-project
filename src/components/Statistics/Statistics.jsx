@@ -1,6 +1,13 @@
-
+import {BiLike} from "react-icons/bi"
 import { useEffect } from "react";
 import { Modal } from "components/Modal/Modal";
+import theme from "styles/theme";
+import {
+  ModalContent,
+  ModalText,
+  ModalDiv,
+  ModalButton,
+} from "components/Statistics/Statistics.styled"
 import { useState } from "react";
 
 const Statistics = () => {
@@ -38,9 +45,26 @@ const Statistics = () => {
       </div>
       {isShowModal && (
         <Modal toggleModal={toggleModal} closeModal={closeModal}>
-          <div>
-            Congratulations!, you read {readPages} pages out of {plannedPages}!
-          </div>
+          {/* <ModalContainer> */}
+            <ModalContent>
+              <BiLike color={theme.colors.accentColor } size={49}/>
+            {/* <ModalHeader> */}
+            <ModalDiv>
+              <ModalText>
+                Congratulations!
+              </ModalText>  
+            
+            
+              <ModalText>
+                You read {readPages} pages out of {plannedPages}!
+              
+              </ModalText>
+            </ModalDiv>
+              {/* <ModalFooter> */}
+                <ModalButton onClick={toggleModal}>Close</ModalButton>
+              {/* </ModalFooter> */}
+            </ModalContent>
+          {/* </ModalContainer> */}
         </Modal>
       )}
     </>

@@ -1,109 +1,86 @@
 import { useDispatch } from 'react-redux';
 // import { getBooks } from 'redux/book/book-selectors';
-import { createBook } from 'redux/books/bookOperations';
-// import {
-//   AuthorInput,
-//   Box,
-//   FormItem,
-//   StyledBox,
-//   StyledButton,
-//   StyledForm,
-//   StyledInput,
-//   TitleInput,
-//   Wrapper,
-// } from './LibaryForm.styled';
+import { createBook } from 'redux/books/booksOperations';
+import { LABEL, INPUT, FORM, Button, BOX } from './LibaryForm.styled';
+import * as yup from 'yup';
 // import { useSelector } from 'react-redux';
-// import { useDispatch } from 'react-redux';
-import { useState } from 'react';
 
+import { ErrorMessage, Formik } from 'formik';
 const LibraryForm = () => {
   const dispatch = useDispatch();
+  const date = new Date();
+  const year = date.getFullYear();
+  const schema = yup.object().shape({
+    title: yup
+      .string()
+      .required('Mandatory field')
+      .max(50, 'The field cannot contain more than 50 characters'),
+    author: yup.string().required('Mandatory field'),
+    publishYear: yup
+      .number()
+      .typeError('The field can only contain numbers')
+      .max(year, `The year of publication cannot be greater ${year}`)
+      .positive('The field can contain only positive numbers'),
+    totalPages: yup
+      .number()
+      .typeError('The field can only contain numbers')
+      .required('Mandatory field')
+      .max(9999, 'The number of pages can be less or equal 9999')
+      .positive('The field can contain only positive numbers'),
+  });
 
-  const [title, SetTitle] = useState('');
-  const [author, SetAthor] = useState('');
-  const [publishYear, SetPublishYear] = useState('');
-  const [pagesTotal, SetpagesTotal] = useState('');
-  const handleChange = e => {
-    const { name, value } = e.currentTarget;
-
-    switch (name) {
-      case 'title': {
-        SetTitle(value);
-        break;
-      }
-      case 'author': {
-        SetAthor(value);
-        break;
-      }
-      case 'publishYear': {
-        SetPublishYear(value);
-        break;
-      }
-      case 'totalPages': {
-        SetpagesTotal(value);
-        break;
-      }
-      default: {
-        return;
-      }
-    }
+  const handleSubmit = (values, actions) => {
+    dispatch(createBook(values));
+    actions.resetForm();
   };
-
-  const handleSubmit = evt => {
-    evt.preventDefault();
-    dispatch(createBook({ title, author, publishYear, pagesTotal }));
+  const initialValues = {
+    title: '',
+    author: '',
+    publishYear: '',
+    totalPages: '',
   };
 
   return (
-    <>
-      <form autoComplete="off" onSubmit={handleSubmit}>
-        <label htmlFor="title">
-          Book title
-          <input
-            name="title"
-            // label="Book title"
-            required
-            onChange={handleChange}
-            value={title}
-            // placeholder="..."
-          />
-        </label>
+    <BOX>
+      <Formik
+        onSubmit={handleSubmit}
+        initialValues={initialValues}
+        validationSchema={schema}
+      >
+        <FORM>
+          <LABEL htmlFor="title">
+            Book title
+            <INPUT name="title" type="text" required placeholder="..." />
+            <ErrorMessage name="title" component="div" />
+          </LABEL>
 
-        <label htmlFor="author">
-          Author
-          <input
-            name="author"
-            // label="Author"
-            onChange={handleChange}
-            value={author}
-          ></input>
-        </label>
+          <LABEL htmlFor="author">
+            Author
+            <INPUT name="author" placeholder="..." type="text" required />
+            <ErrorMessage name="author" component="div" />
+          </LABEL>
 
-        <label htmlFor="publishYear">
-          Publication date
-          <input
-            name="publishYear"
-            // label="Publication date"
-            onChange={handleChange}
-            value={publishYear}
-            // placeholder="..."
-          ></input>
-        </label>
+          <LABEL htmlFor="publishYear">
+            Publication date
+            <INPUT
+              name="publishYear"
+              placeholder="..."
+              type="number"
+              required
+            />
+            <ErrorMessage name="publishYear" component="div" />
+          </LABEL>
 
-        <label htmlFor="totalPages">
-          Amount of pages
-          <input
-            name="totalPages"
-            // label="Amount of pages"
-            onChange={handleChange}
-            value={pagesTotal}
-            // placeholder="..."
-          ></input>
-        </label>
+          <LABEL htmlFor="totalPages">
+            Amount of pages
+            <INPUT name="totalPages" placeholder="..." type="number" required />
+            <ErrorMessage name="totalPages" component="div" />
+          </LABEL>
 
-        <button type="submit">Add</button>
-      </form>
-    </>
+          <Button type="submit">Add</Button>
+        </FORM>
+      </Formik>
+    </BOX>
   );
 };
 export default LibraryForm;

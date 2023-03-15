@@ -13,10 +13,12 @@ import {
   FieldLabel,
   FieldWrapper,
   FormnWrapper,
+  GoogleButton,
   InputField,
   StyledLink,
   Wrapper,
 } from './LoginForm.styled';
+import { FcGoogle } from 'react-icons/fc';
 
 const validationSchema = yup.object().shape({
   email: yup
@@ -70,6 +72,10 @@ const LoginForm = () => {
               {({ isValid, touched }) => {
                 return (
                   <FormnWrapper name="LoginForm">
+                    <GoogleButton href="https://bookread-backend.goit.global/auth/google">
+                      <FcGoogle size="18px" />
+                      Google
+                    </GoogleButton>
                     <FieldWrapper>
                       <FieldLabel htmlFor="email">
                         Email <AccentSpan>*</AccentSpan>

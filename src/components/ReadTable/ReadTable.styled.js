@@ -1,11 +1,17 @@
 import styled from 'styled-components';
+import { screenSize } from 'styles/deviceSize';
 import theme from 'styles/theme';
 // import { ReactComponent as BookIcon } from 'images/svg/bookIconGrey.svg';
 
 export const StyledTable = styled.table`
-  width: 704px;
+  border-collapse: collapse;
+  overflow: scroll;
+  height: 150px;
 
-  @media screen and (min-width: ${theme.desktop}) {
+  @media screen and (min-width: ${screenSize.tablet}) {
+    width: 704px;
+  }
+  @media screen and (min-width: ${screenSize.desktop}) {
     width: 928px;
   }
 
@@ -15,7 +21,6 @@ export const StyledTable = styled.table`
     font-weight: 500;
     font-size: 14px;
     line-height: 1.21;
-    /* border: 1px; */
     border-top: 1px solid ${theme.colors.borderColor};
     border-bottom: 1px solid ${theme.colors.borderColor};
 
@@ -23,9 +28,10 @@ export const StyledTable = styled.table`
   }
 
   tbody {
+    border-bottom: 1px solid ${theme.colors.borderColor};
+
     tr {
       height: 62px;
-      border-bottom: 1px solid ${theme.colors.borderColor};
 
       td {
         position: relative;
@@ -48,28 +54,30 @@ export const StyledTable = styled.table`
 
         :nth-child(5) {
           width: 5%;
+          position: relative;
+          /* display: flex; */
+          /* background-color: tomato; */
         }
       }
     }
   }
 `;
 
-// export const StyledDeleteButton = styled(Button)`
-//   padding: 0;
+export const StyledDeleteButton = styled.button`
+  padding: 0;
+  position: absolute;
+  right: 0;
+  top: 38%;
+  color: ${theme.colors.placeholderFontColor};
+  background: none;
+  border: none;
 
-//   color: ${p => p.theme.colors.placeholderFontColor};
-//   background: none;
-//   border: none;
+  &:hover {
+    color: ${theme.colors.accentColor};
+    background: none;
+  }
+`;
 
-//   &:hover {
-//     color: ${p => p.theme.colors.accentColor};
-//     background: none;
-//   }
-// `;
-
-// export const StyledBookIcon = styled(BookIcon)`
-//   position: absolute;
-//   z-index: 10;
-//   top: 21px;
-//   left: 0;
-// `;
+export const StyledBookIcon = styled.span`
+  margin-right: 14px;
+`;
