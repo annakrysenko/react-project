@@ -6,6 +6,7 @@ import Statistics from 'components/Statistics/Statistics';
 
 import { TimerMainContainer } from 'components/Timers/TimerYear/TimerYear.styled';
 import ReadTable from 'components/ReadTable/ReadTable';
+import MyTraining from 'components/MyTraining/MyTraining';
 
 // import { useState, useEffect, useCallback } from 'react';
 // import myGoal from 'components/MyGoal/MyGoal';
@@ -20,8 +21,9 @@ const Training = () => {
         
       </TimerMainContainer>
       <MyGoal />
-      
+      <MyTraining/>
       <ReadTable />
+      
       <Statistics />
     </>
   );

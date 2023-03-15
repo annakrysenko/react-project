@@ -4,7 +4,7 @@ import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { useState } from 'react';
 import { useSelector } from 'react-redux';
 import Notiflix from 'notiflix';
-import { getGoingToRead } from '../../redux/library/librarySelector';
+import { getGoingToRead } from '../../redux/books/booksSelectors';
 
 import {
 	WrapperDatePicker,
