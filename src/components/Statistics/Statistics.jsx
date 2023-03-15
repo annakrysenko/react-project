@@ -8,8 +8,8 @@ import {
   ModalHeader,
   ModalTitle,
   // ModalCloseButton,
-  ModalBody,
-  ModalFooter,
+  ModalText,
+  ModalDiv,
   ModalButton,
 } from "components/Statistics/Statistics.styled"
 import { useState } from "react";
@@ -49,21 +49,26 @@ const Statistics = () => {
       </div>
       {isShowModal && (
         <Modal toggleModal={toggleModal} closeModal={closeModal}>
-          <ModalContainer>
+          {/* <ModalContainer> */}
             <ModalContent>
               <BiLike color={theme.colors.accentColor } size={49}/>
-              <ModalHeader>
-                <ModalTitle>Congratulations!</ModalTitle>
-                {/* <ModalCloseButton onClick={closeModal}>&times;</ModalCloseButton> */}
-              </ModalHeader>
-              <ModalBody>
+            {/* <ModalHeader> */}
+            <ModalDiv>
+              <ModalText>
+                Congratulations!
+              </ModalText>  
+            
+            
+              <ModalText>
                 You read {readPages} pages out of {plannedPages}!
-              </ModalBody>
-              <ModalFooter>
+              
+              </ModalText>
+            </ModalDiv>
+              {/* <ModalFooter> */}
                 <ModalButton onClick={toggleModal}>Close</ModalButton>
-              </ModalFooter>
+              {/* </ModalFooter> */}
             </ModalContent>
-          </ModalContainer>
+          {/* </ModalContainer> */}
         </Modal>
       )}
     </>
