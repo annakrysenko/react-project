@@ -1,6 +1,6 @@
 import { useDispatch } from 'react-redux';
 // import { getBooks } from 'redux/book/book-selectors';
-import { createBook } from 'redux/books/bookOperations';
+import { createBook } from 'redux/books/booksOperations';
 import { LABEL, INPUT, FORM, Button, BOX } from './LibaryForm.styled';
 import * as yup from 'yup';
 // import { useSelector } from 'react-redux';
