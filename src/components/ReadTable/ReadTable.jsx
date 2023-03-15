@@ -1,85 +1,53 @@
-// import { useTable } from 'react-table';
+import { StyledTable } from './ReadTable.styled';
+import { data } from '../../redux/books/data';
+import { RxTrash } from 'react-icons/rx';
+import { MdMenuBook } from 'react-icons/md';
+import theme from 'styles/theme';
+import { nanoid } from 'nanoid';
 
-// const ReadTable = () => {
-//   const data = React.useMemo(
-//     () => [
-//       {
-//         col1: 'Hello',
-//         col2: 'World',
-//       },
-//       {
-//         col1: 'react-table',
-//         col2: 'rocks',
-//       },
-//       {
-//         col1: 'whatever',
-//         col2: 'you want',
-//       },
-//     ],
-//     []
-//   );
+const ReadTable = () => {
+  const header = ['Book title', 'Author', 'Year', 'Pages'];
+  const deleteBook = id => {
+    console.log(id);
+  };
+  return (
+    <div>
+      <StyledTable>
+        <thead>
+          <tr>
+            {header.map(item => {
+              return <td key={nanoid()}>{item}</td>;
+            })}
+          </tr>
+        </thead>
+        <tbody>
+          {data.map(book => {
+            return (
+              <tr key={book.id}>
+                <td>
+                  <MdMenuBook color={theme.colors.btnBackground} />
+                  {book.title}
+                </td>
+                <td>{book.author}</td>
+                <td>{book.publication}</td>
+                <td>{book.pages}</td>
+                <td>
+                  <button type="button" onClick={() => deleteBook(book.id)}>
+                    <RxTrash color={theme.colors.btnBackground} />
+                  </button>
+                </td>
+              </tr>
+            );
+          })}
+        </tbody>
+      </StyledTable>
+      {/* {isModalVisible && (
+        <Modal onClose={onModalClose}>
+          <RatingModal onClose={onModalClose} bookId={bookId} />
+        </Modal>
+      )} */}
+    </div>
+  );
+};
 
-//   const columns = React.useMemo(
-//     () => [
-//       {
-//         Header: 'Column 1',
-//         accessor: 'col1', // accessor is the "key" in the data
-//       },
-//       {
-//         Header: 'Column 2',
-//         accessor: 'col2',
-//       },
-//     ],
-//     []
-//   );
-
-//   const { getTableProps, getTableBodyProps, headerGroups, rows, prepareRow } =
-//     useTable({ columns, data });
-
-//   return (
-//     <table {...getTableProps()} style={{ border: 'solid 1px blue' }}>
-//       <thead>
-//         {headerGroups.map(headerGroup => (
-//           <tr {...headerGroup.getHeaderGroupProps()}>
-//             {headerGroup.headers.map(column => (
-//               <th
-//                 {...column.getHeaderProps()}
-//                 style={{
-//                   borderBottom: 'solid 3px red',
-//                   background: 'aliceblue',
-//                   color: 'black',
-//                   fontWeight: 'bold',
-//                 }}
-//               >
-//                 {column.render('Header')}
-//               </th>
-//             ))}
-//           </tr>
-//         ))}
-//       </thead>
-//       <tbody {...getTableBodyProps()}>
-//         {rows.map(row => {
-//           prepareRow(row);
-//           return (
-//             <tr {...row.getRowProps()}>
-//               {row.cells.map(cell => {
-//                 return (
-//                   <td
-//                     {...cell.getCellProps()}
-//                     style={{
-//                       padding: '10px',
-//                       border: 'solid 1px gray',
-//                       background: 'papayawhip',
-//                     }}
-//                   >
-//                     {cell.render('Cell')}
-//                   </td>
-//                 );
-//               })}
-//             </tr>
-//           );
-//         })}
-//       </tbody>
-//     </table>
-//   );
-// };
+export default ReadTable;
