@@ -1,4 +1,8 @@
-import { StyledTable } from './ReadTable.styled';
+import {
+  StyledBookIcon,
+  StyledDeleteButton,
+  StyledTable,
+} from './ReadTable.styled';
 import { data } from '../../redux/books/data';
 import { RxTrash } from 'react-icons/rx';
 import { MdMenuBook } from 'react-icons/md';
@@ -25,16 +29,22 @@ const ReadTable = () => {
             return (
               <tr key={book.id}>
                 <td>
-                  <MdMenuBook color={theme.colors.btnBackground} />
+                  <StyledBookIcon>
+                    <MdMenuBook color={theme.colors.btnBackground} />
+                  </StyledBookIcon>
+
                   {book.title}
                 </td>
                 <td>{book.author}</td>
                 <td>{book.publication}</td>
                 <td>{book.pages}</td>
                 <td>
-                  <button type="button" onClick={() => deleteBook(book.id)}>
+                  <StyledDeleteButton
+                    type="button"
+                    onClick={() => deleteBook(book.id)}
+                  >
                     <RxTrash color={theme.colors.btnBackground} />
-                  </button>
+                  </StyledDeleteButton>
                 </td>
               </tr>
             );
