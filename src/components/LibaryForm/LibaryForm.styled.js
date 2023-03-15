@@ -1,7 +1,8 @@
 import styled from 'styled-components';
-import device from 'styles/deviceSize';
+import {screenSize} from 'styles/deviceSize';
 import { Field, Form } from 'formik';
 import theme from 'styles/theme';
+import device from 'styles/deviceSize';
 
 export const BOX= styled.div`
 padding-left: 20px;
@@ -14,7 +15,7 @@ export const FORM = styled(Form)`
   margin-right: auto;
   width: 280px;
   
-  @media ${device.desktop} {
+  @media screen and (min-width:${screenSize.desktop}) {
     display: flex;
   }
 `;
@@ -44,6 +45,7 @@ export const LABEL = styled.label`
     font-weight: 500;
     font-size: 14px;
     line-height: 1.2;
+
   @media ${device.desktop} {
     margin-right: 16px;
     margin-bottom: 0;

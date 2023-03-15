@@ -4,6 +4,7 @@ import { createBook } from 'redux/books/bookOperations';
 import { LABEL,INPUT,FORM,Button,BOX} from './LibaryForm.styled';
 import * as yup from 'yup';
 // import { useSelector } from 'react-redux';
+import {BsArrowLeft} from 'react-icons/bs'
 
 import { ErrorMessage, Formik } from 'formik';
 const LibraryForm = () => {
@@ -42,6 +43,7 @@ const LibraryForm = () => {
 
   return (
     <BOX>
+      <BsArrowLeft/>
       <Formik onSubmit={handleSubmit} initialValues={initialValues} validationSchema={schema}>
         <FORM>
           <LABEL htmlFor="title">
