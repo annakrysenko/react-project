@@ -1,3 +1,4 @@
+import LibraryForm from 'components/LibaryForm/LIbaryForm';
 
 
 // import ReadTable from 'components/Library/BooksTable/BooksTable';
@@ -56,7 +57,11 @@ const tableData = [
 ];
 
 const Library = () => {
-  return <Books title="My Book" status={true} data={tableData}/>;
+  return (
+    <>
+      <LibraryForm />
+    </>
+  );
 };
 
 export default Library;
