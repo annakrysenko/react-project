@@ -13,13 +13,15 @@ const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
     <Provider store={store}>
-      <ThemeProvider theme={theme}>
-        <PersistGate persistor={persistor}>
-          <BrowserRouter basename="react-project">
+      <PersistGate persistor={persistor}>
+        <ThemeProvider theme={theme}>
+
+          {/* <BrowserRouter basename="react-project"> */}
+          <BrowserRouter>
             <App />
           </BrowserRouter>
-        </PersistGate>
-      </ThemeProvider>
+        </ThemeProvider>
+      </PersistGate>
     </Provider>
   </React.StrictMode>
 );

@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import device from 'styles/deviveSize';
+import device from 'styles/deviceSize';
 import { NavLink } from 'react-router-dom';
 // import theme from 'styles/theme';
 
@@ -17,7 +17,7 @@ export const HeaderContainer = styled.header`
   }
   @media ${device.desktop} {
     padding: 0 16px;
-	width:100%;
+    width: 100%;
   }
 `;
 
