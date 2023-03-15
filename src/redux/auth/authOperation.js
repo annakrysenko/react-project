@@ -3,7 +3,7 @@ import { createAsyncThunk } from '@reduxjs/toolkit';
 import { toast } from 'react-toastify';
 
 axios.defaults.baseURL = 'https://bookread-backend.goit.global';
-const token = {
+export const token = {
     set(token) {
         axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
     },
