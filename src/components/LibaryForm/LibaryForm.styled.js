@@ -1,13 +1,50 @@
-import { Button, Form, Input } from 'antd';
 import styled from 'styled-components';
+import device from 'styles/deviceSize';
+import { Field, Form } from 'formik';
+import theme from 'styles/theme';
 
-export const FormItem = styled(Form.Item)`
-  label {
+export const BOX= styled.div`
+padding-left: 20px;
+padding-right:20px;
+height: 100vh;
+`
+
+export const FORM = styled(Form)`
+  margin-left: auto;
+  margin-right: auto;
+  width: 280px;
+  
+  @media ${device.desktop} {
+    display: flex;
+  }
+`;
+export const INPUT = styled(Field)`
+  background-color: ${theme.colors.inputBackground};
+  border: 1px solid #a6abb9;
+  height: 42px;
+  width: 100%;
+  border-radius: 0;
+  display: block;
+
+  :hover {
+    background-color: ${theme.colors.white};
+  }
+`;
+export const Button = styled.button`
+ margin-top: 40px;
+  height: 42px;
+  min-width: 172px;
+  background-color: ${theme.colors.inputBackground};
+  @media  ${device.desktop} {
+    margin-top: 30px;
+  }
+`;
+export const LABEL = styled.label`
+    color:${theme.colors.secondaryFontColor};
     font-weight: 500;
     font-size: 14px;
     line-height: 1.2;
-  }
-  @media (min-width: 1200) {
+  @media ${device.desktop} {
     margin-right: 16px;
     margin-bottom: 0;
     :nth-child(2) {
@@ -17,7 +54,7 @@ export const FormItem = styled(Form.Item)`
       width: 150px;
     }
   }
-  @media (min-width: 768) {
+  @media ${device.tablet} {
     :nth-child(2) {
       width: 152px;
     }
@@ -27,67 +64,5 @@ export const FormItem = styled(Form.Item)`
   }
 `;
 
-export const StyledInput = styled(Input)`
-  height: 42px;
-  border-radius: 0;
-`;
 
-export const TitleInput = styled(StyledInput)`
-  @media (min-width: 1200) {
-    width: 346px;
-  }
-`;
 
-export const AuthorInput = styled(StyledInput)`
-  @media (min-width: 768) {
-    width: 337px;
-  }
-  @media (min-width: 1200) {
-    width: 250px;
-  }
-`;
-
-export const StyledBox = styled(Form.Item)`
-  display: flex;
-  justify-content: center;
-  margin-bottom: 0;
-`;
-
-export const StyledButton = styled(Button)`
-  margin-left: auto;
-  height: 42px;
-  min-width: 170px;
-  @media (min-width: 1200) {
-    margin-top: 30px;
-  }
-`;
-
-export const Wrapper = styled.div`
-  display: flex;
-  @media (max-width: 1279px) {
-    flex-direction: column;
-  }
-`;
-
-export const Box = styled.div`
-  @media (min-width: 768) {
-    display: flex;
-    gap: 32px;
-  }
-  @media (min-width: 1200) {
-    display: flex;
-    gap: 0px;
-    margin-right: 32px;
-  }
-`;
-
-export const StyledForm = styled(Form)`
-  font-family: 'Montserrat';
-  @media (min-width: 768) {
-    margin-bottom: 40px;
-  }
-  @media (min-width: 1200) {
-    display: flex;
-    margin-bottom: 80px;
-  }
-`;
