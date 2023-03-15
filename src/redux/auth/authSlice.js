@@ -1,4 +1,4 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { createAction, createSlice } from '@reduxjs/toolkit';
 import {
   fetchCurrentUser,
   logIn,
@@ -15,10 +15,21 @@ const initialState = {
   error: null,
   isRegistratedIn: false,
 };
+export const addAccessToken = createAction("auth/addtoken")
 const authSlice = createSlice({
   name: 'auth',
   initialState,
+  // reducers: {
+  //   addAccessToken: (state, { payload }) => {
+
+  //     state.token = payload;
+  //   },
+  // },
+
   extraReducers: {
+    [addAccessToken](state, { payload }) {
+      state.token = payload;
+    },
     [register.fulfilled](state, { payload }) {
       const { name, email } = payload.data.userData;
       state.user = { name, email };
@@ -82,5 +93,5 @@ const authSlice = createSlice({
     },
   },
 });
-
+// export const { addAccessToken } = authSlice.actions;
 export const authReducer = authSlice.reducer;
