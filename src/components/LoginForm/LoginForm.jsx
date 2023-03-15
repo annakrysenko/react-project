@@ -1,10 +1,22 @@
-import { ErrorMessage, Field, Form, Formik } from 'formik';
+import { Formik } from 'formik';
 import * as yup from 'yup';
 import { useSelector } from 'react-redux';
 import { useDispatch } from 'react-redux';
 import { getIsLoggedIn } from 'redux/auth/authSelectors';
-import { Link } from 'react-router-dom';
 import { logIn } from 'redux/auth/authOperation';
+import {
+  AccentSpan,
+  BgContainer,
+  Button,
+  Container,
+  Error,
+  FieldLabel,
+  FieldWrapper,
+  FormnWrapper,
+  InputField,
+  StyledLink,
+  Wrapper,
+} from './LoginForm.styled';
 
 const validationSchema = yup.object().shape({
   email: yup
@@ -47,55 +59,62 @@ const LoginForm = () => {
 
   return (
     <>
-      <div>
-        <Formik
-          initialValues={initialValues}
-          validationSchema={validationSchema}
-          onSubmit={handleSubmit}
-        >
-          {({ isValid, touched }) => {
-            return (
-              <Form name="LoginForm">
-                <div>
-                  <label htmlFor="email">
-                    Email <span>*</span>
-                  </label>
-                  <Field
-                    id="email"
-                    name="email"
-                    type="text"
-                    placeholder="your@email.com"
-                    autoComplete="off"
-                  />
-                  <ErrorMessage name="email" component="div" />
-                </div>
+      <Container>
+        <BgContainer>
+          <Wrapper>
+            <Formik
+              initialValues={initialValues}
+              validationSchema={validationSchema}
+              onSubmit={handleSubmit}
+            >
+              {({ isValid, touched }) => {
+                return (
+                  <FormnWrapper name="LoginForm">
+                    <FieldWrapper>
+                      <FieldLabel htmlFor="email">
+                        Email <AccentSpan>*</AccentSpan>
+                      </FieldLabel>
+                      <InputField
+                        id="email"
+                        name="email"
+                        type="text"
+                        placeholder="your@email.com"
+                        // autoComplete="off"
+                      />
+                      <Error name="email" component="div" />
+                    </FieldWrapper>
 
-                <div>
-                  <label htmlFor="password">
-                    Password <span>*</span>
-                  </label>
-                  <Field
-                    id="password"
-                    name="password"
-                    type="password"
-                    placeholder="Пароль"
-                    autoComplete="off"
-                  />
-                  <ErrorMessage name="password" component="div" />
-                </div>
+                    <FieldWrapper>
+                      <FieldLabel htmlFor="password">
+                        Password <AccentSpan>*</AccentSpan>
+                      </FieldLabel>
+                      <InputField
+                        id="password"
+                        name="password"
+                        type="password"
+                        placeholder="Password"
+                        // autoComplete="off"
+                      />
+                      <Error name="password" component="div" />
+                    </FieldWrapper>
 
-                <button
-                  type="submit"
-                  disabled={(!touched.email && !touched.password) || !isValid}
-                >
-                  Log in
-                </button>
-                <Link to="/register">Registration</Link>
-              </Form>
-            );
-          }}
-        </Formik>
-      </div>
+                    <Button
+                      type="submit"
+                      disabled={
+                        (!touched.email && !touched.password) || !isValid
+                      }
+                    >
+                      Log in
+                    </Button>
+
+                    <StyledLink to="/register">Registration</StyledLink>
+                  </FormnWrapper>
+                );
+              }}
+            </Formik>
+          </Wrapper>
+        </BgContainer>
+      </Container>
     </>
   );
 };

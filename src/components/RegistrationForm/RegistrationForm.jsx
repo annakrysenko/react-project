@@ -1,9 +1,22 @@
-import { Form, ErrorMessage, Field, Formik } from 'formik';
+import {  Formik } from 'formik';
 import * as yup from 'yup';
 import { useDispatch, useSelector } from 'react-redux';
-import {  Link } from 'react-router-dom';
-import { register } from 'redux/auth/authOperation';
+import {  register } from 'redux/auth/authOperation';
 import { getIsLoggedIn } from 'redux/auth/authSelectors';
+import {
+  AccentSpan,
+  BgContainer,
+  Button,
+  Container,
+  Error,
+  FieldLabel,
+  FieldWrapper,
+  FormnWrapper,
+  InputField,
+  StyledLink,
+  Wrapper,} from 'components/LoginForm/LoginForm.styled';
+
+
 
 const validationSchema = yup.object().shape({
   name: yup
@@ -46,17 +59,23 @@ const initialValues = {
   repeatPassword: '',
 };
 
+
 const RegistrationForm = () => {
   const dispatch = useDispatch();
   const isLoggedIn = useSelector(getIsLoggedIn);
- 
+  // const isRegistrated = useSelector(getIsRegistrated);
 
+  // useEffect(() => {
+  // isRegistrated && dispatch(logIn)
   
+  // },[isRegistrated])
 
-    const handleSubmit = (values, actions) => {
+
+    const handleSubmit = async (values, actions) => {
         const { password,  name, email } = values;
        const registrationData = { name, email, password };
-    dispatch(register(registrationData));
+      const registretion = await dispatch(register(registrationData));
+      console.log(registretion)
 
     isLoggedIn && actions.resetForm();
   };
@@ -64,8 +83,9 @@ const RegistrationForm = () => {
 
   return (
     <>
-      <div>
-     
+      <Container>
+        <BgContainer>
+     <Wrapper>
         <Formik
           initialValues={initialValues}
           validationSchema={validationSchema}
@@ -73,69 +93,69 @@ const RegistrationForm = () => {
         >
           {({ isValid, touched }) => {
             return (
-              <Form name="SignupForm">
+              <FormnWrapper name="SignupForm">
                
 
-                <div>
-                  <label htmlFor="name">
+                <FieldWrapper>
+                  <FieldLabel htmlFor="name">
                     Name <span>*</span>
-                  </label>
-                  <Field
+                  </FieldLabel>
+                  <InputField
                     id="name"
                     name="name"
                     type="text"
-                    placeholder="..."
-                    autoComplete="off"
+                    placeholder="name"
+                    // autoComplete="off"
                   />
-                  <ErrorMessage name="name" component="div" />
-                </div>
+                  <Error name="name" component="div" />
+                </FieldWrapper>
 
-                <div>
-                  <label htmlFor="email">
-                    Email <span>*</span>
-                  </label>
-                  <Field
+                <FieldWrapper>
+                  <FieldLabel htmlFor="email">
+                    Email <AccentSpan>*</AccentSpan>
+                  </FieldLabel>
+                  <InputField
                     id="email"
                     name="email"
                     type="email"
                     placeholder="your@email.com"
-                    autoComplete="off"
+                    // autoComplete="off"
                   />
-                  <ErrorMessage name="email" component="div" />
-                </div>
+                  <Error name="email" component="div" />
+                </FieldWrapper>
 
-                <div>
-                  <label htmlFor="password">
-                    Password <span>*</span>
-                  </label>
-                  <Field
+                <FieldWrapper>
+                  <FieldLabel htmlFor="password">
+                    Password <AccentSpan>*</AccentSpan>
+                  </FieldLabel>
+                  <InputField
                     id="password"
                     name="password"
                     type="password"
                     maxLength="24"
                     placeholder="..."
-                    autoComplete="off"
+                    // autoComplete="off"
                   />
              
-                  <ErrorMessage name="password" component="div" />
-                </div>
+                  <Error name="password" component="div" />
+                </FieldWrapper>
 
-                <div>
-                  <label htmlFor="repeatPassword">
-                    Confirm password <span>*</span>
-                  </label>
-                  <Field
+                <FieldWrapper>
+                  <FieldLabel htmlFor="repeatPassword">
+                    Confirm password <AccentSpan>*</AccentSpan>
+                  </FieldLabel>
+                  <InputField
                     id="repeatPassword"
                     name="repeatPassword"
                     type="password"
                     placeholder="..."
-                    autoComplete="off"
+                    // autoComplete="off"
                     onPaste={e => e.preventDefault()}
                   />
-                  <ErrorMessage name="repeatPassword" component="div" />
-                </div>
+                  <Error name="repeatPassword" component="div" />
+                </FieldWrapper>
 
-                <button
+                <Button
                   type="submit"
                   disabled={
                     (!touched.name &&
@@ -147,16 +167,18 @@ const RegistrationForm = () => {
                         variant="filled"
                 >
                   Register
-                </button>
+                </Button>
                 <div>
                   <p> Already have an account?{' '}</p>
-                  <Link to="/login">Log in</Link>
+                  <StyledLink to="/login">Log in</StyledLink>
                 </div>
-              </Form>
+              </FormnWrapper>
             );
           }}
-        </Formik>
-      </div>
+            </Formik>
+            </Wrapper>
+          </BgContainer>
+      </Container>
     </>
   );
 };

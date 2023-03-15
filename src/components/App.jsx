@@ -3,17 +3,30 @@ import Login from 'pages/Login';
 import MobileAddBook from 'pages/MobileAddBook';
 import Register from 'pages/Register';
 import Training from 'pages/Training';
+// import { useEffect, useState } from 'react';
+// import { useDispatch } from 'react-redux';
 import { Navigate, Route, Routes } from 'react-router-dom';
+// import { fetchCurrentUser } from 'redux/auth/authOperation';
+// import { getfetchCurrentUser } from 'redux/auth/authSelectors';
 import GlobalStyle from 'styles/GlobalStyle.jsx';
-// import AboutApp from './AboutApp/AboutApp';
 import Layout from './Layout/Layout';
-// import LoginForm from './LoginForm/LoginForm';
 import MobileRoute from './MobileRoute/MobileRoute';
 import PrivateRoute from './PrivateRoute/PrivateRoute';
 import PublicRoute from './PublicRoute/PublicRoute';
 
 export const App = () => {
+  // const dispatch = useDispatch();
+  // const isFetching = useSelector(getfetchCurrentUser);
+  // const [firstRenderEnded, setFirstRenderEnded] = useState(false);
+
+  // useEffect(() => {
+  //   dispatch(fetchCurrentUser());
+  //   setFirstRenderEnded(true);
+  // }, [dispatch]);
+
   return (
+    // !isFetching &&
+    // firstRenderEnded && (
     <>
       <GlobalStyle />
       <Routes>
@@ -75,5 +88,6 @@ export const App = () => {
         <Route path="*" element={<Navigate to="/login" />} />
       </Routes>
     </>
+    // )
   );
 };
