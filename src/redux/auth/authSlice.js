@@ -1,10 +1,10 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { createAction, createSlice } from '@reduxjs/toolkit';
 import {
-  fetchCurretUser,
+  fetchCurrentUser,
   logIn,
   loginWithGoogle,
-  logOut,
   register,
+  logOut,
 } from './authOperation';
 
 const initialState = {
@@ -13,27 +13,56 @@ const initialState = {
   isLoggedIn: false,
   isFetchingCurrentUser: false,
   error: null,
+  isRegistratedIn: false,
 };
+export const addAccessToken = createAction("auth/addtoken")
 const authSlice = createSlice({
   name: 'auth',
   initialState,
+  // reducers: {
+  //   addAccessToken: (state, { payload }) => {
+
+  //     state.token = payload;
+  //   },
+  // },
+
   extraReducers: {
+    [addAccessToken](state, { payload }) {
+      state.token = payload;
+    },
     [register.fulfilled](state, { payload }) {
-      console.log(payload);
-      state.user = payload.user;
-      state.token = payload.accessToken;
+      const { name, email } = payload.data.userData;
+      state.user = { name, email };
+      state.token = payload.data.accessToken;
       state.isLoggedIn = true;
     },
     [register.rejected](state, { payload }) {
       state.error = payload;
     },
 
+    [register.rejected](state, { payload }) {
+      state.error = payload;
+    },
+
     [logIn.fulfilled](state, { payload }) {
-      state.user = payload.user;
+      state.user = payload.userData;
       state.token = payload.accessToken;
       state.isLoggedIn = true;
     },
     [logIn.rejected](state, { payload }) {
+      state.error = payload;
+    },
+
+    [fetchCurrentUser.pending](state) {
+      state.isFetchingCurrentUser = true;
+    },
+    [fetchCurrentUser.fulfilled](state, { payload }) {
+      state.user = payload;
+      state.isLoggedIn = true;
+      state.isFetchingCurrentUser = false;
+    },
+    [fetchCurrentUser.rejected](state, { payload }) {
+      state.isFetchingCurrentUser = false;
       state.error = payload;
     },
 
@@ -46,15 +75,15 @@ const authSlice = createSlice({
       state.error = payload;
     },
 
-    [fetchCurretUser.pending](state) {
+    [fetchCurrentUser.pending](state) {
       state.isFetchingCurrentUser = true;
     },
-    [fetchCurretUser.fulfilled](state, { payload }) {
+    [fetchCurrentUser.fulfilled](state, { payload }) {
       state.user = payload;
       state.isLoggedIn = true;
       state.isFetchingCurrentUser = false;
     },
-    [fetchCurretUser.rejected](state, { payload }) {
+    [fetchCurrentUser.rejected](state, { payload }) {
       state.isFetchingCurrentUser = false;
       state.error = payload;
     },
@@ -64,5 +93,5 @@ const authSlice = createSlice({
     },
   },
 });
-
+// export const { addAccessToken } = authSlice.actions;
 export const authReducer = authSlice.reducer;
