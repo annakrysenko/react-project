@@ -51,6 +51,7 @@ const LibraryForm = () => {
 
   const handleSubmit = evt => {
     evt.preventDefault();
+    console.log(title, author, +publishYear, +pagesTotal);
     dispatch(createBook({ title, author, publishYear, pagesTotal }));
   };
 

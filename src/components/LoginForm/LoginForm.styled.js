@@ -108,7 +108,7 @@ export const FormnWrapper = styled(Form)`
 display: flex;
   flex-direction: column;
   justify-content: center;
-  padding-bottom: 32px;
+  padding: 32px 20px;
   margin: 0 auto;
   @media screen and (${device.tablet}) {
     width: 400px;
@@ -118,6 +118,34 @@ display: flex;
     background-color: ${theme.colors.white};
   }
 `;
+
+export const GoogleButton = styled.a`
+  align-self: center;
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  margin-bottom: 28px;
+  padding: 8px 14px;
+  width: 150px;
+  height: 40px;
+  outline: none;
+  border: none;
+  color: ${theme.colors.googleFontColor};
+  font-family: 'Roboto';
+  font-size: 16px;
+  font-weight: 700;
+  background-color: ${theme.colors.inputBackground};
+  box-shadow: ${theme.shadows.hero};
+  cursor: pointer;
+  transition: ${theme.transition.transitionFunction};
+  :hover,
+  :focus {
+    box-shadow: ${theme.shadows.google};
+    background-color: ${theme.colors.modalBackground};
+    color: ${theme.colors.googleFontColor};
+  }
+`;
+
 export const FieldWrapper = styled.div`
   position: relative;
   display: flex;
@@ -152,6 +180,7 @@ export const AccentSpan = styled.span`
 
 export const InputField = styled(Field)`
   padding: 8px 12px;
+  outline: none;
   border: 1px solid ${theme.colors.inputBackground};
   box-shadow: ${theme.shadows.input};
   background-color: ${theme.colors.inputBackground};

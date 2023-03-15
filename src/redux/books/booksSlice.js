@@ -10,6 +10,7 @@ const booksSlice = createSlice({
   initialState,
   extraReducers: {
     [createBook.fulfilled](state, { payload }) {
+      console.log(payload);
       state.books.push(payload);
     },
 

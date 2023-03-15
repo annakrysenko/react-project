@@ -15,6 +15,9 @@ import {
   InputField,
   StyledLink,
   Wrapper,} from 'components/LoginForm/LoginForm.styled';
+import { FcGoogle } from 'react-icons/fc';
+import { GoogleButton } from './RegistrationForm.styled';
+import { toast } from 'react-toastify';
 
 
 
@@ -79,7 +82,9 @@ const RegistrationForm = () => {
 
     isLoggedIn && actions.resetForm();
   };
-
+ const handleButtonClick = () => {
+    toast.error('Please, try later!');
+  };
 
   return (
     <>
@@ -94,8 +99,13 @@ const RegistrationForm = () => {
           {({ isValid, touched }) => {
             return (
               <FormnWrapper name="SignupForm">
-               
-
+                
+                <GoogleButton type="submit"
+                  onClick={handleButtonClick}>
+                      <FcGoogle size="18px" />
+                      Google
+                  </GoogleButton>
+                  
                 <FieldWrapper>
                   <FieldLabel htmlFor="name">
                     Name <span>*</span>
@@ -179,6 +189,7 @@ const RegistrationForm = () => {
             </Wrapper>
           </BgContainer>
       </Container>
+      
     </>
   );
 };
