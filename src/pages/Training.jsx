@@ -1,7 +1,7 @@
 import React from 'react';
 import TimerYear from 'components/Timers/TimerYear';
 import TimerGoal from 'components/Timers/TimerGoal';
-
+import MyGoal from 'components/MyGoal/MyGoal';
 import Statistics from 'components/Statistics/Statistics';
 
 import { TimerMainContainer } from 'components/Timers/TimerYear/TimerYear.styled';
@@ -17,7 +17,10 @@ const Training = () => {
       <TimerMainContainer>
         <TimerYear />
         <TimerGoal />
+        
       </TimerMainContainer>
+      <MyGoal />
+      
       <ReadTable />
       <Statistics />
     </>
