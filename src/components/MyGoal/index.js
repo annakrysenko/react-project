@@ -1,1 +1,1 @@
-// export { default } from './myGoal';
+export { default } from './myGoal';
