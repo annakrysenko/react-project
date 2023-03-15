@@ -59,8 +59,8 @@ const tableData = [
 const Library = () => {
   return (
     <>
-      <LibraryForm />
-      <Books/>
+      <LibraryForm  />
+      <Books title="Already read" status = {true} data={tableData}/>
     </>
   );
 };

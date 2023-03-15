@@ -12,7 +12,7 @@ export const StyledTable = styled.table`
   border-collapse: separate;
   thead {
     th {
-      color: ${p => p.theme.colors.secondaryFontColor};
+      color: #898f9f;
       text-align: left;
     }
   }
@@ -80,11 +80,11 @@ export const StyledBtn = styled(Button)`
   min-width: 80px;
   border: none;
   border-radius: 0;
-  background-color: ${p => p.theme.colors.btnBackground};
-  box-shadow: ${p => p.theme.shadows.instrustion};
+  background-color: #6D7A8D;
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.25);
   :hover,
   :focus {
-    background-color: ${p => p.theme.colors.secondaryFontColor};
+    background-color: #898f9f;
   }
   @media ${device.desktop} {
     min-width: 130px;

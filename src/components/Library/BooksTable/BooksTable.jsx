@@ -87,7 +87,8 @@ import { flexRender } from '@tanstack/react-table';
 import {Modal} from 'components/Modal/Modal';
 import { useEffect } from 'react';
 import { useSelector } from 'react-redux';
-import { getBooks } from 'redux/books/bookSelectors';
+import { getCurrentlyReading, getFinishedReading, getGoingToRead } from 'redux/books/booksSelectors';
+
 import { ResumeModal } from '../Modal/ResumeModal';
 // import {ModalOpenResume} from 'components/Library/Modal/ModalOpenResume';
 import BookDetails from './BooksDetails';
@@ -99,12 +100,18 @@ export const Books = ({ title, status, data }) => {
     data
   );
 
-  const books = useSelector(getBooks)
-  useEffect(()=> {console.log(books);},[books])
+  const booksReaded = useSelector(getFinishedReading)
+  useEffect(() => { console.log(booksReaded); }, [booksReaded ])
+  
+  const booksReading = useSelector(getCurrentlyReading)
+  useEffect(() => { console.log(booksReading); }, [booksReading])
+  
+  const booksGoing = useSelector(getGoingToRead)
+  useEffect(()=> {console.log(booksGoing);},[booksGoing])
 
   return (
     <Wrapper>
-      <StyledTitle>{title}</StyledTitle>
+      {/* <StyledTitle>{title}</StyledTitle>
       <StyledTable>
         <thead>
           {table.getHeaderGroups().map(headerGroup => (
@@ -123,7 +130,7 @@ export const Books = ({ title, status, data }) => {
           ))}
         </thead>
         <tbody>
-          {books.map(book => {
+          {booksReaded.map(book => {
             console.log(book);
             return <tr key={book._id}>
               <td>{book.title}</td>
@@ -132,8 +139,70 @@ export const Books = ({ title, status, data }) => {
               <td>{book.pagesTotal}</td>
   </tr>
 })}
+        </tbody>
+      </StyledTable>
+      {isModalVisible && (
+        <Modal onClose={onModalClose}>
+          <ResumeModal onClose={onModalClose} bookId={bookId} />
+        </Modal>
+      )}
 
-          {/* {table.getRowModel().rows.map(row => (
+        <StyledTitle>{title}</StyledTitle>
+      <StyledTable>
+        <thead>
+          {table.getHeaderGroups().map(headerGroup => (
+            <tr key={headerGroup.id}>
+              {headerGroup.headers.map(header => (
+                <th key={header.id}>
+                  {header.isPlaceholder
+                    ? null
+                    : flexRender(
+                        header.column.columnDef.header,
+                        header.getContext()
+                      )}
+                </th>
+              ))}
+            </tr>
+          ))}
+        </thead>
+        <tbody>
+          {booksReading.map(book => {
+            console.log(book);
+            return <tr key={book._id}>
+              <td>{book.title}</td>
+              <td>{book.author}</td>
+               <td>{book.publishYear}</td>
+              <td>{book.pagesTotal}</td>
+  </tr>
+})}
+        </tbody>
+      </StyledTable>
+      {isModalVisible && (
+        <Modal onClose={onModalClose}>
+          <ResumeModal onClose={onModalClose} bookId={bookId} />
+        </Modal>
+      )} */}
+
+       <StyledTitle>{title}</StyledTitle>
+      <StyledTable>
+        <thead>
+          {table.getHeaderGroups().map(headerGroup => (
+            <tr key={headerGroup.id}>
+              {headerGroup.headers.map(header => (
+                <th key={header.id}>
+                  {header.isPlaceholder
+                    ? null
+                    : flexRender(
+                        header.column.columnDef.header,
+                        header.getContext()
+                      )}
+                </th>
+              ))}
+            </tr>
+          ))}
+        </thead>
+        <tbody>
+          {table.getRowModel().rows.map(row => (
             <tr key={row.id}>
               {row.getVisibleCells().map(cell => (
                 <td key={cell.id}>
@@ -141,7 +210,16 @@ export const Books = ({ title, status, data }) => {
                 </td>
               ))}
             </tr>
-          ))} */}
+          ))}
+          {/* {booksGoing.map(book => {
+            console.log(book);
+            return <tr key={book._id}>
+              <td>{book.title}</td>
+              <td>{book.author}</td>
+               <td>{book.publishYear}</td>
+              <td>{book.pagesTotal}</td>
+  </tr>
+})} */}
         </tbody>
       </StyledTable>
       {isModalVisible && (

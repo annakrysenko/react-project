@@ -6,7 +6,7 @@ import {
 import { ReactComponent as BookOrange } from '../BooksIcon/Flat.svg';
 import { ReactComponent as BookGrey } from '../BooksIcon/Group.svg';
 import EllipsisText from 'react-ellipsis-text';
-// import { StyledBookTitle, StyledBtn, StyledIconBox } from './BooksTable.styled';
+import { StyledBookTitle, StyledBtn, StyledIconBox } from './BooksTable.styled';
 import { useCallback, useMemo, useState } from 'react';
 import { Rate } from 'antd';
 
@@ -30,12 +30,13 @@ const BookDetails = (status, data) => {
       columnHelper.accessor('title', {
         header: 'Book title',
         cell: info => (
-          <div>
-            <div>
-              {status ? <BookOrange /> : <BookGrey />}
-            </div>
+          <StyledBookTitle>
+            <StyledIconBox>
+              {/* {status ? <BookOrange /> : <BookGrey />} */}
+              {status ?  <BookGrey /> : <BookOrange />}
+            </StyledIconBox>
             <EllipsisText text={info.getValue()} length={50} />
-          </div>
+          </StyledBookTitle>
         ),
       }),
       columnHelper.accessor('author', {
@@ -60,7 +61,7 @@ const BookDetails = (status, data) => {
       columnHelper.accessor('_id', {
         header: '',
         cell: info => (
-          <button
+          <StyledBtn
             type="primary"
             onClick={() => {
               setBookId(info.getValue());
@@ -68,7 +69,7 @@ const BookDetails = (status, data) => {
             }}
           >
             Resume
-          </button>
+          </StyledBtn>
         ),
       }),
     ],
