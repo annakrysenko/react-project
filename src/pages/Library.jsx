@@ -3,6 +3,7 @@ import LibraryForm from 'components/LibaryForm/LIbaryForm';
 
 // import ReadTable from 'components/Library/BooksTable/BooksTable';
 import { Books } from 'components/Library/BooksTable/BooksTable';
+import LibraryForm from 'components/LibraryForm/LIbaryForm';
 import React from 'react';
 
 const tableData = [
@@ -59,7 +60,7 @@ const tableData = [
 const Library = () => {
   return (
     <>
-      <LibraryForm  />
+      <LibraryForm />
       <Books title="Already read" status = {true} data={tableData}/>
     </>
   );
