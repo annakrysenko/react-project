@@ -1,7 +1,7 @@
 const device = {
   mobile: `(min-width: 320px)`,
   tablet: `(min-width: 768px)`,
-  desktop: `(min-width: 1280p)`,
+  desktop: `(min-width: 1280px)`,
 };
 
 const screenSize = {
