@@ -3,7 +3,9 @@ import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { useState } from 'react';
 import { useSelector } from 'react-redux';
-import Notiflix from 'notiflix';
+// import Notiflix from 'notiflix';
+ import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import { getGoingToRead } from '../../redux/books/booksSelectors';
 
 import {
@@ -58,7 +60,9 @@ export default function MyTraining() {
 		const addingToTraining = goingToRead.filter(book => book._id === booksId);
 
 		if (books.some(({ _id }) => _id === addingToTraining[0]._id)) {
-			Notiflix.Notify.failure('Ця книга вже є в твоєму списку, обирай іншу...');
+			// Notiflix.Notify.failure('Ця книга вже є в твоєму списку, обирай іншу...');
+			toast.failure('Ця книга вже є в твоєму списку, обирай іншу...')
+			//info
 			return;
 		}
 		setBooks([...books, ...addingToTraining]);
@@ -120,7 +124,19 @@ export default function MyTraining() {
 				endDate={endDate}
 				booksDelete={handleDelete}
 			/>
-		</Wrapper>
+			</Wrapper>
+			<ToastContainer
+        position="top-right"
+        autoClose={2000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="light"
+      />
 		</>
 		
 	);
