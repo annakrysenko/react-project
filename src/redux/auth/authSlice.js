@@ -15,7 +15,7 @@ const initialState = {
   error: null,
   isRegistratedIn: false,
 };
-export const addAccessToken = createAction("auth/addtoken")
+export const addAccessToken = createAction('auth/addtoken');
 const authSlice = createSlice({
   name: 'auth',
   initialState,
