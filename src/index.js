@@ -15,9 +15,8 @@ root.render(
     <Provider store={store}>
       <PersistGate persistor={persistor}>
         <ThemeProvider theme={theme}>
-
-          {/* <BrowserRouter basename="react-project"> */}
-          <BrowserRouter>
+          <BrowserRouter basename="react-project">
+            {/* <BrowserRouter> */}
             <App />
           </BrowserRouter>
         </ThemeProvider>
