@@ -1,0 +1,35 @@
+.delButton{
+    position: absolute;
+    right: 0;
+    background: none;
+    border: none;
+    color: #A6ABB9;
+}
+.delButton:hover,
+.delButton:focus {
+    cursor: pointer;
+}
+
+.svgDel {
+    fill: #A6ABB9;
+    transition: fill 0.3s;
+}
+
+.delButton:hover .svgDel,
+.delButton:focus .svgDel {
+    fill: #FF6B08;
+}
+
+.bookName {
+    display: flex;
+    align-items: center;
+    margin: 0 0 10px 0;
+    width: 50%;
+}
+
+.bookNameMob {
+    display: flex;
+    align-items: center;
+    margin: 0 0 12px 0;
+}
+
