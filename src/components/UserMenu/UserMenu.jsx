@@ -29,7 +29,7 @@ export const UserMenu = () => {
   const accessToken = useSelector(getAccessToken);
   const userName = useSelector(getUserName);
   const dispatch = useDispatch();
-  const firstLetter = userName[0].toUpperCase();
+  const firstLetter = userName && userName[0].toUpperCase();
 
   const toggleModal = () => {
     setIsShowModal(!isShowModal);
