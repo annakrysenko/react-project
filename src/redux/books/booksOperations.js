@@ -6,7 +6,7 @@ export const createBook = createAsyncThunk(
   async (book, { rejectWithValue }) => {
     try {
       const resp = await axios.post('/book', book);
-      return resp.data.newBook;
+      return resp.data;
     } catch (error) {
       rejectWithValue(error);
     }
