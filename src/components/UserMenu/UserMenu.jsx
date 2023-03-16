@@ -1,8 +1,7 @@
 import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { logOut } from 'redux/auth/authOperation';
-import { getUserName } from 'redux/auth/authSelectors';
-import { getAccessToken } from 'redux/auth/authSelectors';
+import {  getUserName } from 'redux/auth/authSelectors';
 import { ReactComponent as Home } from 'images/svg/home.svg';
 import { ReactComponent as Library } from 'images/svg/library.svg';
 import { ReactComponent as Line } from 'images/svg/line.svg';
@@ -21,12 +20,13 @@ import {
   UserBox,
   LinkBox,
   LogOutBox,
+  UserMenuContainer,
 } from './UserMenu.styled';
 import { Modal } from 'components/Modal/Modal';
 
+
 export const UserMenu = () => {
   const [isShowModal, setIsShowModal] = useState(false);
-  const accessToken = useSelector(getAccessToken);
   const userName = useSelector(getUserName);
   const dispatch = useDispatch();
   const firstLetter = userName && userName[0].toUpperCase();
@@ -35,19 +35,20 @@ export const UserMenu = () => {
     setIsShowModal(!isShowModal);
   };
 
-  const onLogout = () => {
-    dispatch(logOut(accessToken));
+  const onLogOut = () => {
+    dispatch(logOut());
     toggleModal();
   };
   return (
     <>
+      <UserMenuContainer>
       <LinkBox>
         <LibraryLink to="library">
           <HoverBtn>
             <Library />
           </HoverBtn>
         </LibraryLink>
-        <HomeLink to="/training">
+        <HomeLink to="training">
           <HoverBtn>
             <Home />
           </HoverBtn>
@@ -75,7 +76,7 @@ export const UserMenu = () => {
                   </ModalBtn>
                 </li>
                 <li>
-                  <ModalBtn type="button" onClick={onLogout}>
+                  <ModalBtn type="button" onClick={onLogOut}>
                     Leave
                   </ModalBtn>
                 </li>
@@ -86,7 +87,8 @@ export const UserMenu = () => {
         <BtnLogOut type="button" onClick={toggleModal}>
           Logout
         </BtnLogOut>
-      </LogOutBox>
+        </LogOutBox>
+        </UserMenuContainer>
     </>
   );
 };

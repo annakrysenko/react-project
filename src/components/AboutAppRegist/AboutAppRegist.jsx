@@ -6,8 +6,8 @@ import {
   Hstyled,
   ListSlyled,
   LiStyled,
-  //   ButtonsDiv,
-  //   LinkStyled,
+  ButtonsBox,
+  BtnAboutApp,
 } from './AboutAppRegistStyled.js';
 
 const AboutAppRegistr = () => {
@@ -32,12 +32,12 @@ const AboutAppRegistr = () => {
         <LiStyled>Become an interesting interlocutor</LiStyled>
       </ListSlyled>
 
-      {/* {isMobile && (
-        <ButtonsDiv>
-          <ButtonWhite to="/login">Увійти</ButtonWhite>
-          <ButtonOrange to="/register">Реєстрація</ButtonOrange>
-        </ButtonsDiv>
-      )} */}
+       (
+        <ButtonsBox>
+          <BtnAboutApp to="/login">Log in</BtnAboutApp>
+          <BtnAboutApp to="/register">Register</BtnAboutApp>
+        </ButtonsBox>
+      )
     </DivStyled>
   );
 };
