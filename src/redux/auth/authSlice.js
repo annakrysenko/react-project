@@ -31,6 +31,7 @@ const authSlice = createSlice({
       state.token = payload;
     },
     [register.fulfilled](state, { payload }) {
+      console.log(payload.data.userData);
       const { name, email } = payload.data.userData;
       state.user = { name, email };
       state.token = payload.data.accessToken;
@@ -45,7 +46,9 @@ const authSlice = createSlice({
     },
 
     [logIn.fulfilled](state, { payload }) {
-      state.user = payload.userData;
+      console.log(payload.userData);
+      const { name, email } = payload.userData;
+      state.user = { name, email };
       state.token = payload.accessToken;
       state.isLoggedIn = true;
     },

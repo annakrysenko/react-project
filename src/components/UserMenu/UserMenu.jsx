@@ -1,8 +1,7 @@
 import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { logOut } from 'redux/auth/authOperation';
-import { getUserName } from 'redux/auth/authSelectors';
-// import { getAccessToken } from 'redux/auth/authSelectors';
+import {  getUserName } from 'redux/auth/authSelectors';
 import { ReactComponent as Home } from 'images/svg/home.svg';
 import { ReactComponent as Library } from 'images/svg/library.svg';
 import { ReactComponent as Line } from 'images/svg/line.svg';
@@ -30,14 +29,14 @@ export const UserMenu = () => {
   const [isShowModal, setIsShowModal] = useState(false);
   const userName = useSelector(getUserName);
   const dispatch = useDispatch();
-  const firstLetter = userName[0];
+  const firstLetter = userName && userName[0].toUpperCase();
 
   const toggleModal = () => {
     setIsShowModal(!isShowModal);
   };
 
-  const onLogout = () => {
-    dispatch(logOut);
+  const onLogOut = () => {
+    dispatch(logOut());
     toggleModal();
   };
   return (
@@ -77,7 +76,7 @@ export const UserMenu = () => {
                   </ModalBtn>
                 </li>
                 <li>
-                  <ModalBtn type="button" onClick={onLogout}>
+                  <ModalBtn type="button" onClick={onLogOut}>
                     Leave
                   </ModalBtn>
                 </li>
