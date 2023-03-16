@@ -11,13 +11,14 @@ import {
   Error,
   FieldLabel,
   FieldWrapper,
-  FormnWrapper,
   InputField,
-  StyledLink,
-  Wrapper,} from 'components/LoginForm/LoginForm.styled';
+  } from 'components/LoginForm/LoginForm.styled';
 import { FcGoogle } from 'react-icons/fc';
-import { GoogleButton } from './RegistrationForm.styled';
+import {  FormnWrapper, GoogleButton, LoginWrapper, Paragraph, StyledLink, Wrapper } from './RegistrationForm.styled';
 import { toast } from 'react-toastify';
+// import MobileRoute from 'components/MobileRoute/MobileRoute';
+// import AboutAppRegistr from 'components/AboutAppRegist/AboutAppRegist';
+// import Media from 'react-media';
 
 
 
@@ -88,6 +89,7 @@ const RegistrationForm = () => {
 
   return (
     <>
+      
       <Container>
         <BgContainer>
      <Wrapper>
@@ -178,18 +180,38 @@ const RegistrationForm = () => {
                 >
                   Register
                 </Button>
-                <div>
-                  <p> Already have an account?{' '}</p>
+                <LoginWrapper>
+                  <Paragraph> Already have an account?</Paragraph>
                   <StyledLink to="/login">Log in</StyledLink>
-                </div>
+                </LoginWrapper>
               </FormnWrapper>
-            );
+            )
           }}
             </Formik>
             </Wrapper>
           </BgContainer>
-      </Container>
+        </Container>
+        
+{/* 
+         <MobileRoute redirectTo="/register">
+
+  <AboutAppRegistr />
+</MobileRoute> */}
       
+       {/* <Media
+          queries={{
+            small: '(min-width: 768px)',
+          }}
+        >
+          {matches => <>{matches.small && <AboutAppRegistr />}</>}
+        </Media> */}
+      
+         {/* <Media query="(min-width: 768px)" render={() =>
+          (
+            <AboutAppRegistr />
+          )}
+        />  */}
+     
     </>
   );
 };
