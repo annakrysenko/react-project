@@ -5,7 +5,7 @@ import { LABEL, INPUT, FORM, Button, BOX } from './LibaryForm.styled';
 import * as yup from 'yup';
 // import { useSelector } from 'react-redux';
 import {BsArrowLeft} from 'react-icons/bs'
-
+import { useLocation,Link } from 'react-router-dom';
 import { ErrorMessage, Formik } from 'formik';
 const LibraryForm = () => {
   const dispatch = useDispatch();
@@ -29,7 +29,7 @@ const LibraryForm = () => {
       .max(9999, 'The number of pages can be less or equal 9999')
       .positive('The field can contain only positive numbers'),
   });
-
+  const location = useLocation();
   const handleSubmit = (values, actions) => {
     dispatch(createBook(values));
     actions.resetForm();
@@ -43,7 +43,8 @@ const LibraryForm = () => {
 
   return (
     <BOX>
-      <BsArrowLeft/>
+      <Link to={'/'} state={{ from: location }}><BsArrowLeft/></Link>
+      
       <Formik onSubmit={handleSubmit} initialValues={initialValues} validationSchema={schema}>
         <FORM>
           <LABEL htmlFor="title">

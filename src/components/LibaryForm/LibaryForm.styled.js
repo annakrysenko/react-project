@@ -8,11 +8,12 @@ export const BOX= styled.div`
 padding-left: 20px;
 padding-right:20px;
 height: 100vh;
+margin-left: auto;
+  margin-right: auto;
 `
 
 export const FORM = styled(Form)`
-  margin-left: auto;
-  margin-right: auto;
+ 
   width: 280px;
   
   @media screen and (min-width:${screenSize.desktop}) {
