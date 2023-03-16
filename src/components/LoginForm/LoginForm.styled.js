@@ -17,8 +17,8 @@ display: flex;
   flex-direction: column;
   justify-content: center;
   @media ${device.desktop} {
-    flex-direction: row;
-    max-width: 1280px;
+   
+    width: 100%;
     margin: 0 auto;}
 `;
 
@@ -44,7 +44,7 @@ max-width: 100%;
       ),
       url(${bgpcmob2x});
   }
-  @media screen and (${device.tablet}) {
+  @media  ${device.tablet} {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -66,8 +66,8 @@ max-width: 100%;
         url(${bgpctablet2x});
     }
   }
-  @media screen and (${device.desktop}) {
-    min-height: 850px;
+  @media ${device.desktop} {
+    height: 100%;
     background-image: linear-gradient(
         to right,
         rgba(9, 30, 63, 0.8),
@@ -93,14 +93,14 @@ export const Wrapper = styled.div`
   margin: 0 auto;
   padding: 0 20px;
 
-  @media (${device.tablet}) {
+  @media ${device.tablet} {
     max-width: 768px + 160px;
-    padding: 0 32px;
+    padding: 0px 32px;
   }
 
-  @media (${device.desktop}) {
-    max-width: 1280px;
-    padding: 0 16px;
+  @media ${device.desktop} {
+    width: 100%;
+    padding: 0px 16px;
   }
 `;
 
@@ -112,7 +112,7 @@ display: flex;
   margin: 0 auto;
   @media screen and (${device.tablet}) {
     width: 400px;
-    height: 467px;
+    height: 430px;
     padding: 40px;
     margin: 0 auto;
     background-color: ${theme.colors.white};
@@ -152,12 +152,7 @@ export const FieldWrapper = styled.div`
   flex-direction: column;
   margin-bottom: 20px;
   color: ${theme.colors.secondaryFontColor};
-  @media ${device.mobile} {
-  }
-  @media ${device.tablet} {
-  }
-  @media ${device.desktop} {
-  }
+ 
 `;
 
 export const FieldLabel = styled.label`
@@ -224,5 +219,6 @@ export const Button = styled.button`
 export const StyledLink = styled(Link)`
   text-align: center;
   margin-top: 16px;
+  text-decoration: underline;
  color: ${theme.colors.accentColor};
 `;
