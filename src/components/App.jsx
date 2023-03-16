@@ -16,9 +16,7 @@ import PublicRoute from './PublicRoute/PublicRoute';
 import { addAccessToken } from 'redux/auth/authSlice';
 import { token } from 'redux/auth/authOperation';
 import { ToastContainer } from 'react-toastify';
- import 'react-toastify/dist/ReactToastify.css';
-
-
+import 'react-toastify/dist/ReactToastify.css';
 
 export const App = () => {
   const dispatch = useDispatch();
@@ -29,19 +27,21 @@ export const App = () => {
   //   dispatch(fetchCurrentUser());
   //   setFirstRenderEnded(true);
   // }, [dispatch]);
- 
+
   const [searchParams] = useSearchParams();
-  const accessToken = searchParams.get("accessToken");
+  const accessToken = searchParams.get('accessToken');
   useEffect(() => {
-   if(accessToken !== null) {dispatch(addAccessToken(accessToken));
-    token.set(accessToken)}
-},[accessToken, dispatch])
+    if (accessToken !== null) {
+      dispatch(addAccessToken(accessToken));
+      token.set(accessToken);
+    }
+  }, [accessToken, dispatch]);
 
   return (
     // !isFetching &&
     // firstRenderEnded && (
     <>
-       {/* <ToastContainer position="top-right" autoClose={2000} theme="colored" /> */}
+      {/* <ToastContainer position="top-right" autoClose={2000} theme="colored" /> */}
       <GlobalStyle />
       <Routes>
         <Route path="/" element={<Layout />}>
@@ -103,6 +103,6 @@ export const App = () => {
       </Routes>
       <ToastContainer position="top-right" autoClose={2000} theme="colored" />
     </>
-    )
+  );
   // );
 };
