@@ -166,7 +166,7 @@ function Graph() {
                 <ChartTitle>
                     Кількість сторінок / день <ChartNumber>0</ChartNumber>{' '}
                 </ChartTitle>
-                <ChartWrapper options={options} data={data} />
+                <ChartWrapper options={options} data={data} width={938} heidth={340} />
                 <ChartTime>Час </ChartTime>
             </ChartBox>
         </>
