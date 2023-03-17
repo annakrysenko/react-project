@@ -94,7 +94,7 @@ export const BtnAboutApp = styled(NavLink)`
   justify-content: center;
   align-items: center;
   width: 130px;
-  padding: 12px;
+  padding: 6px;
   font-family: 'Montserrat';
   font-weight: 500;
   font-size: 14px;

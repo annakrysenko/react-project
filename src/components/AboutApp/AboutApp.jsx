@@ -13,7 +13,7 @@ const AboutApp = () => {
           <RiDoubleQuotesL color={theme.colors.accentColor} size="31" />
         )}
       />
-
+  
       <TextStyled>
         Books are the ships of thoughts, wandering through the waves of time.
       </TextStyled>
