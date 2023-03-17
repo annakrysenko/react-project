@@ -5,14 +5,14 @@ import Register from 'pages/Register';
 import Training from 'pages/Training';
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { Navigate, Route, Routes, useSearchParams } from 'react-router-dom';
+import { Navigate, Route, Routes } from 'react-router-dom';
 
 import GlobalStyle from 'styles/GlobalStyle.jsx';
 import Layout from './Layout/Layout';
 import PrivateRoute from './PrivateRoute/PrivateRoute';
 import PublicRoute from './PublicRoute/PublicRoute';
-import { addAccessToken } from 'redux/auth/authSlice';
-import { token } from 'redux/auth/authOperation';
+// import { addAccessToken } from 'redux/auth/authSlice';
+// import { token } from 'redux/auth/authOperation';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { getfetchCurrentUser } from 'redux/auth/authSelectors';
@@ -28,19 +28,8 @@ export const App = () => {
   useEffect(() => {
     dispatch(fetchCurrentUser());
     setFirstRenderEnded(true);
-    console.log('isFetching', isFetching);
+    // console.log('isFetching', isFetching);
   }, [dispatch, isFetching]);
-
-  const [searchParams] = useSearchParams();
-  const accessToken = searchParams.get('token');
-  console.log('accessToken params', accessToken);
-
-  useEffect(() => {
-    if (accessToken !== null) {
-      dispatch(addAccessToken(accessToken));
-      token.set(accessToken);
-    }
-  }, [accessToken, dispatch]);
 
   return (
     !isFetching &&
