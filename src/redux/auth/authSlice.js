@@ -1,6 +1,5 @@
 import { createAction, createSlice } from '@reduxjs/toolkit';
 import {
-  fetchCurrentUser,
   logIn,
   loginWithGoogle,
   register,
@@ -9,34 +8,31 @@ import {
 } from './authOperation';
 
 const initialState = {
-  user: { name: null, email: null, id: null },
+  userData: {
+    name: null,
+    email: '',
+    id: null,
+  },
   token: null,
   refreshToken: null,
   sid: null,
   isLoggedIn: false,
   isRefreshing: false,
-  isFetchingCurrentUser: false,
-  error: null,
   isRegistratedIn: false,
+
+  error: null,
 };
 export const addAccessToken = createAction('auth/addtoken');
 const authSlice = createSlice({
   name: 'auth',
   initialState,
-  // reducers: {
-  //   addAccessToken: (state, { payload }) => {
-
-  //     state.token = payload;
-  //   },
-  // },
-
   extraReducers: {
     [addAccessToken](state, { payload }) {
       state.token = payload;
     },
     [register.fulfilled](state, { payload }) {
       const { name, email } = payload.data.userData;
-      state.user = { name, email };
+      state.userData = { name, email };
       state.token = payload.data.accessToken;
       state.isLoggedIn = true;
       state.refreshToken = payload.refreshToken;
@@ -51,9 +47,7 @@ const authSlice = createSlice({
     },
 
     [logIn.fulfilled](state, { payload }) {
-      console.log('payload.userData', payload.userData);
-      const { name, email, id } = payload.userData;
-      state.user = { name, email, id };
+      state.userData = payload.userData;
       state.token = payload.accessToken;
       state.isLoggedIn = true;
       state.refreshToken = payload.refreshToken;
@@ -63,21 +57,8 @@ const authSlice = createSlice({
       state.error = payload;
     },
 
-    [fetchCurrentUser.pending](state) {
-      state.isFetchingCurrentUser = true;
-    },
-    [fetchCurrentUser.fulfilled](state, { payload }) {
-      state.user = payload;
-      state.isLoggedIn = true;
-      state.isFetchingCurrentUser = false;
-    },
-    [fetchCurrentUser.rejected](state, { payload }) {
-      state.isFetchingCurrentUser = false;
-      state.error = payload;
-    },
-
     [logOut.fulfilled](state) {
-      state.user = { name: null, email: null };
+      state.userData = { name: null, email: null };
       state.token = null;
       state.isLoggedIn = false;
       state.refreshToken = null;
