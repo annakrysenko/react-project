@@ -11,8 +11,6 @@ import {
 } from './AboutAppRegistStyled.js';
 
 const AboutAppRegistr = () => {
-  //   const { isMobile } = useMatchMedia();
-
   return (
     <DivStyled>
       <SubtitleStyled>Books Reading</SubtitleStyled>
@@ -31,12 +29,11 @@ const AboutAppRegistr = () => {
         </LiStyled>
         <LiStyled>Become an interesting interlocutor</LiStyled>
       </ListSlyled>
-
-       (
-        <ButtonsBox>
-          <BtnAboutApp to="/login">Log in</BtnAboutApp>
-          <BtnAboutApp to="/register">Register</BtnAboutApp>
-        </ButtonsBox>
+      (
+      <ButtonsBox>
+        <BtnAboutApp to="/login">Log in</BtnAboutApp>
+        <BtnAboutApp to="/register">Register</BtnAboutApp>
+      </ButtonsBox>
       )
     </DivStyled>
   );
