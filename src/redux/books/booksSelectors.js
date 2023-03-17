@@ -6,3 +6,8 @@ export const getStats = state => state.books.stats;
 export const getEndDate = state => state.books.endDate;
 export const getStartDate = state => state.books.startDate;
 export const getPagesPerDay = state => state.books.pagesPerDay;
+
+// export const getGoingToRead = state => state.auth.userData.goingToRead;
+// export const getFinishedReading = state => state.auth.userData.finishedReading;
+// export const getCurrentlyReading = state =>
+//   state.auth.userData.currentlyReading;
