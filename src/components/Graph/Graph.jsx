@@ -47,18 +47,6 @@ const options = {
             backgroundColor: 'white',
         },
 
-        tooltip: {
-            intersect: false,
-            boxWidth: 4,
-            boxHeight: 4,
-            boxPadding: 6,
-            titleFont: { weight: 'bold', size: 16, family: 'Montserrat' },
-            caretSize: 6,
-            titleSpacing: 2,
-            cornerRadius: 3,
-            usePointStyle: false,
-
-        }
     },
 
     scales: {
@@ -166,7 +154,7 @@ function Graph() {
                 <ChartTitle>
                     Кількість сторінок / день <ChartNumber>0</ChartNumber>{' '}
                 </ChartTitle>
-                <ChartWrapper options={options} data={data} width={938} heidth={340} />
+                <ChartWrapper options={options} data={data} />
                 <ChartTime>Час </ChartTime>
             </ChartBox>
         </>
