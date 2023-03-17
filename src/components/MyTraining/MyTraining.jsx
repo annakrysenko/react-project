@@ -28,7 +28,7 @@ export default function MyTraining() {
   const [books, setBooks] = useState([]);
 
   const goingToRead = useSelector(getGoingToRead);
-  console.log(goingToRead);
+  // console.log(goingToRead);
 
   // Дата старту - готова до використання---
   const receiveDataFromStart = newValue => {
@@ -44,7 +44,7 @@ export default function MyTraining() {
   };
 
   const handleChange = event => {
-    console.log(event.target.value);
+    // console.log(event.target.value);
     const {
       target: { value },
     } = event;

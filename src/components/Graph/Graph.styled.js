@@ -2,31 +2,50 @@ import styled from 'styled-components';
 import { Line } from 'react-chartjs-2';
 
 export const ChartWrapper = styled(Line)`
-	/* background-color: white; */
-	margin-bottom: 4px;
+    position: absolute;
+	bottom: 39px;
+	background-color: white;
+	min-height: 190px;
+	max-height: 190px;
+	min-width: 236px;
+	@media screen and (min-width: 768px) {
+		min-height: 210px;
+	max-height: 210px;
+	bottom: 50px;
+	}
 	@media screen and (min-width: 1280px) {
-		/* max-width: 928px;
-		max-height: 340px; */
+		max-width: 811px;
+		max-height: 215px;
+		bottom: 51px;
 	}
 `;
 
 export const ChartBox = styled.div`
-    display: flex;
+    position: relative;
+	height: 290px;
+	// padding: 20px;
+	margin: 33px 20px;
+    // display: flex;
 	justify-content: center;
 	align-items: center;
-	padding: 20px;
 	background-color: white;
 	padding: 25px 22px 20px 22px;
 	margin-bottom: 32px;
 	box-shadow: 0px 2px 3px rgba(9, 30, 63, 0.25);
 	@media screen and (min-width: 768px) {
-		margin-bottom: 40px;
+	    margin-bottom: 40px;
+	}
+	@media screen and (min-width: 768px) {
+		height: 340px;
+		margin: 40px 32px 72px 32px;
+		 max-width: 928px; 
+		 padding-left: 40px; 
+		 padding-right: 77px; 
 	}
 	@media screen and (min-width: 1280px) {
-		/* max-width: 928px; */
-		/* max-height: 340px; */
-		/* padding-left: 40px; */
-		/* padding-right: 77px; */
+		 margin: 40px auto 40px 16px;
+		 padding-left: 40px; 
+		 padding-right: 77px; 
 	}
 `;
 
@@ -63,7 +82,7 @@ justify-content: right;
 align-items: center;
 flex-direction: column;
 	@media screen and (min-width: 1280px) {
-		/* margin-right: 90px; */
+		margin-right: 90px;
 	}
 `;
 
@@ -104,18 +123,22 @@ export const ChartTime = styled.p`
 	position: absolute;
 width: 38px;
 height: 15px;
-left: 829px;
-top: 749px;
-
+right: 20px;
+bottom: 20px;
 font-family: 'Montserrat';
 font-style: normal;
 font-weight: 600;
 font-size: 12px;
 line-height: 15px;
-/* identical to box height */
-
 text-align: right;
 text-transform: uppercase;
-
 color: #091E3F;
+    @media screen and (min-width: 768px) {
+		right: 52px;
+        bottom: 31px; 
+	    }
+	@media screen and (min-width: 1280px) {
+		 right: 72px;
+         bottom: 32px; 
+	}
 `;
