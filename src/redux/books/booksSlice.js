@@ -14,7 +14,14 @@ const initialState = {
   goingToRead: [],
   currentlyReading: [],
   finishedReading: [],
-  startDate: null,
+  userData: {
+    name: null,
+    email: '',
+    goingToRead: [],
+    currentlyReading: [],
+    finishedReading: [],
+    id: null,
+  },
   endDate: null,
   pagesPerDay: null,
   stats: [],
@@ -47,7 +54,7 @@ const booksSlice = createSlice({
       state.error = null;
     },
     [createBook.fulfilled](state, action) {
-      state.goingToRead.push(action.payload);
+      state.goingToRead.push(action.payload.newBook);
     },
     [addBookPlanning.fulfilled](state, action) {
       state.currentlyReading = action.payload.books;
