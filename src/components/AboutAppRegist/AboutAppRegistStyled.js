@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { Link } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 
 import listStyleImage from '../../images/svg/list-style-image.svg';
 import device from 'styles/deviceSize';
@@ -59,13 +59,13 @@ export const ListSlyled = styled.ul`
 
 export const LiStyled = styled.li``;
 
-export const ButtonsDiv = styled.div`
+export const ButtonsBox = styled.div`
   display: flex;
   justify-content: center;
-  margin-top: 20px;
+  gap: 20px;
 `;
 
-export const LinkStyled = styled(Link)`
+export const LinkStyled = styled(NavLink)`
   display: flex;
   justify-content: center;
   align-items: center;
@@ -89,9 +89,23 @@ export const LinkStyled = styled(Link)`
   }
 `;
 
-// export const ButtonOrange = styled(ButtonWhite)`
-//   border: none;
-//   margin-left: 16px;
-//   color: ${({ theme }) => theme.colors.white};
-//   background: ${({ theme }) => theme.colors.accentColor};
-// `;
+export const BtnAboutApp = styled(NavLink)`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 130px;
+  padding: 12px;
+  font-family: 'Montserrat';
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 38px;
+  color: ${({ theme }) => theme.colors.mainFontColor};
+  background-color: ${({ theme }) => theme.colors.white};
+  border: 1px solid #000000;
+  :hover,
+  :focus {
+    background: ${({ theme }) => theme.colors.accentColor};
+    color: ${({ theme }) => theme.colors.white};
+    border: none;
+  }
+`;

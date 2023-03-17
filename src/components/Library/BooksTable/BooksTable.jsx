@@ -37,7 +37,7 @@ export const Books = ({ title, status, data }) => {
 
   return (
     <Wrapper>
-      {/* <StyledTitle>{title}</StyledTitle>
+      <StyledTitle>Already read</StyledTitle>
       <StyledTable>
         <thead>
           {table.getHeaderGroups().map(headerGroup => (
@@ -67,13 +67,13 @@ export const Books = ({ title, status, data }) => {
 })}
         </tbody>
       </StyledTable>
-      {isModalVisible && (
+      {/* {isModalVisible && (
         <Modal onClose={onModalClose}>
           <ResumeModal onClose={onModalClose} bookId={bookId} />
         </Modal>
-      )}
+      )} */}
 
-        <StyledTitle>{title}</StyledTitle>
+        <StyledTitle>Reading now</StyledTitle>
       <StyledTable>
         <thead>
           {table.getHeaderGroups().map(headerGroup => (
@@ -103,13 +103,13 @@ export const Books = ({ title, status, data }) => {
 })}
         </tbody>
       </StyledTable>
-      {isModalVisible && (
+      {/* {isModalVisible && (
         <Modal onClose={onModalClose}>
           <ResumeModal onClose={onModalClose} bookId={bookId} />
         </Modal>
       )} */}
 
-       <StyledTitle>{title}</StyledTitle>
+       <StyledTitle>Going to read </StyledTitle>
       <StyledTable>
         <thead>
           {table.getHeaderGroups().map(headerGroup => (
@@ -128,7 +128,7 @@ export const Books = ({ title, status, data }) => {
           ))}
         </thead>
         <tbody>
-          {table.getRowModel().rows.map(row => (
+          {/* {table.getRowModel().rows.map(row => (
             <tr key={row.id}>
               {row.getVisibleCells().map(cell => (
                 <td key={cell.id}>
@@ -136,8 +136,8 @@ export const Books = ({ title, status, data }) => {
                 </td>
               ))}
             </tr>
-          ))}
-          {/* {booksGoing.map(book => {
+          ))} */}
+          {booksGoing.map(book => {
             console.log(book);
             return <tr key={book._id}>
               <td>{book.title}</td>
@@ -145,7 +145,7 @@ export const Books = ({ title, status, data }) => {
                <td>{book.publishYear}</td>
               <td>{book.pagesTotal}</td>
   </tr>
-})} */}
+})}
         </tbody>
       </StyledTable>
     </Wrapper>

@@ -81,9 +81,6 @@ export const LogoName = styled.p`
   line-height: 17px;
   color: ${({ theme }) => theme.colors.mainFontColor};
   margin-right: 14px;
-  @media ${device.tablet} {
-    margin-right: 12px;
-  }
 `;
 
 export const ModalContainer = styled.div`
@@ -149,8 +146,16 @@ export const BtnLogOut = styled.button`
   }
 `;
 
+export const UserMenuContainer = styled.div`
+  display: flex;
+  justify-content: end;
+  @media ${device.tablet} {
+    margin-right: 12px;
+  }
+`;
+
 export const LinkBox = styled.div`
-display: flex;
+  display: flex;
   margin-left: auto;
   order: 1;
   @media ${device.tablet} {
@@ -159,13 +164,18 @@ display: flex;
   }
 `;
 export const UserBox = styled.div`
-display: flex;
+  display: flex;
   order: 2;
   @media ${device.tablet} {
     order: 1;
-    margin: auto;
+    align-items: center;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
   }
 `;
 export const LogOutBox = styled.div`
+  display: flex;
   order: 3;
 `;

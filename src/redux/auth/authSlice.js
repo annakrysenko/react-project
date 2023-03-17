@@ -1,40 +1,42 @@
 import { createAction, createSlice } from '@reduxjs/toolkit';
 import {
-  fetchCurrentUser,
   logIn,
   loginWithGoogle,
   register,
   logOut,
+  refreshUser,
 } from './authOperation';
 
 const initialState = {
-  user: { name: null, email: null },
+  userData: {
+    name: null,
+    email: '',
+    id: null,
+  },
   token: null,
+  refreshToken: null,
+  sid: null,
   isLoggedIn: false,
-  isFetchingCurrentUser: false,
-  error: null,
+  isRefreshing: false,
   isRegistratedIn: false,
+
+  error: null,
 };
-export const addAccessToken = createAction("auth/addtoken")
+export const addAccessToken = createAction('auth/addtoken');
 const authSlice = createSlice({
   name: 'auth',
   initialState,
-  // reducers: {
-  //   addAccessToken: (state, { payload }) => {
-
-  //     state.token = payload;
-  //   },
-  // },
-
   extraReducers: {
     [addAccessToken](state, { payload }) {
       state.token = payload;
     },
     [register.fulfilled](state, { payload }) {
       const { name, email } = payload.data.userData;
-      state.user = { name, email };
+      state.userData = { name, email };
       state.token = payload.data.accessToken;
       state.isLoggedIn = true;
+      state.refreshToken = payload.refreshToken;
+      state.sid = payload.sid;
     },
     [register.rejected](state, { payload }) {
       state.error = payload;
@@ -45,51 +47,46 @@ const authSlice = createSlice({
     },
 
     [logIn.fulfilled](state, { payload }) {
-      state.user = payload.userData;
+      console.log('payload=>>>>', payload);
+      const { name, email, id } = payload.userData;
+      state.userData = { name, email, id };
       state.token = payload.accessToken;
       state.isLoggedIn = true;
+      state.refreshToken = payload.refreshToken;
+      state.sid = payload.sid;
     },
     [logIn.rejected](state, { payload }) {
       state.error = payload;
     },
 
-    [fetchCurrentUser.pending](state) {
-      state.isFetchingCurrentUser = true;
-    },
-    [fetchCurrentUser.fulfilled](state, { payload }) {
-      state.user = payload;
-      state.isLoggedIn = true;
-      state.isFetchingCurrentUser = false;
-    },
-    [fetchCurrentUser.rejected](state, { payload }) {
-      state.isFetchingCurrentUser = false;
-      state.error = payload;
-    },
-
     [logOut.fulfilled](state) {
-      state.user = { name: null, email: null };
+      state.userData = { name: null, email: null };
       state.token = null;
       state.isLoggedIn = false;
+      state.refreshToken = null;
     },
     [logOut.rejected](state, { payload }) {
       state.error = payload;
     },
-
-    [fetchCurrentUser.pending](state) {
-      state.isFetchingCurrentUser = true;
-    },
-    [fetchCurrentUser.fulfilled](state, { payload }) {
-      state.user = payload;
-      state.isLoggedIn = true;
-      state.isFetchingCurrentUser = false;
-    },
-    [fetchCurrentUser.rejected](state, { payload }) {
-      state.isFetchingCurrentUser = false;
-      state.error = payload;
-    },
-
     [loginWithGoogle.fulfilled](state, { payload }) {
       state.token = payload.data.token;
+      state.refreshToken = payload.refreshTokenParams;
+      state.sid = payload.sidParams;
+      state.isLoggedIn = true;
+      state.userData.name = payload.data.name;
+    },
+    [refreshUser.pending](state) {
+      state.isRefreshing = true;
+    },
+    [refreshUser.fulfilled](state, action) {
+      state.accessToken = action.payload.newAccessToken;
+      state.refreshToken = action.payload.newRefreshToken;
+      state.sid = action.payload.newSid;
+      state.isLoggedIn = true;
+      state.isRefreshing = false;
+    },
+    [refreshUser.rejected](state) {
+      state.isRefreshing = false;
     },
   },
 });
