@@ -23,15 +23,15 @@ export const Books = ({ title, status, data }) => {
   //     setIsModalVisible(false)
   //   };
 
-  // const booksReaded = useSelector(getFinishedReading);
-  // useEffect(() => {
-  //   console.log('booksReaded', booksReaded);
-  // }, [booksReaded]);
+  const booksReaded = useSelector(getFinishedReading);
+  useEffect(() => {
+    console.log('booksReaded', booksReaded);
+  }, [booksReaded]);
 
-  // const booksReading = useSelector(getCurrentlyReading);
-  // useEffect(() => {
-  //   console.log('booksReading', booksReading);
-  // }, [booksReading]);
+  const booksReading = useSelector(getCurrentlyReading);
+  useEffect(() => {
+    console.log('booksReading', booksReading);
+  }, [booksReading]);
 
   // const booksGoing = useSelector(getGoingToRead);
   // useEffect(() => {
