@@ -9,7 +9,7 @@ import { ReactComponent as BookGrey } from '../BooksIcon/Group.svg';
 
 // import  ResumeModal  from '../LibraryModal/ResumeModal';
 import BookDetails from './BooksDetails';
-import { StyledBtn, StyledIconBox, StyledTable, StyledTitle, Wrapper } from './BooksTable.styled';
+import { StyledBtn, StyledIconBox, StyledTable, StyledTitle, Wrapper, ButtonModal } from './BooksTable.styled';
 
 export const Books = ({ title, status, data }) => {
   const { table} = BookDetails(
@@ -134,7 +134,8 @@ export const Books = ({ title, status, data }) => {
           {goingToRead.map(book => {
             console.log(book);
             return <tr key={book._id}>
-              <td><StyledIconBox>
+                <td>
+                    <StyledIconBox>
               {status ? <BookOrange /> : <BookGrey />}
                 </StyledIconBox>
                     {book.title}</td>
@@ -145,11 +146,11 @@ export const Books = ({ title, status, data }) => {
 })}
         </tbody>
                   </StyledTable>
-                     <StyledBtn
+                     <ButtonModal
             to="/MyTraining"
           >
             My training
-          </StyledBtn>
+          </ButtonModal>
               </>
           )}
     </Wrapper>

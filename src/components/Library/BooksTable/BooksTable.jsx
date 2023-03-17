@@ -128,7 +128,7 @@ export const Books = ({ title, status, data }) => {
           ))}
         </thead>
         <tbody>
-          {/* {table.getRowModel().rows.map(row => (
+          {table.getRowModel().rows.map(row => (
             <tr key={row.id}>
               {row.getVisibleCells().map(cell => (
                 <td key={cell.id}>
@@ -136,8 +136,8 @@ export const Books = ({ title, status, data }) => {
                 </td>
               ))}
             </tr>
-          ))} */}
-          {booksGoing.map(book => {
+          ))}
+          {/* {booksGoing.map(book => {
             console.log(book);
             return <tr key={book._id}>
               <td>{book.title}</td>
@@ -145,7 +145,7 @@ export const Books = ({ title, status, data }) => {
                <td>{book.publishYear}</td>
               <td>{book.pagesTotal}</td>
   </tr>
-})}
+})} */}
         </tbody>
       </StyledTable>
     </Wrapper>
