@@ -9,7 +9,7 @@ import { ReactComponent as BookGrey } from '../BooksIcon/Group.svg';
 
 // import  ResumeModal  from '../LibraryModal/ResumeModal';
 import BookDetails from './BooksDetails';
-import { StyledBtn, StyledIconBox, StyledTable, StyledTitle, Wrapper, ButtonModal } from './BooksTable.styled';
+import { StyledIconBox, StyledTable, StyledTitle, Wrapper, ButtonModal } from './BooksTable.styled';
 
 export const Books = ({ title, status, data }) => {
   const { table} = BookDetails(

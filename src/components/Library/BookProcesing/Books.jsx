@@ -16,7 +16,7 @@ import {
   SpanMobile,
   Button,
   SpanIconBook,
-} from '../BooksTable/Books.styled';
+} from './Books.styled';
 import { ReactComponent as BookIcon } from './svg/bookIconGrey.svg';
 import { ReactComponent as More } from './svg/more.svg';
 import { NavLink } from 'react-router-dom';

@@ -5,7 +5,7 @@ import { getAccessToken } from 'redux/auth/authSelectors';
 
 const PublicRoute = ({ children, restricted = false, redirect }) => {
   const isLoggedIn = useSelector(getAccessToken);
-  console.log('isLoggedIn', isLoggedIn);
+  // console.log('isLoggedIn', isLoggedIn);
   const shouldRedirect = isLoggedIn && restricted;
 
   return shouldRedirect ? <Navigate to="/library" /> : children;
