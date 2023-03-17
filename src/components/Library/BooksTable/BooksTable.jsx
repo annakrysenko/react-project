@@ -33,10 +33,10 @@ export const Books = ({ title, status, data }) => {
     console.log('booksReading', booksReading);
   }, [booksReading]);
 
-  const booksGoing = useSelector(getGoingToRead);
-  useEffect(() => {
-    console.log('booksGoing', booksGoing);
-  }, [booksGoing]);
+  // const booksGoing = useSelector(getGoingToRead);
+  // useEffect(() => {
+  //   console.log('booksGoing', booksGoing);
+  // }, [booksGoing]);
 
   return (
     <Wrapper>
