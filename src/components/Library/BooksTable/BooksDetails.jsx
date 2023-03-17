@@ -8,14 +8,13 @@ import { ReactComponent as BookGrey } from '../BooksIcon/Group.svg';
 import EllipsisText from 'react-ellipsis-text';
 import { StyledBookTitle, StyledBtn, StyledIconBox } from './BooksTable.styled';
 import { useCallback, useMemo, useState } from 'react';
-import {  Rate } from 'antd';
+import { Rate } from 'antd';
 import { Modal } from 'components/Modal/Modal';
-import  ResumeModal  from '../LibraryModal/ResumeModal';
+import ResumeModal from '../LibraryModal/ResumeModal';
 
 const BookDetails = (status, data) => {
   const [isModalVisible, setIsModalVisible] = useState(false);
   const [bookId, setBookId] = useState(null);
-
   const toggleModal = useCallback(
     () => setIsModalVisible(!isModalVisible),
     [isModalVisible]
@@ -36,7 +35,7 @@ const BookDetails = (status, data) => {
           <StyledBookTitle>
             <StyledIconBox>
               {/* {status ? <BookOrange /> : <BookGrey />} */}
-              {status ?  <BookGrey /> : <BookOrange />}
+              {status ? <BookGrey /> : <BookOrange />}
             </StyledIconBox>
             <EllipsisText text={info.getValue()} length={50} />
           </StyledBookTitle>
@@ -64,10 +63,10 @@ const BookDetails = (status, data) => {
       columnHelper.accessor('_id', {
         header: '',
         cell: info => (<> {isModalVisible && (
-        <Modal toggleModal={toggleModal} closeModal={onModalClose} >
-          <ResumeModal toggleModal={toggleModal} bookId={bookId} />
-        </Modal>
-      )}
+          <Modal toggleModal={toggleModal} closeModal={onModalClose} >
+            <ResumeModal toggleModal={toggleModal} bookId={bookId} />
+          </Modal>
+        )}
           <StyledBtn
             type="primary"
             onClick={() => {
@@ -78,7 +77,7 @@ const BookDetails = (status, data) => {
 
             Resume
           </StyledBtn></>
-          
+
         ),
       }),
     ],

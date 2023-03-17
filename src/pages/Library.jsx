@@ -32,7 +32,7 @@ const tableData = [
     rating: 5,
     id: 3,
   },
-   {
+  {
     title: 'Book1',
     author: 'Mike',
     publication: 2022,
@@ -63,7 +63,7 @@ const Library = () => {
     <>
       <LibraryForm />
       <Books title="Already read" status={true} data={tableData} />
-      <LibraryFilld/>
+      <LibraryFilld />
     </>
   );
 };

@@ -231,10 +231,10 @@ function LibraryFilld() {
 														// 	</ConteinerModal>
 														// </Modal>
 														<LibraryModal
-											isModal={isModal}
-											handleToggleModal={handleToggleModal}
-										/>
-									)}
+															isModal={isModal}
+															handleToggleModal={handleToggleModal}
+														/>
+													)}
 												</LibraryBooklistTabletBodyCell>
 											</LibraryBooklistTabletRow>
 										);
@@ -484,7 +484,7 @@ function LibraryFilld() {
 						)}
 					</LibraryBooklistContainer>
 				)}
-			</LibraryControlMobileSection> */}
+			</LibraryControlMobileSection> * /}
 		</>
 	);
 }
