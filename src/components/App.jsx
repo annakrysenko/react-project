@@ -6,8 +6,7 @@ import Training from 'pages/Training';
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Navigate, Route, Routes, useSearchParams } from 'react-router-dom';
-// import { fetchCurrentUser } from 'redux/auth/authOperation';
-// import { getfetchCurrentUser } from 'redux/auth/authSelectors';
+
 import GlobalStyle from 'styles/GlobalStyle.jsx';
 import Layout from './Layout/Layout';
 import PrivateRoute from './PrivateRoute/PrivateRoute';
@@ -18,6 +17,8 @@ import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { getfetchCurrentUser } from 'redux/auth/authSelectors';
 import { fetchCurrentUser } from 'redux/books/booksOperations';
+import AboutAppRegistr from './AboutAppRegist/AboutAppRegist';
+import Media from 'react-media';
 
 export const App = () => {
   const dispatch = useDispatch();
@@ -52,7 +53,19 @@ export const App = () => {
               index
               element={
                 <PublicRoute restricted>
-                  <Login />
+                  <Media
+                    queries={{
+                      small: '(max-width: 767px)',
+                      large: '(min-width: 768px)',
+                    }}
+                  >
+                    {matches => (
+                      <>
+                        {matches.small && <AboutAppRegistr />}
+                        {matches.large && <Login />}
+                      </>
+                    )}
+                  </Media>
                 </PublicRoute>
               }
             />

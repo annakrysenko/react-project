@@ -5,12 +5,10 @@ import React from 'react';
 
 const Login = () => {
   return (
-    <>
-      <Section>
+    <Section>
       <LoginForm />
-        <AboutApp />
-        </Section>
-    </>
+      <AboutApp />
+    </Section>
   );
 };
 
