@@ -85,7 +85,7 @@ export const App = () => {
               element={
                 <PrivateRoute>
                   <MobileAddBook />
-                </MobileRoute>
+                
               </PrivateRoute>
             }
           />
