@@ -4,6 +4,7 @@
 // import ReadTable from 'components/Library/BooksTable/BooksTable';
 import { Books } from 'components/Library/BooksTable/BooksTable';
 import LibraryForm from 'components/LibraryForm/LIbaryForm';
+import LibraryInfo from 'components/Libraryinfo/Libaryinfo';
 import React from 'react';
 
 const tableData = [
@@ -61,7 +62,8 @@ const Library = () => {
   return (
     <>
       <LibraryForm />
-      <Books title="Already read" status = {true} data={tableData}/>
+      <LibraryInfo/>
+      {/* <Books title="Already read" status = {true} data={tableData}/> */}
     </>
   );
 };
