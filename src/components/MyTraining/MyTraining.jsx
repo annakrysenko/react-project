@@ -9,55 +9,54 @@ import 'react-toastify/dist/ReactToastify.css';
 import { getGoingToRead } from '../../redux/books/booksSelectors';
 
 import {
-	WrapperDatePicker,
-	Wrapper,
-	Title,
-	BoxForm,
-	SelectForm,
-	WrapperCallendar,
-	BoxCallendar,
-	WrapperSelect,
-	Button,
+  WrapperDatePicker,
+  Wrapper,
+  Title,
+  BoxForm,
+  SelectForm,
+  WrapperCallendar,
+  BoxCallendar,
+  WrapperSelect,
+  Button,
 } from './MyTraining.styled';
 import TrainingList from '../TrainingList/TrainingList';
 
-
 export default function MyTraining() {
-	const [booksId, setBooksId] = useState([]);
-	const [start, setStart] = useState(null);
-	const [finish, setFinish] = useState(null);
-	const [startDate, setStartDate] = useState(null);
-	const [endDate, setEndDate] = useState(null);
-	const [books, setBooks] = useState([]);
+  const [booksId, setBooksId] = useState([]);
+  const [start, setStart] = useState(null);
+  const [finish, setFinish] = useState(null);
+  const [startDate, setStartDate] = useState(null);
+  const [endDate, setEndDate] = useState(null);
+  const [books, setBooks] = useState([]);
 
-	
-	const goingToRead = useSelector(getGoingToRead);
+  const goingToRead = useSelector(getGoingToRead);
+  console.log(goingToRead);
 
-	// Дата старту - готова до використання---
-	const receiveDataFromStart = newValue => {
-		setStart(newValue);
-		const startDate = `${newValue.$y}-${newValue.$M + 1}-${newValue.$D}`;
-		setStartDate(startDate);
-	};
+  // Дата старту - готова до використання---
+  const receiveDataFromStart = newValue => {
+    setStart(newValue);
+    const startDate = `${newValue.$y}-${newValue.$M + 1}-${newValue.$D}`;
+    setStartDate(startDate);
+  };
 
-	const receiveDataFromEnd = newValue => {
-		setFinish(newValue);
-		const endDate = `${newValue.$y}-${newValue.$M + 1}-${newValue.$D}`;
-		setEndDate(endDate);
-	};
+  const receiveDataFromEnd = newValue => {
+    setFinish(newValue);
+    const endDate = `${newValue.$y}-${newValue.$M + 1}-${newValue.$D}`;
+    setEndDate(endDate);
+  };
 
-	const handleChange = event => {
-		console.log(event.target.value);
-		const {
-			target: { value },
-		} = event;
-		setBooksId(value);
-	};
+  const handleChange = event => {
+    console.log(event.target.value);
+    const {
+      target: { value },
+    } = event;
+    setBooksId(value);
+  };
 
-	const handleSubmit = event => {
-		event.preventDefault();
+  const handleSubmit = event => {
+    event.preventDefault();
 
-		const addingToTraining = goingToRead.filter(book => book._id === booksId);
+    const addingToTraining = goingToRead.filter(book => book._id === booksId);
 
 		if (books.some(({ _id }) => _id === addingToTraining[0]._id)) {
 			// Notiflix.Notify.failure('Ця книга вже є в твоєму списку, обирай іншу...');
@@ -69,9 +68,9 @@ export default function MyTraining() {
 	};
 	// console.log(books);
 
-	const handleDelete = id => {
-		return setBooks(books.filter(book => book._id !== id));
-	};
+  const handleDelete = id => {
+    return setBooks(books.filter(book => book._id !== id));
+  };
 
 	return (
 		<>

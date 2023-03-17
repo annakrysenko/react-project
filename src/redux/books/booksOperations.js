@@ -1,5 +1,26 @@
 import axios from 'axios';
 import { createAsyncThunk } from '@reduxjs/toolkit';
+import { token } from 'redux/auth/authOperation';
+
+export const fetchCurrentUser = createAsyncThunk(
+  'books/fetchCurrentUser',
+  async (_, thunkAPI) => {
+    console.log('ffff');
+    const state = thunkAPI.getState();
+    const persistedToken = state.auth.token;
+    if (persistedToken === null) {
+      return thunkAPI.rejectWithValue('Unable to fetch user');
+    }
+
+    try {
+      token.set(persistedToken);
+      const { data } = await axios.get('/user/books');
+      return data;
+    } catch (e) {
+      return thunkAPI.rejectWithValue(e.message);
+    }
+  }
+);
 
 export const createBook = createAsyncThunk(
   'books/create',
