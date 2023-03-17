@@ -4,19 +4,20 @@ import { NavLink } from 'react-router-dom';
 
 export const HeaderContainer = styled.header`
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
   margin: 0 auto;
   padding: 0 22px;
   height: 60px;
+  min-width: 320px;
   background: ${({ theme }) => theme.colors.white};
   box-shadow: ${({ theme }) => theme.shadows.header};
   @media ${device.tablet} {
+    position: relative;
     padding: 0 32px;
   }
   @media ${device.desktop} {
     padding: 0 16px;
-    max-width: 1280px;
   }
 `;
 
