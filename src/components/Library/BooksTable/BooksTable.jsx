@@ -2,10 +2,11 @@ import { flexRender } from '@tanstack/react-table';
 // import {Modal} from 'components/Modal/Modal';
 // import { useEffect } from 'react';
 // import { useSelector } from 'react-redux';
-import // getCurrentlyReading,
+// import
+// getCurrentlyReading,
 // getFinishedReading,
 // getGoingToRead,
-'redux/books/booksSelectors';
+// 'redux/books/booksSelectors';
 
 // import  ResumeModal  from '../LibraryModal/ResumeModal';
 import BookDetails from './BooksDetails';
