@@ -40,7 +40,7 @@ export const Books = ({ title, status, data }) => {
 
   return (
     <Wrapper>
-      {/* <StyledTitle>{title}</StyledTitle>
+      <StyledTitle>Already read</StyledTitle>
       <StyledTable>
         <thead>
           {table.getHeaderGroups().map(headerGroup => (
@@ -70,13 +70,13 @@ export const Books = ({ title, status, data }) => {
 })}
         </tbody>
       </StyledTable>
-      {isModalVisible && (
+      {/* {isModalVisible && (
         <Modal onClose={onModalClose}>
           <ResumeModal onClose={onModalClose} bookId={bookId} />
         </Modal>
-      )}
+      )} */}
 
-        <StyledTitle>{title}</StyledTitle>
+        <StyledTitle>Reading now</StyledTitle>
       <StyledTable>
         <thead>
           {table.getHeaderGroups().map(headerGroup => (
@@ -106,13 +106,13 @@ export const Books = ({ title, status, data }) => {
 })}
         </tbody>
       </StyledTable>
-      {isModalVisible && (
+      {/* {isModalVisible && (
         <Modal onClose={onModalClose}>
           <ResumeModal onClose={onModalClose} bookId={bookId} />
         </Modal>
       )} */}
 
-      <StyledTitle>{title}</StyledTitle>
+       <StyledTitle>Going to read </StyledTitle>
       <StyledTable>
         <thead>
           {table.getHeaderGroups().map(headerGroup => (
