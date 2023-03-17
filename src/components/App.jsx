@@ -13,10 +13,11 @@ import Layout from './Layout/Layout';
 import PrivateRoute from './PrivateRoute/PrivateRoute';
 import PublicRoute from './PublicRoute/PublicRoute';
 import { addAccessToken } from 'redux/auth/authSlice';
-import { fetchCurrentUser, token } from 'redux/auth/authOperation';
+import { token } from 'redux/auth/authOperation';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { getfetchCurrentUser } from 'redux/auth/authSelectors';
+import { fetchCurrentUser } from 'redux/books/booksOperations';
 
 export const App = () => {
   const dispatch = useDispatch();

@@ -1,6 +1,7 @@
-export const getGoingToRead = state => state.books.goingToRead;
-export const getFinishedReading = state => state.books.finishedReading;
-export const getCurrentlyReading = state => state.books.currentlyReading;
+export const getGoingToRead = state => state.books.userData.goingToRead;
+export const getFinishedReading = state => state.books.userData.finishedReading;
+export const getCurrentlyReading = state =>
+  state.books.userData.currentlyReading;
 export const getStats = state => state.books.stats;
 export const getEndDate = state => state.books.endDate;
 export const getStartDate = state => state.books.startDate;

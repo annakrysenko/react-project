@@ -6,14 +6,12 @@ import {
   addBookReview,
   addFinishedPages,
   createBook,
+  fetchCurrentUser,
   getBookPlanning,
   userBooks,
 } from './booksOperations';
 
 const initialState = {
-  goingToRead: [],
-  currentlyReading: [],
-  finishedReading: [],
   userData: {
     name: null,
     email: '',
@@ -34,6 +32,18 @@ const booksSlice = createSlice({
   name: 'books',
   initialState,
   extraReducers: {
+    [fetchCurrentUser.pending](state) {
+      state.isFetchingCurrentUser = true;
+    },
+    [fetchCurrentUser.fulfilled](state, { payload }) {
+      state.userData = payload;
+      state.isLoggedIn = true;
+      state.isFetchingCurrentUser = false;
+    },
+    [fetchCurrentUser.rejected](state, { payload }) {
+      state.isFetchingCurrentUser = false;
+      state.error = payload;
+    },
     [logIn.fulfilled](state, action) {
       state.goingToRead = action.payload.userData.goingToRead;
       state.currentlyReading = action.payload.userData.currentlyReading;
