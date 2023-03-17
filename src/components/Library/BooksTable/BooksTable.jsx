@@ -1,39 +1,42 @@
 import { flexRender } from '@tanstack/react-table';
 // import {Modal} from 'components/Modal/Modal';
-import { useEffect } from 'react';
-import { useSelector } from 'react-redux';
-import { getCurrentlyReading, getFinishedReading, getGoingToRead } from 'redux/books/booksSelectors';
-
+// import { useEffect } from 'react';
+// import { useSelector } from 'react-redux';
+import // getCurrentlyReading,
+// getFinishedReading,
+// getGoingToRead,
+'redux/books/booksSelectors';
 
 // import  ResumeModal  from '../LibraryModal/ResumeModal';
 import BookDetails from './BooksDetails';
 import { StyledTable, StyledTitle, Wrapper } from './BooksTable.styled';
 
 export const Books = ({ title, status, data }) => {
-  const { table} = BookDetails(
-    status,
-    data
-  );
-// const [isModalVisible, setIsModalVisible] = useState(false);
+  const { table } = BookDetails(status, data);
+  // const [isModalVisible, setIsModalVisible] = useState(false);
 
-//   const toggleModal = () => {
-//     setIsModalVisible(!isModalVisible)
-//   };
+  //   const toggleModal = () => {
+  //     setIsModalVisible(!isModalVisible)
+  //   };
 
-//   const closeModal = () => {
-//     setIsModalVisible(false)
-//   };
+  //   const closeModal = () => {
+  //     setIsModalVisible(false)
+  //   };
 
+  // const booksReaded = useSelector(getFinishedReading);
+  // useEffect(() => {
+  //   console.log('booksReaded', booksReaded);
+  // }, [booksReaded]);
 
-  const booksReaded = useSelector(getFinishedReading)
-  useEffect(() => { console.log(booksReaded); }, [booksReaded ])
-  
-  const booksReading = useSelector(getCurrentlyReading)
-  useEffect(() => { console.log(booksReading); }, [booksReading])
-  
-  const booksGoing = useSelector(getGoingToRead)
-  useEffect(() => { console.log(booksGoing); }, [booksGoing])
-  
+  // const booksReading = useSelector(getCurrentlyReading);
+  // useEffect(() => {
+  //   console.log('booksReading', booksReading);
+  // }, [booksReading]);
+
+  // const booksGoing = useSelector(getGoingToRead);
+  // useEffect(() => {
+  //   console.log('booksGoing', booksGoing);
+  // }, [booksGoing]);
 
   return (
     <Wrapper>
@@ -109,7 +112,7 @@ export const Books = ({ title, status, data }) => {
         </Modal>
       )} */}
 
-       <StyledTitle>{title}</StyledTitle>
+      <StyledTitle>{title}</StyledTitle>
       <StyledTable>
         <thead>
           {table.getHeaderGroups().map(headerGroup => (
@@ -152,14 +155,6 @@ export const Books = ({ title, status, data }) => {
   );
 };
 
-
-
-
-
-
-
-
-
 // import { flexRender } from '@tanstack/react-table';
 // import {Modal} from 'components/Modal/Modal';
 // import { useEffect, useState } from 'react';
@@ -181,10 +176,10 @@ export const Books = ({ title, status, data }) => {
 
 //   const booksReaded = useSelector(getFinishedReading)
 //   useEffect(() => { console.log(booksReaded); }, [booksReaded ])
-  
+
 //   const booksReading = useSelector(getCurrentlyReading)
 //   useEffect(() => { console.log(booksReading); }, [booksReading])
-  
+
 //   const booksGoing = useSelector(getGoingToRead)
 //   useEffect(() => { console.log(booksGoing); }, [booksGoing])
 
@@ -232,15 +227,11 @@ export const Books = ({ title, status, data }) => {
 //   );
 // };
 
-
-
-
 // import { flexRender } from '@tanstack/react-table';
 // import {Modal} from 'components/Modal/Modal';
 // import { useEffect, useState } from 'react';
 // import { useSelector } from 'react-redux';
 // import { getCurrentlyReading, getFinishedReading, getGoingToRead } from 'redux/books/booksSelectors';
-
 
 // import  ResumeModal  from '../LibraryModal/ResumeModal';
 // import BookDetails from './BooksDetails';
@@ -254,13 +245,13 @@ export const Books = ({ title, status, data }) => {
 
 //   const booksReaded = useSelector(getFinishedReading)
 //   useEffect(() => { console.log(booksReaded); }, [booksReaded])
-  
+
 //   const booksReading = useSelector(getCurrentlyReading)
 //   useEffect(() => { console.log(booksReading); }, [booksReading])
-  
+
 //   const booksGoing = useSelector(getGoingToRead)
 //   useEffect(() => { console.log(booksGoing); }, [booksGoing])
-  
+
 //   const [showModal, setShowModal] = useState(false);
 
 //   const toggleModal = () => {
