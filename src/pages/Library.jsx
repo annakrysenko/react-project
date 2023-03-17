@@ -5,6 +5,7 @@
 import LibraryFilld from 'components/Library/BookProcesing/BookProcesing';
 import { Books } from 'components/Library/BooksTable/Example';
 import LibraryForm from 'components/LibraryForm/LIbaryForm';
+import LibraryInfo from 'components/Libraryinfo/Libaryinfo';
 import React from 'react';
 
 // const tableData = [
@@ -62,6 +63,8 @@ const Library = () => {
   return (
     <>
       <LibraryForm />
+      <LibraryInfo/>
+    
       <Books />
       <LibraryFilld />
     </>
