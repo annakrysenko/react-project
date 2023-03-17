@@ -5,7 +5,6 @@ import MyGoal from 'components/MyGoal/MyGoal';
 import Statistics from 'components/Statistics/Statistics';
 // import Grafic from 'components/Grafic'
 import { TimerMainContainer } from 'components/Timers/TimerYear/TimerYear.styled';
-import ReadTable from 'components/ReadTable/ReadTable';
 import MyTraining from 'components/MyTraining/MyTraining';
 import Graph from 'components/Graph/Graph';
 
@@ -19,11 +18,9 @@ const Training = () => {
       <TimerMainContainer>
         <TimerYear />
         <TimerGoal />
-
       </TimerMainContainer>
       <MyGoal />
       <MyTraining />
-      <ReadTable />
       <Graph />
       <Statistics />
     </>
