@@ -152,10 +152,10 @@ function Graph() {
             )}
             <ChartBox>
                 <ChartTitle>
-                    Кількість сторінок / день <ChartNumber>0</ChartNumber>{' '}
+                    AMONT OF PAGES/DA <ChartNumber>0</ChartNumber>{' '}
                 </ChartTitle>
                 <ChartWrapper options={options} data={data} />
-                <ChartTime>Час </ChartTime>
+                <ChartTime>TIME </ChartTime>
             </ChartBox>
         </>
     );
