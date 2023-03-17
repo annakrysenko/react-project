@@ -85,23 +85,22 @@ export const App = () => {
               element={
                 <PrivateRoute>
                   <MobileAddBook />
-                
-              </PrivateRoute>
-            }
-          />
-          <Route
-            path="training"
-            element={
-              <PrivateRoute>
-                <Training />
-              </PrivateRoute>
-            }
-          />
-        </Route>
-        <Route path="*" element={<Navigate to="/login" />} />
-      </Routes>
-      <ToastContainer position="top-right" autoClose={2000} theme="colored" />
-    </>
-    // )
+                </PrivateRoute>
+              }
+            />
+            <Route
+              path="training"
+              element={
+                <PrivateRoute>
+                  <Training />
+                </PrivateRoute>
+              }
+            />
+          </Route>
+          <Route path="*" element={<Navigate to="/login" />} />
+        </Routes>
+        <ToastContainer position="top-right" autoClose={2000} theme="colored" />
+      </>
+    )
   );
 };
