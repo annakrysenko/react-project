@@ -117,17 +117,17 @@
 
 
 import { useSelector } from 'react-redux';
-import { useContext } from 'react';
+import { useState } from 'react';
 import {
 	LibraryBooklistContainer,
 	LibraryBooklistTitle,
-	LibraryBooklistSubContainer,
-	LibraryBooklistTable,
-	LibraryBooklistRow,
-	LibraryBooklistCell,
-	LibraryBooklistNameCell,
-	LibraryBooklistButton,
-	LibraryControlMobileSection,
+	// LibraryBooklistSubContainer,
+	// LibraryBooklistTable,
+	// LibraryBooklistRow,
+	// LibraryBooklistCell,
+	// LibraryBooklistNameCell,
+	// LibraryBooklistButton,
+	// LibraryControlMobileSection,
 	LibraryControlTabletSection,
 	LibraryBooklistTabletButton,
 	LibraryBooklistTabletTable,
@@ -136,25 +136,33 @@ import {
 	LibraryBooklistTabletBody,
 	LibraryBooklistTabletBodyCell,
 	LibraryBooklistTabletRow,
-} from 'ui/LibraryFilld';
-import {
-	getGoingToRead,
-	getFinishedReading,
-	getCurrentlyReading,
-} from '../../../redux/library/librarySelector';
+} from '../LibraryFilld';
+// import {
+// 	getGoingToRead,
+// 	getFinishedReading,
+// 	getCurrentlyReading,
+// } from '../../../redux/library/librarySelector';
 import LibraryModal from '../LibraryModal/LibraryModal';
 
-import Modal from 'components/Modal/Modal';
-import ConteinerModal from 'ui/LibraryModal/ConteinerModal.styled';
+// import {Modal} from 'components/Modal/Modal';
+// import ConteinerModal from '../LibraryFilld/ConteinerModal.styled';
 
 import Rating from '@mui/material/Rating';
-import { ReviewContext } from 'components/ReviewContext/ReviewContext';
+
+// import { ReviewContext } from '../ReviewContext/ReviewContext';
+import { getCurrentlyReading, getFinishedReading, getGoingToRead } from 'redux/books/booksSelectors';
+
 
 function LibraryFilld() {
 	const goingToRead = useSelector(getGoingToRead);
 	const finishedReading = useSelector(getFinishedReading);
 	const currentlyReading = useSelector(getCurrentlyReading);
-	const {isModal, toogleModal} = useContext(ReviewContext);
+	// const {isModal, toogleModal} = useContext(ReviewContext);
+	const [isModal, setIsModal] = useState(false);
+
+	const handleToggleModal = (id) => {
+		setIsModal(id);
+	}
 
 
 	return (
@@ -210,17 +218,22 @@ function LibraryFilld() {
 												<LibraryBooklistTabletBodyCell buttonPadding>
 													<LibraryBooklistTabletButton
 														type="button"
-														onClick={() => toogleModal(_id)}
+														// onClick={() => toogleModal(_id)}
+														onClick={() => handleToggleModal(_id)}
 													>
 														Резюме
 													</LibraryBooklistTabletButton>
 
 													{isModal === _id && (
-														<Modal toogleModal={toogleModal}>
-															<ConteinerModal>
-																<LibraryModal toogleModal={toogleModal} />
-															</ConteinerModal>
-														</Modal>
+														// <Modal toogleModal={toogleModal}>
+														// 	<ConteinerModal>
+														// 		<LibraryModal toogleModal={toogleModal} />
+														// 	</ConteinerModal>
+														// </Modal>
+														<LibraryModal
+															isModal={isModal}
+															handleToggleModal={handleToggleModal}
+														/>
 													)}
 												</LibraryBooklistTabletBodyCell>
 											</LibraryBooklistTabletRow>
@@ -334,7 +347,7 @@ function LibraryFilld() {
 				)}
 			</LibraryControlTabletSection>
 
-			<LibraryControlMobileSection>
+			{/* <LibraryControlMobileSection>
 				{finishedReading.length > 0 && (
 					<LibraryBooklistContainer>
 						<LibraryBooklistTitle>Прочитано</LibraryBooklistTitle>
@@ -471,9 +484,7 @@ function LibraryFilld() {
 						)}
 					</LibraryBooklistContainer>
 				)}
-			</LibraryControlMobileSection>
-
-			{/* <LibraryModal /> */}
+			</LibraryControlMobileSection> * /}
 		</>
 	);
 }
