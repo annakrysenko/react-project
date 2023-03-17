@@ -1,36 +1,93 @@
-// import { useSelector } from 'react-redux';
-// import { getUserName } from 'redux/auth/authSelectors';
+import { useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { logOut } from 'redux/auth/authOperation';
+import { getUserName } from 'redux/auth/authSelectors';
 import { ReactComponent as Home } from 'images/svg/home.svg';
 import { ReactComponent as Library } from 'images/svg/library.svg';
 import { ReactComponent as Line } from 'images/svg/line.svg';
-import { HomeLink, HoverBtn, LibraryLink, LineStyled, 
-       // LogoName, UserNameStyled 
-       } from './UserMenu.styled';
-
+import {
+  HomeLink,
+  HoverBtn,
+  LibraryLink,
+  LineStyled,
+  LogoName,
+  ModalText,
+  ModalBtn,
+  ModalBtnBox,
+  ModalContainer,
+  UserNameStyled,
+  BtnLogOut,
+  UserBox,
+  LinkBox,
+  LogOutBox,
+  UserMenuContainer,
+} from './UserMenu.styled';
+import { Modal } from 'components/Modal/Modal';
 
 export const UserMenu = () => {
-  // const userName = useSelector(getUserName);
-  // const firstLetter = userName[0];
+  const [isShowModal, setIsShowModal] = useState(false);
+  const userName = useSelector(getUserName);
+  const dispatch = useDispatch();
+  const firstLetter = userName && userName[0].toUpperCase();
+
+  const toggleModal = () => {
+    setIsShowModal(!isShowModal);
+  };
+
+  const onLogOut = () => {
+    dispatch(logOut());
+    toggleModal();
+  };
   return (
     <>
-      <HomeLink to="training">
-        <HoverBtn>
-          <Home />
-        </HoverBtn>
-      </HomeLink>
-      <LibraryLink to="library">
-        <HoverBtn>
-          <Library />
-        </HoverBtn>
-      </LibraryLink>
-      <LineStyled>
-        <Line />
-      </LineStyled>
-{/* 
-      <UserNameStyled>{firstLetter}</UserNameStyled>
-      <LogoName>{userName }</LogoName> */}
+      <UserMenuContainer>
+        <LinkBox>
+          <LibraryLink to="library">
+            <HoverBtn>
+              <Library />
+            </HoverBtn>
+          </LibraryLink>
+          <HomeLink to="training">
+            <HoverBtn>
+              <Home />
+            </HoverBtn>
+          </HomeLink>
+          <LineStyled>
+            <Line />
+          </LineStyled>
+        </LinkBox>
+        <UserBox>
+          <LogoName>{firstLetter}</LogoName>
+          <UserNameStyled>{userName}</UserNameStyled>
+        </UserBox>
+        <LogOutBox>
+          {isShowModal && (
+            <Modal toggleModal={toggleModal}>
+              <ModalContainer>
+                <ModalText>
+                  The changes you made will be lost if you navigate away from
+                  this application
+                </ModalText>
+                <ModalBtnBox>
+                  <li>
+                    <ModalBtn type="button" onClick={toggleModal}>
+                      Cancel
+                    </ModalBtn>
+                  </li>
+                  <li>
+                    <ModalBtn type="button" onClick={onLogOut}>
+                      Leave
+                    </ModalBtn>
+                  </li>
+                </ModalBtnBox>
+              </ModalContainer>
+            </Modal>
+          )}
+          <BtnLogOut type="button" onClick={toggleModal}>
+            Logout
+          </BtnLogOut>
+        </LogOutBox>
+      </UserMenuContainer>
     </>
   );
 };
-
-

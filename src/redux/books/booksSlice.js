@@ -6,15 +6,20 @@ import {
   addBookReview,
   addFinishedPages,
   createBook,
+  fetchCurrentUser,
   getBookPlanning,
   userBooks,
 } from './booksOperations';
 
 const initialState = {
-  goingToRead: [],
-  currentlyReading: [],
-  finishedReading: [],
-  startDate: null,
+  userData: {
+    name: null,
+    email: '',
+    goingToRead: [],
+    currentlyReading: [],
+    finishedReading: [],
+    id: null,
+  },
   endDate: null,
   pagesPerDay: null,
   stats: [],
@@ -27,30 +32,45 @@ const booksSlice = createSlice({
   name: 'books',
   initialState,
   extraReducers: {
+    [fetchCurrentUser.pending](state) {
+      state.isFetchingCurrentUser = true;
+    },
+    [fetchCurrentUser.fulfilled](state, { payload }) {
+      state.userData = payload;
+      state.isLoggedIn = true;
+      state.isFetchingCurrentUser = false;
+    },
+    [fetchCurrentUser.rejected](state, { payload }) {
+      state.isFetchingCurrentUser = false;
+      state.error = payload;
+    },
     [logIn.fulfilled](state, action) {
-      state.goingToRead = action.payload.userData.goingToRead;
-      state.currentlyReading = action.payload.userData.currentlyReading;
-      state.finishedReading = action.payload.userData.finishedReading;
+      state.userData.goingToRead = action.payload.userData.goingToRead;
+      state.userData.currentlyReading =
+        action.payload.userData.currentlyReading;
+      state.userData.finishedReading = action.payload.userData.finishedReading;
     },
     [userBooks.fulfilled](state, action) {
-      state.goingToRead = action.payload.goingToRead;
+      state.userData.goingToRead = action.payload.goingToRead;
       // state.currentlyReading = action.payload.currentlyReading;
       state.finishedReading = action.payload.finishedReading;
     },
     [logOut.fulfilled](state) {
-      state.goingToRead = [];
-      state.currentlyReading = [];
-      state.finishedReading = [];
+      state.userData.goingToRead = [];
+      state.userData.currentlyReading = [];
+      state.userData.finishedReading = [];
       state.startDate = null;
       state.endDate = null;
       state.stats = [];
       state.error = null;
     },
     [createBook.fulfilled](state, action) {
-      state.goingToRead.push(action.payload.newBook);
+      // console.log('hello');
+
+      state.userData.goingToRead.push(action.payload.newBook);
     },
     [addBookPlanning.fulfilled](state, action) {
-      state.currentlyReading = action.payload.books;
+      state.userData.currentlyReading = action.payload.books;
       state.startDate = action.payload.startDate;
       state.endDate = action.payload.endDate;
       state.pagesPerDay = action.payload.pagesPerDay;
@@ -60,7 +80,7 @@ const booksSlice = createSlice({
       if (!action.payload) {
         return;
       }
-      state.currentlyReading = action.payload.planning.books.filter(
+      state.userData.currentlyReading = action.payload.planning.books.filter(
         book => book.pagesTotal !== book.pagesFinished
       );
 
@@ -72,7 +92,7 @@ const booksSlice = createSlice({
 
     [addFinishedPages.fulfilled](state, action) {
       state.stats = action.payload.planning.stats;
-      state.currentlyReading.splice(
+      state.userData.currentlyReading.splice(
         state.currentlyReading.findIndex(
           book => book._id === action.payload.book._id
         ),
@@ -82,12 +102,12 @@ const booksSlice = createSlice({
     },
 
     [loginWithGoogle.fulfilled](state, action) {
-      state.goingToRead = action.payload.data.goingToRead;
-      state.currentlyReading = action.payload.data.currentlyReading;
-      state.finishedReading = action.payload.data.finishedReading;
+      state.userData.goingToRead = action.payload.data.goingToRead;
+      state.userData.currentlyReading = action.payload.data.currentlyReading;
+      state.userData.finishedReading = action.payload.data.finishedReading;
     },
     [addBookReview.fulfilled](state, action) {
-      state.finishedReading.splice(
+      state.userData.finishedReading.splice(
         state.finishedReading.findIndex(
           book => book._id === action.payload._id
         ),

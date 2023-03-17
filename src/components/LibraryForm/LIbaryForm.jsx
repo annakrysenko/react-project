@@ -31,7 +31,7 @@ const LibraryForm = () => {
       .typeError('The field can only contain numbers')
       .max(year, `The year of publication cannot be greater ${year}`)
       .positive('The field can contain only positive numbers'),
-    totalPages: yup
+    pagesTotal: yup
       .number()
       .typeError('The field can only contain numbers')
       .required('Mandatory field')
@@ -47,7 +47,7 @@ const LibraryForm = () => {
     title: '',
     author: '',
     publishYear: '',
-    totalPages: '',
+    pagesTotal: '',
   };
 
   return (

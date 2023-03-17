@@ -3,106 +3,107 @@ import Login from 'pages/Login';
 import MobileAddBook from 'pages/MobileAddBook';
 import Register from 'pages/Register';
 import Training from 'pages/Training';
-import { useEffect } from 'react';
-import { useDispatch } from 'react-redux';
-import { Navigate, Route, Routes, useSearchParams } from 'react-router-dom';
-// import { fetchCurrentUser } from 'redux/auth/authOperation';
-// import { getfetchCurrentUser } from 'redux/auth/authSelectors';
+import { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { Navigate, Route, Routes } from 'react-router-dom';
+
 import GlobalStyle from 'styles/GlobalStyle.jsx';
 import Layout from './Layout/Layout';
-import MobileRoute from './MobileRoute/MobileRoute';
 import PrivateRoute from './PrivateRoute/PrivateRoute';
 import PublicRoute from './PublicRoute/PublicRoute';
-import { addAccessToken } from 'redux/auth/authSlice';
-import { token } from 'redux/auth/authOperation';
+// import { addAccessToken } from 'redux/auth/authSlice';
+// import { token } from 'redux/auth/authOperation';
 import { ToastContainer } from 'react-toastify';
- import 'react-toastify/dist/ReactToastify.css';
-
-
+import 'react-toastify/dist/ReactToastify.css';
+import { getfetchCurrentUser } from 'redux/auth/authSelectors';
+import { fetchCurrentUser } from 'redux/books/booksOperations';
+import AboutAppRegistr from './AboutAppRegist/AboutAppRegist';
+import Media from 'react-media';
 
 export const App = () => {
   const dispatch = useDispatch();
-  // const isFetching = useSelector(getfetchCurrentUser);
-  // const [firstRenderEnded, setFirstRenderEnded] = useState(false);
+  const isFetching = useSelector(getfetchCurrentUser);
+  const [firstRenderEnded, setFirstRenderEnded] = useState(false);
 
-  // useEffect(() => {
-  //   dispatch(fetchCurrentUser());
-  //   setFirstRenderEnded(true);
-  // }, [dispatch]);
- 
-  const [searchParams] = useSearchParams();
-  const accessToken = searchParams.get("accessToken");
   useEffect(() => {
-   if(accessToken !== null) {dispatch(addAccessToken(accessToken));
-    token.set(accessToken)}
-},[accessToken, dispatch])
+    dispatch(fetchCurrentUser());
+    setFirstRenderEnded(true);
+    // console.log('isFetching', isFetching);
+  }, [dispatch, isFetching]);
 
   return (
-    // !isFetching &&
-    // firstRenderEnded && (
-    <>
-       {/* <ToastContainer position="top-right" autoClose={2000} theme="colored" /> */}
-      <GlobalStyle />
-      <Routes>
-        <Route path="/" element={<Layout />}>
-          <Route
-            index
-            element={
-              <PublicRoute restricted>
-                <>
+    !isFetching &&
+    firstRenderEnded && (
+      <>
+        <GlobalStyle />
+        <Routes>
+          <Route path="/" element={<Layout />}>
+            <Route
+              index
+              element={
+                <PublicRoute restricted>
+                  <Media
+                    queries={{
+                      small: '(max-width: 767px)',
+                      large: '(min-width: 768px)',
+                    }}
+                  >
+                    {matches => (
+                      <>
+                        {matches.small && <AboutAppRegistr />}
+                        {matches.large && <Login />}
+                      </>
+                    )}
+                  </Media>
+                </PublicRoute>
+              }
+            />
+            <Route
+              path="register"
+              element={
+                <PublicRoute restricted>
+                  <Register />
+                </PublicRoute>
+              }
+            />
+            <Route
+              path="login"
+              element={
+                <PublicRoute restricted>
                   <Login />
-                </>
-              </PublicRoute>
-            }
-          />
-          <Route
-            path="register"
-            element={
-              <PublicRoute restricted>
-                <Register />
-              </PublicRoute>
-            }
-          />
-          <Route
-            path="login"
-            element={
-              <PublicRoute restricted>
-                <Login />
-              </PublicRoute>
-            }
-          />
+                </PublicRoute>
+              }
+            />
 
-          <Route
-            path="library"
-            element={
-              <PrivateRoute>
-                <Library />
-              </PrivateRoute>
-            }
-          />
-          <Route
-            path="library/addBook"
-            element={
-              <PrivateRoute>
-                <MobileRoute redirectTo="library">
+            <Route
+              path="library"
+              element={
+                <PrivateRoute>
+                  <Library />
+                </PrivateRoute>
+              }
+            />
+            <Route
+              path="library/addBook"
+              element={
+                <PrivateRoute>
                   <MobileAddBook />
-                </MobileRoute>
-              </PrivateRoute>
-            }
-          />
-          <Route
-            path="training"
-            element={
-              <PrivateRoute>
-                <Training />
-              </PrivateRoute>
-            }
-          />
-        </Route>
-        <Route path="*" element={<Navigate to="/login" />} />
-      </Routes>
-      <ToastContainer position="top-right" autoClose={2000} theme="colored" />
-    </>
-    // )
+                </PrivateRoute>
+              }
+            />
+            <Route
+              path="training"
+              element={
+                <PrivateRoute>
+                  <Training />
+                </PrivateRoute>
+              }
+            />
+          </Route>
+          <Route path="*" element={<Navigate to="/login" />} />
+        </Routes>
+        <ToastContainer position="top-right" autoClose={2000} theme="colored" />
+      </>
+    )
   );
 };
