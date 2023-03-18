@@ -1,4 +1,3 @@
-import { Result } from "antd";
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import {
@@ -9,7 +8,7 @@ import {
 } from "./booksSelectors";
 import { addReadingResult } from "./booksSlice";
 
-const ResultsSection = () => {
+const Results = () => {
   const dispatch = useDispatch();
 
   // local component state to store user input
@@ -77,4 +76,4 @@ const ResultsSection = () => {
   );
 };
 
-export default Result;
+export default Results;
