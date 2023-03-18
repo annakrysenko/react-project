@@ -33,13 +33,20 @@ export default function MyTraining() {
   // Дата старту - готова до використання---
   const receiveDataFromStart = newValue => {
     setStart(newValue);
-    const startDate = `${newValue.$y}-${newValue.$M + 1}-${newValue.$D}`;
+    const startDate = `${newValue.$y}-${String(newValue.$M + 1).padStart(
+      2,
+      '0'
+    )}-${newValue.$D}`;
     setStartDate(startDate);
   };
 
   const receiveDataFromEnd = newValue => {
     setFinish(newValue);
-    const endDate = `${newValue.$y}-${newValue.$M + 1}-${newValue.$D}`;
+    const endDate = `${newValue.$y}-${String(newValue.$M + 1).padStart(
+      2,
+      '0'
+    )}-${String(newValue.$D).padStart(2, '0')}`;
+
     setEndDate(endDate);
   };
 
