@@ -8,7 +8,6 @@ import {
   createBook,
   fetchCurrentUser,
   getBookPlanning,
-  userBooks,
 } from './booksOperations';
 
 const initialState = {
@@ -36,6 +35,8 @@ const booksSlice = createSlice({
       state.isFetchingCurrentUser = true;
     },
     [fetchCurrentUser.fulfilled](state, { payload }) {
+      // console.log('fetchCurrentUser payload', payload);
+
       state.userData = payload;
       state.isLoggedIn = true;
       state.isFetchingCurrentUser = false;
@@ -45,27 +46,20 @@ const booksSlice = createSlice({
       state.error = payload;
     },
     [logIn.fulfilled](state, action) {
-      console.log('payload', action.payload);
+      console.log('logIn payload', action.payload);
       state.userData = action.payload.userData;
     },
-    [userBooks.fulfilled](state, action) {
-      state.userData.goingToRead = action.payload.goingToRead;
-      state.currentlyReading = action.payload.currentlyReading;
-      state.finishedReading = action.payload.finishedReading;
-    },
     [logOut.fulfilled](state) {
-      state.userData.goingToRead = [];
-      state.userData.currentlyReading = [];
-      state.userData.finishedReading = [];
+      state.userData = [];
       state.startDate = null;
       state.endDate = null;
       state.stats = [];
       state.error = null;
     },
     [createBook.fulfilled](state, action) {
-      // console.log('hello');
+      console.log('action.payload.newBook', action.payload);
 
-      state.userData.goingToRead.push(action.payload.newBook);
+      state.userData.goingToRead.push(action.payload);
     },
     [addBookPlanning.fulfilled](state, action) {
       state.userData.currentlyReading = action.payload.books;
@@ -75,6 +69,7 @@ const booksSlice = createSlice({
     },
 
     [getBookPlanning.fulfilled](state, action) {
+      console.log('getBookPlanning', action.payload);
       if (!action.payload) {
         return;
       }
