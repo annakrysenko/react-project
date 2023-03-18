@@ -1,6 +1,6 @@
 import Rating from '@mui/material/Rating';
 import Typography from '@mui/material/Typography';
-import { ButtonModal } from 'components/Library/BooksTable/BooksTable.styled';
+import { ButtonModal } from 'components/Library/BooksTable-TO_DELETE/BooksTable.styled.jsx';
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { addBookReview } from 'redux/books/booksOperations';

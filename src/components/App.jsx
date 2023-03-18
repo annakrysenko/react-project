@@ -4,7 +4,6 @@ import MobileAddBook from 'pages/MobileAddBook';
 import Register from 'pages/Register';
 import Training from 'pages/Training';
 import { useEffect, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
 import { Navigate, Route, Routes } from 'react-router-dom';
 
 import GlobalStyle from 'styles/GlobalStyle.jsx';
@@ -15,24 +14,17 @@ import PublicRoute from './PublicRoute/PublicRoute';
 // import { token } from 'redux/auth/authOperation';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import { getfetchCurrentUser } from 'redux/auth/authSelectors';
-import { fetchCurrentUser } from 'redux/books/booksOperations';
 import AboutAppRegistr from './AboutAppRegist/AboutAppRegist';
 import Media from 'react-media';
 
 export const App = () => {
-  const dispatch = useDispatch();
-  const isFetching = useSelector(getfetchCurrentUser);
   const [firstRenderEnded, setFirstRenderEnded] = useState(false);
 
   useEffect(() => {
-    dispatch(fetchCurrentUser());
     setFirstRenderEnded(true);
-    // console.log('isFetching', isFetching);
-  }, [dispatch, isFetching]);
+  }, []);
 
   return (
-    !isFetching &&
     firstRenderEnded && (
       <>
         <GlobalStyle />
