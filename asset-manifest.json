@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/react-project/static/css/main.2e5357a6.css",
-    "main.js": "/react-project/static/js/main.f15b647b.js",
+    "main.css": "/react-project/static/css/main.d324cd99.css",
+    "main.js": "/react-project/static/js/main.d94e01e8.js",
     "static/media/pic-desk-2x.jpg": "/react-project/static/media/pic-desk-2x.4f79f1e806149a90042a.jpg",
     "static/media/pic-tab-2x.jpg": "/react-project/static/media/pic-tab-2x.1d9a1e5bdd2a54310f55.jpg",
     "static/media/pic-tab-1x.jpg": "/react-project/static/media/pic-tab-1x.54a69dd075e463e963d9.jpg",
@@ -19,11 +19,11 @@
     "static/media/home.svg": "/react-project/static/media/home.b3cc0a6a4d8a1f2461a5a0058dafff68.svg",
     "static/media/checkboxDisabled.svg": "/react-project/static/media/checkboxDisabled.531e3adb386208b7ab7da4def4e32561.svg",
     "static/media/line.svg": "/react-project/static/media/line.0b447d5c5db6f1cb96771cd843fa3733.svg",
-    "main.2e5357a6.css.map": "/react-project/static/css/main.2e5357a6.css.map",
-    "main.f15b647b.js.map": "/react-project/static/js/main.f15b647b.js.map"
+    "main.d324cd99.css.map": "/react-project/static/css/main.d324cd99.css.map",
+    "main.d94e01e8.js.map": "/react-project/static/js/main.d94e01e8.js.map"
   },
   "entrypoints": [
-    "static/css/main.2e5357a6.css",
-    "static/js/main.f15b647b.js"
+    "static/css/main.d324cd99.css",
+    "static/js/main.d94e01e8.js"
   ]
 }
