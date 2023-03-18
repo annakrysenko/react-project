@@ -66,6 +66,7 @@ import {
 import TrainingList from '../components/TrainingList/TrainingList';
 import InfoMobileLink from 'components/MyTraining/styles/containerTraining/InfoMobileLink.styled';
 import LibraryMobileButton from 'components/MyTraining/styles/containerTraining/LibraryMobileButton.styled';
+import Results from 'components/Results/Results';
 
 // import { NavLink } from 'react-router-dom';
 // import { getCurrentlyReading } from '../redux/library/librarySelector';
@@ -237,6 +238,7 @@ export const Training = () => {
 						<MyTraining />
 					</GoalTrainingBox>
 					<Graph />
+					<Results/>
 				</BoxPageStatistics>
 			</Container>
 		</Section>

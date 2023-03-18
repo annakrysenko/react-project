@@ -13,7 +13,7 @@ import { useState } from "react";
 const Statistics = () => {
   const [isShowModal, setIsShowModal] = useState(false);
   const [readPages, setReadPages] = useState(0);
-  const plannedPages = 100; // Запланована кількість сторінок
+  const plannedPages = 100; // Planned number of pages
 
   const toggleModal = () => {
     setIsShowModal(prevState => !prevState);
@@ -28,9 +28,9 @@ const Statistics = () => {
     setReadPages(parseInt(value, 10));
   }
 
-  // Функція, яка викликається при кожному зміні стану `readPages`
+  // A function that is called every time the state changes `readPages`
   useEffect(() => {
-    // Якщо кількість прочитаних сторінок менша за заплановану, відображаємо модалку
+    // If the number of pages read is less than planned, we display a modal
     if (readPages < plannedPages) {
       setIsShowModal(true);
     }
