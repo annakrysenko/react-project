@@ -39,6 +39,7 @@ function BooksTables() {
     setIsModalVisible(!isModalVisible);
     setBookId(null);
   }, [isModalVisible]);
+
   return (
     <>
       {goingToRead.length > 0 && (

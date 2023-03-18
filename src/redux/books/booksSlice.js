@@ -45,14 +45,12 @@ const booksSlice = createSlice({
       state.error = payload;
     },
     [logIn.fulfilled](state, action) {
-      state.userData.goingToRead = action.payload.userData.goingToRead;
-      state.userData.currentlyReading =
-        action.payload.userData.currentlyReading;
-      state.userData.finishedReading = action.payload.userData.finishedReading;
+      console.log('payload', action.payload);
+      state.userData = action.payload.userData;
     },
     [userBooks.fulfilled](state, action) {
       state.userData.goingToRead = action.payload.goingToRead;
-      // state.currentlyReading = action.payload.currentlyReading;
+      state.currentlyReading = action.payload.currentlyReading;
       state.finishedReading = action.payload.finishedReading;
     },
     [logOut.fulfilled](state) {
