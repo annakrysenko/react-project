@@ -52,7 +52,7 @@ const booksSlice = createSlice({
     },
     [userBooks.fulfilled](state, action) {
       state.userData.goingToRead = action.payload.goingToRead;
-      // state.currentlyReading = action.payload.currentlyReading;
+      state.currentlyReading = action.payload.currentlyReading;
       state.finishedReading = action.payload.finishedReading;
     },
     [logOut.fulfilled](state) {
