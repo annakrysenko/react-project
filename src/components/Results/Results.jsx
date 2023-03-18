@@ -1,12 +1,13 @@
 import React, { useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import {
   getFinishedReading,
   getEndDate,
   getStartDate,
   getPagesPerDay,
-} from "./booksSelectors";
-import { addReadingResult } from "./booksSlice";
+  getStats
+} from "../../redux/books/booksSelectors";
+// import { addReadingResult } from "./booksSlice";
 
 const Results = () => {
   const dispatch = useDispatch();
@@ -28,7 +29,7 @@ const Results = () => {
     event.preventDefault();
 
     // dispatch an action to add the reading result to the store
-    dispatch(addReadingResult(formData));
+    dispatch(getStats(formData));
     
     // clear the input fields
     setFormData({ date: "", pages: "" });
