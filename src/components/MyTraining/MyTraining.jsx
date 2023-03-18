@@ -34,11 +34,14 @@ export default function MyTraining() {
 
   // Дата старту - готова до використання---
   const receiveDataFromStart = newValue => {
-    setStart(newValue);
-    const startDate = `${newValue.$y}-${newValue.$M + 1}-${newValue.$D}`;
-    setStartDate(startDate);
-  };
-
+	  setStart(newValue);
+	  console.log(newValue.$M)
+    const startDate = `${newValue.$y}-${(newValue.$M + 1).padStart(2, '0')}-${(newValue.$D).padStart(2, '0')}`;
+	  setStartDate(startDate);
+	  
+	};
+	
+// String(value).padStart(2, '0')
   const receiveDataFromEnd = newValue => {
     setFinish(newValue);
     const endDate = `${newValue.$y}-${newValue.$M + 1}-${newValue.$D}`;
