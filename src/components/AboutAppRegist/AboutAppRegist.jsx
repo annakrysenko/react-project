@@ -29,12 +29,11 @@ const AboutAppRegistr = () => {
         </LiStyled>
         <LiStyled>Become an interesting interlocutor</LiStyled>
       </ListSlyled>
-      (
+
       <ButtonsBox>
         <BtnAboutApp to="/login">Log in</BtnAboutApp>
         <BtnAboutApp to="/register">Register</BtnAboutApp>
       </ButtonsBox>
-      )
     </DivStyled>
   );
 };
