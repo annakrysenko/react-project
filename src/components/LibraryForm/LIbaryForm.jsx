@@ -39,6 +39,7 @@ const LibraryForm = () => {
       .positive('The field can contain only positive numbers'),
   });
   const location = useLocation();
+
   const handleSubmit = (values, actions) => {
     dispatch(createBook(values));
     actions.resetForm();

@@ -41,6 +41,7 @@ function BooksTables() {
   }, [isModalVisible]);
 
   return (
+    // isEmpty && (
     <>
       {goingToRead.length > 0 && (
         <LibraryBooklistContainer tabletSize>
@@ -222,6 +223,7 @@ function BooksTables() {
         </LibraryBooklistContainer>
       )}
     </>
+    // )
   );
 }
 export default BooksTables;

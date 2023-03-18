@@ -63,9 +63,9 @@ const booksSlice = createSlice({
       state.error = null;
     },
     [createBook.fulfilled](state, action) {
-      // console.log('hello');
+      console.log('action.payload.newBook', action.payload);
 
-      state.userData.goingToRead.push(action.payload.newBook);
+      state.userData.goingToRead.push(action.payload);
     },
     [addBookPlanning.fulfilled](state, action) {
       state.userData.currentlyReading = action.payload.books;
