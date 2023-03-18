@@ -28,7 +28,7 @@ const Results = () => {
   const handleSubmit = (event) => {
     event.preventDefault();
 
-    // dispatch an action to add the reading result to the store
+    // dispatchs an action to add the reading result to the store
     dispatch(getStats(formData));
     
     // clear the input fields
