@@ -50,27 +50,27 @@ const options = {
     },
 
     scales: {
-        xAxes: {
+        y: {
+            grid: { display: false },
             ticks: {
-                display: false,
+                beginAtZero: true,
             },
-            grid: {
-                lineWidth: 2,
-                color: '#B1B5C2',
-                borderColor: '#B1B5C2',
-                borderWidth: 2,
-            },
+            min: 0,
         },
-        yAxes: {
-            ticks: {
-                display: false,
+        x: {
+            border: {
+                display: true
             },
             grid: {
-                display: false,
-            },
+                display: true,
+                drawOnChartArea: true,
+                drawTicks: true,
+            }
         },
     },
 };
+
+
 
 function Graph() {
     const stats = useSelector(getStats);
@@ -140,6 +140,10 @@ function Graph() {
             },
         ],
     };
+
+
+    // console.log(currentlyReading);
+
 
     return (
         <>
