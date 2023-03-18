@@ -34,8 +34,10 @@ const BookDetails = (status, data) => {
         cell: info => (
           <StyledBookTitle>
             <StyledIconBox>
+              {status ? <BookOrange /> : <BookGrey />}
+              {/* {status ?  <BookGrey /> : <BookOrange />} */}
               {/* {status ? <BookOrange /> : <BookGrey />} */}
-              {status ? <BookGrey /> : <BookOrange />}
+              {/* {status ? <BookGrey /> : <BookOrange />} */}
             </StyledIconBox>
             <EllipsisText text={info.getValue()} length={50} />
           </StyledBookTitle>
@@ -94,3 +96,6 @@ const BookDetails = (status, data) => {
 };
 
 export default BookDetails;
+
+
+//test
