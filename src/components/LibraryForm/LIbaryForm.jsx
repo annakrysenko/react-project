@@ -70,7 +70,6 @@ const LibraryForm = () => {
             </LABEL>
           </WrapperINPUT>
           <WrapperTabletINPUT>
-          
             <WrapperINPUT>
               <LABEL htmlFor="author">
                 Author
@@ -91,15 +90,15 @@ const LibraryForm = () => {
               </LABEL>
             </WrapperINPUT>
             <WrapperINPUT>
-              <LABEL htmlFor="totalPages">
+              <LABEL htmlFor="pagesTotal">
                 Amount of pages
                 <INPUT
-                  name="totalPages"
+                  name="pagesTotal"
                   placeholder="..."
                   type="number"
                   required
                 />
-                <ErrorMessage name="totalPages" component="div" />
+                <ErrorMessage name="pagesTotal" component="div" />
               </LABEL>
             </WrapperINPUT>
           </WrapperTabletINPUT>
