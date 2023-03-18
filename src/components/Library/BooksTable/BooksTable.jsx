@@ -2,14 +2,15 @@ import { flexRender } from '@tanstack/react-table';
 // import {Modal} from 'components/Modal/Modal';
 // import { useEffect } from 'react';
 // import { useSelector } from 'react-redux';
-import // getCurrentlyReading,
+// import  getCurrentlyReading,
 // getFinishedReading,
 // getGoingToRead,
-'redux/books/booksSelectors';
+// 'redux/books/booksSelectors';
 
 // import  ResumeModal  from '../LibraryModal/ResumeModal';
 import BookDetails from './BooksDetails';
 import { StyledTable, StyledTitle, Wrapper } from './BooksTable.styled';
+import { getCurrentlyReading, getFinishedReading, getGoingToRead } from 'redux/books/booksSelectors';
 
 export const Books = ({ title, status, data }) => {
   const { table } = BookDetails(status, data);
@@ -33,10 +34,10 @@ export const Books = ({ title, status, data }) => {
     console.log('booksReading', booksReading);
   }, [booksReading]);
 
-  // const booksGoing = useSelector(getGoingToRead);
-  // useEffect(() => {
-  //   console.log('booksGoing', booksGoing);
-  // }, [booksGoing]);
+  const booksGoing = useSelector(getGoingToRead);
+  useEffect(() => {
+    console.log('booksGoing', booksGoing);
+  }, [booksGoing]);
 
   return (
     <Wrapper>
