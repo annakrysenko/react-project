@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { StyledBtn } from '../BooksTable/BooksTable.styled';
+import { StyledBtn } from '../BooksTable-TO_DELETE/BooksTable.styled';
 
 export const StyledTitle = styled.h3`
   font-family: 'Montserrat';

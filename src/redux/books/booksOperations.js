@@ -5,7 +5,7 @@ import { token } from 'redux/auth/authOperation';
 export const fetchCurrentUser = createAsyncThunk(
   'books/fetchCurrentUser',
   async (_, thunkAPI) => {
-    // console.log('ffff');
+    console.log('ffff');
     const state = thunkAPI.getState();
     const persistedToken = state.auth.token;
     if (persistedToken === null) {
@@ -40,19 +40,6 @@ export const addBookReview = createAsyncThunk(
     try {
       const { data } = await axios.patch(`/book/review/${bookId}`, reviewData);
       // console.log('addBookReview====>', data);
-      return data;
-    } catch (error) {
-      return thunkAPI.rejectWithValue(error.message);
-    }
-  }
-);
-
-export const userBooks = createAsyncThunk(
-  'books/userBooks',
-  async (_, thunkAPI) => {
-    try {
-      const { data } = await axios.get('user/books');
-      // console.log('userBooks====>', data);
       return data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
