@@ -1,71 +1,79 @@
-import { useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { Result } from "antd";
+import React, { useState } from "react";
+import { useDispatch } from "react-redux";
 import {
+  getFinishedReading,
+  getEndDate,
+  getStartDate,
   getPagesPerDay,
-  getStats,
-  addPageCountResult,
-} from '../../redux/books/booksSlice';
+} from "./booksSelectors";
+import { addReadingResult } from "./booksSlice";
 
-const Result = () => {
+const ResultsSection = () => {
   const dispatch = useDispatch();
-  const [pages, setPages] = useState('');
 
+  // local component state to store user input
+  const [formData, setFormData] = useState({
+    date: "",
+    pages: "",
+  });
+
+  // handle changes in the input fields
+  const handleChange = (event) => {
+    const { name, value } = event.target;
+    setFormData({ ...formData, [name]: value });
+  };
+
+  // handle form submission
+  const handleSubmit = (event) => {
+    event.preventDefault();
+
+    // dispatch an action to add the reading result to the store
+    dispatch(addReadingResult(formData));
+    
+    // clear the input fields
+    setFormData({ date: "", pages: "" });
+  };
+
+  // get data from the store using selectors
+  const finishedReading = useSelector(getFinishedReading);
+  const endDate = useSelector(getEndDate);
+  const startDate = useSelector(getStartDate);
   const pagesPerDay = useSelector(getPagesPerDay);
-  const pagesStats = useSelector(getStats);
-  const today = new Date().getUTCDate();
-
-  const total = pagesStats.reduce((acc, el) => {
-    const dateNow = Number(el.time.slice(8, 10));
-    let totalPages = 0;
-    if (today === dateNow) {
-      totalPages = acc + el.pagesCount;
-    }
-    return totalPages;
-  }, 0);
-
-  const handleChangePage = (evt) => {
-    setPages(Number(evt.target.value));
-  };
-
-  const handleAddResults = () => {
-    if (pages === '') return;
-    const result = {
-      time: new Date().toISOString(),
-      pagesCount: pages,
-    };
-    dispatch(addPageCountResult(result));
-    setPages('');
-    // send data to the backend here
-  };
-
-  console.log(total);
-  console.log(pagesStats);
-  console.log(pagesStats.length !== 0 && total < pagesPerDay);
 
   return (
-    <StatPagesContainer>
-      <StatTextResolt>Results</StatTextResolt>
-      <StatSubContainerTable>
-        <StatCommonContainer>
-          <StatSubContainer>
-            <StatLabel htmlFor="data">Date</StatLabel>
-            <StatInput
-              id="data"
-              type="text"
-              defaultValue={new Date().toLocaleDateString()}
-            />
-          </StatSubContainer>
-          <StatSubContainer>
-            <StatLabel htmlFor="pages">Number of pages</StatLabel>
-            <StatInput id="pages" type="text" onChange={handleChangePage} value={pages} />
-          </StatSubContainer>
-          <StatSubContainer>
-            <StatBtnAdd onClick={handleAddResults}>Add result</StatBtnAdd>
-          </StatSubContainer>
-        </StatCommonContainer>
-      </StatSubContainerTable>
-      <StatisticsTablet />
-    </StatPagesContainer>
+    <div>
+      <h2>Results</h2>
+
+      <p>Finished reading: {finishedReading}</p>
+      <p>End date: {endDate}</p>
+      <p>Start date: {startDate}</p>
+      <p>Pages per day: {pagesPerDay}</p>
+
+      <form onSubmit={handleSubmit}>
+        <label>
+          Date:
+          <input
+            type="text"
+            name="date"
+            value={formData.date}
+            onChange={handleChange}
+          />
+        </label>
+
+        <label>
+          Pages:
+          <input
+            type="number"
+            name="pages"
+            value={formData.pages}
+            onChange={handleChange}
+          />
+        </label>
+
+        <button type="submit">Add result</button>
+      </form>
+    </div>
   );
 };
 
