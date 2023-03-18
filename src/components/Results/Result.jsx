@@ -1,84 +1,72 @@
-import React, { useState, useEffect } from 'react';
-import axios from 'axios';
+import { useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import {
+  getPagesPerDay,
+  getStats,
+  addPageCountResult,
+} from '../../redux/books/booksSlice';
 
-function Results() {
-    const [results, setResults] = useState([]);
-    const [isLoading, setIsLoading] = useState(true);
+const Result = () => {
+  const dispatch = useDispatch();
+  const [pages, setPages] = useState('');
 
-    useEffect(() => {
-        axios.get('/api/results')
-            .then(response => {
-                setResults(response.data);
-                setIsLoading(false);
-            })
-            .catch(error => {
-                console.log(error);
-                setIsLoading(false);
-            });
-    }, []);
+  const pagesPerDay = useSelector(getPagesPerDay);
+  const pagesStats = useSelector(getStats);
+  const today = new Date().getUTCDate();
 
-    const addResult = (newResult) => {
-        axios.post('/api/results', newResult)
-            .then(response => {
-                setResults([...results, response.data]);
-            })
-            .catch(error => {
-                console.log(error);
-            });
-    };
-
-    if (isLoading) {
-        return <div>Loading...</div>;
+  const total = pagesStats.reduce((acc, el) => {
+    const dateNow = Number(el.time.slice(8, 10));
+    let totalPages = 0;
+    if (today === dateNow) {
+      totalPages = acc + el.pagesCount;
     }
+    return totalPages;
+  }, 0);
 
-    return (
-        <div>
-            <h2>Results</h2>
-            <table>
-                <thead>
-                    <tr>
-                        <th>Date</th>
-                        <th>Pages</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {results.map(result => (
-                        <tr key={result.id}>
-                            <td>{result.date}</td>
-                            <td>{result.pages}</td>
-                        </tr>
-                    ))}
-                </tbody>
-            </table>
-            <AddResultForm onAddResult={addResult} />
-        </div>
-    );
-}
+  const handleChangePage = (evt) => {
+    setPages(Number(evt.target.value));
+  };
 
-function AddResultForm({ onAddResult }) {
-    const [date, setDate] = useState('');
-    const [pages, setPages] = useState('');
-
-    const handleSubmit = (event) => {
-        event.preventDefault();
-        const newResult = { date, pages };
-        onAddResult(newResult);
-        setDate('');
-        setPages('');
+  const handleAddResults = () => {
+    if (pages === '') return;
+    const result = {
+      time: new Date().toISOString(),
+      pagesCount: pages,
     };
+    dispatch(addPageCountResult(result));
+    setPages('');
+    // send data to the backend here
+  };
 
-    return (
-        <form onSubmit={handleSubmit}>
-            <h3>Add a new result</h3>
-            <label>
-                Date:
-                <input type="text" value={date} onChange={(event) => setDate(event.target.value)} />
-            </label>
-            <label>
-                Pages:
-                <input type="text" value={pages} onChange={(event) => setPages(event.target.value)} />
-            </label>
-            <button type="submit">Add</button>
-        </form>
-    );
-}
+  console.log(total);
+  console.log(pagesStats);
+  console.log(pagesStats.length !== 0 && total < pagesPerDay);
+
+  return (
+    <StatPagesContainer>
+      <StatTextResolt>Results</StatTextResolt>
+      <StatSubContainerTable>
+        <StatCommonContainer>
+          <StatSubContainer>
+            <StatLabel htmlFor="data">Date</StatLabel>
+            <StatInput
+              id="data"
+              type="text"
+              defaultValue={new Date().toLocaleDateString()}
+            />
+          </StatSubContainer>
+          <StatSubContainer>
+            <StatLabel htmlFor="pages">Number of pages</StatLabel>
+            <StatInput id="pages" type="text" onChange={handleChangePage} value={pages} />
+          </StatSubContainer>
+          <StatSubContainer>
+            <StatBtnAdd onClick={handleAddResults}>Add result</StatBtnAdd>
+          </StatSubContainer>
+        </StatCommonContainer>
+      </StatSubContainerTable>
+      <StatisticsTablet />
+    </StatPagesContainer>
+  );
+};
+
+export default Result;
