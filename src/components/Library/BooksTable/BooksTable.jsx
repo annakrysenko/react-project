@@ -1,11 +1,17 @@
 import { flexRender } from '@tanstack/react-table';
 // import {Modal} from 'components/Modal/Modal';
-// import { useEffect } from 'react';
-// import { useSelector } from 'react-redux';
-import // getCurrentlyReading,
+import { useEffect } from 'react';
+import { useSelector } from 'react-redux';
+import {
+  getCurrentlyReading,
+  getFinishedReading,
+  getGoingToRead,
+} from 'redux/books/booksSelectors';
+// import
+// getCurrentlyReading,
 // getFinishedReading,
 // getGoingToRead,
-'redux/books/booksSelectors';
+// 'redux/books/booksSelectors';
 
 // import  ResumeModal  from '../LibraryModal/ResumeModal';
 import BookDetails from './BooksDetails';
@@ -23,24 +29,24 @@ export const Books = ({ title, status, data }) => {
   //     setIsModalVisible(false)
   //   };
 
-  // const booksReaded = useSelector(getFinishedReading);
-  // useEffect(() => {
-  //   console.log('booksReaded', booksReaded);
-  // }, [booksReaded]);
+  const booksReaded = useSelector(getFinishedReading);
+  useEffect(() => {
+    // console.log('booksReaded', booksReaded);
+  }, [booksReaded]);
 
-  // const booksReading = useSelector(getCurrentlyReading);
-  // useEffect(() => {
-  //   console.log('booksReading', booksReading);
-  // }, [booksReading]);
+  const booksReading = useSelector(getCurrentlyReading);
+  useEffect(() => {
+    // console.log('booksReading', booksReading);
+  }, [booksReading]);
 
-  // const booksGoing = useSelector(getGoingToRead);
-  // useEffect(() => {
-  //   console.log('booksGoing', booksGoing);
-  // }, [booksGoing]);
+  const booksGoing = useSelector(getGoingToRead);
+  useEffect(() => {
+    // console.log('booksGoing', booksGoing);
+  }, [booksGoing]);
 
   return (
     <Wrapper>
-      {/* <StyledTitle>{title}</StyledTitle>
+      <StyledTitle>Already read</StyledTitle>
       <StyledTable>
         <thead>
           {table.getHeaderGroups().map(headerGroup => (
@@ -61,22 +67,24 @@ export const Books = ({ title, status, data }) => {
         <tbody>
           {booksReaded.map(book => {
             console.log(book);
-            return <tr key={book._id}>
-              <td>{book.title}</td>
-              <td>{book.author}</td>
-               <td>{book.publishYear}</td>
-              <td>{book.pagesTotal}</td>
-  </tr>
-})}
+            return (
+              <tr key={book._id}>
+                <td>{book.title}</td>
+                <td>{book.author}</td>
+                <td>{book.publishYear}</td>
+                <td>{book.pagesTotal}</td>
+              </tr>
+            );
+          })}
         </tbody>
       </StyledTable>
-      {isModalVisible && (
+      {/* {isModalVisible && (
         <Modal onClose={onModalClose}>
           <ResumeModal onClose={onModalClose} bookId={bookId} />
         </Modal>
-      )}
+      )} */}
 
-        <StyledTitle>{title}</StyledTitle>
+      <StyledTitle>Reading now</StyledTitle>
       <StyledTable>
         <thead>
           {table.getHeaderGroups().map(headerGroup => (
@@ -97,22 +105,24 @@ export const Books = ({ title, status, data }) => {
         <tbody>
           {booksReading.map(book => {
             console.log(book);
-            return <tr key={book._id}>
-              <td>{book.title}</td>
-              <td>{book.author}</td>
-               <td>{book.publishYear}</td>
-              <td>{book.pagesTotal}</td>
-  </tr>
-})}
+            return (
+              <tr key={book._id}>
+                <td>{book.title}</td>
+                <td>{book.author}</td>
+                <td>{book.publishYear}</td>
+                <td>{book.pagesTotal}</td>
+              </tr>
+            );
+          })}
         </tbody>
       </StyledTable>
-      {isModalVisible && (
+      {/* {isModalVisible && (
         <Modal onClose={onModalClose}>
           <ResumeModal onClose={onModalClose} bookId={bookId} />
         </Modal>
       )} */}
 
-      <StyledTitle>{title}</StyledTitle>
+      <StyledTitle>Going to read </StyledTitle>
       <StyledTable>
         <thead>
           {table.getHeaderGroups().map(headerGroup => (
