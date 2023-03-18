@@ -1,9 +1,4 @@
-// import LibraryForm from 'components/LibaryForm/LIbaryForm';
-
-
-// import ReadTable from 'components/Library/BooksTable/BooksTable';
-import LibraryFilld from 'components/Library/BookProcesing/BookProcesing';
-import { Books } from 'components/Library/BooksTable/Example';
+import BooksTables from 'components/Library/BookProcesing/BooksTables';
 import LibraryForm from 'components/LibraryForm/LIbaryForm';
 import LibraryInfo from 'components/Libraryinfo/Libaryinfo';
 import React from 'react';
@@ -63,10 +58,10 @@ const Library = () => {
   return (
     <>
       <LibraryForm />
-      <LibraryInfo/>
-    
-      <Books />
-      <LibraryFilld />
+      <LibraryInfo />
+
+      {/* <Books /> */}
+      <BooksTables />
     </>
   );
 };

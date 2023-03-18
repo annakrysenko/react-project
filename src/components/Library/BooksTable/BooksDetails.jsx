@@ -10,7 +10,7 @@ import { StyledBookTitle, StyledBtn, StyledIconBox } from './BooksTable.styled';
 import { useCallback, useMemo, useState } from 'react';
 import { Rate } from 'antd';
 import { Modal } from 'components/Modal/Modal';
-import ResumeModal from '../LibraryModal/ResumeModal';
+import ResumeModal from '../BookProcesing/Resume/ResumeModal';
 
 const BookDetails = (status, data) => {
   const [isModalVisible, setIsModalVisible] = useState(false);
@@ -64,22 +64,24 @@ const BookDetails = (status, data) => {
       }),
       columnHelper.accessor('_id', {
         header: '',
-        cell: info => (<> {isModalVisible && (
-          <Modal toggleModal={toggleModal} closeModal={onModalClose} >
-            <ResumeModal toggleModal={toggleModal} bookId={bookId} />
-          </Modal>
-        )}
-          <StyledBtn
-            type="primary"
-            onClick={() => {
-              setBookId(info.getValue());
-              toggleModal();
-            }}
-          >
-
-            Resume
-          </StyledBtn></>
-
+        cell: info => (
+          <>
+            {' '}
+            {isModalVisible && (
+              <Modal toggleModal={toggleModal} closeModal={onModalClose}>
+                <ResumeModal toggleModal={toggleModal} bookId={bookId} />
+              </Modal>
+            )}
+            <StyledBtn
+              type="primary"
+              onClick={() => {
+                setBookId(info.getValue());
+                toggleModal();
+              }}
+            >
+              Resume
+            </StyledBtn>
+          </>
         ),
       }),
     ],
@@ -96,6 +98,5 @@ const BookDetails = (status, data) => {
 };
 
 export default BookDetails;
-
 
 //test
