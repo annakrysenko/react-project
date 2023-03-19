@@ -31,7 +31,7 @@ function BooksTables() {
   const [bookId, setBookId] = useState(null);
 
   const toggleModal = useCallback(() => {
-    console.log('first');
+    // console.log('first');
     setIsModalVisible(!isModalVisible);
   }, [isModalVisible]);
 
@@ -39,8 +39,8 @@ function BooksTables() {
     setIsModalVisible(!isModalVisible);
     setBookId(null);
   }, [isModalVisible]);
-  console.log('goingToRead', goingToRead);
-  console.log('currentlyReading', currentlyReading);
+  // console.log('goingToRead', goingToRead);
+  // console.log('currentlyReading', currentlyReading);
   return (
     // isEmpty && (
     <>

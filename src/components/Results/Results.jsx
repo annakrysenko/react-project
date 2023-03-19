@@ -64,9 +64,9 @@ const Results = () => {
     dispatch(addFinishedPages(pages));
     setPages('');
   };
-  console.log(total);
-  console.log(pagesStats);
-  console.log(pagesStats.length !== 0 && total < pagesPerDay);
+  // console.log(total);
+  // console.log(pagesStats);
+  // console.log(pagesStats.length !== 0 && total < pagesPerDay);
 
   return (
     <StatPagesContainer>
