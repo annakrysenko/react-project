@@ -4,7 +4,7 @@ import MobileAddBook from 'pages/MobileAddBook';
 import Register from 'pages/Register';
 import Training from 'pages/Training';
 import { useEffect, useState } from 'react';
-import { Navigate, Route, Routes } from 'react-router-dom';
+import { Navigate, Route, Routes, useSearchParams } from 'react-router-dom';
 
 import GlobalStyle from 'styles/GlobalStyle.jsx';
 import Layout from './Layout/Layout';
@@ -16,18 +16,30 @@ import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import AboutAppRegistr from './AboutAppRegist/AboutAppRegist';
 import Media from 'react-media';
+import { addAccessToken } from 'redux/auth/authSlice';
+import { token } from 'redux/auth/authOperation';
+import { useDispatch } from 'react-redux';
 // import { refreshUser } from 'redux/auth/authOperation';
 // import { useDispatch, useSelector } from 'react-redux';
 // import { getSid } from 'redux/auth/authSelectors';
 
 export const App = () => {
   const [firstRenderEnded, setFirstRenderEnded] = useState(false);
-  // const sid = useSelector(getSid);
-  // const dispatch = useDispatch();
-
   useEffect(() => {
     setFirstRenderEnded(true);
   }, []);
+
+  const dispatch = useDispatch();
+
+  const [searchParams] = useSearchParams();
+
+  const accessToken = searchParams.get('accessToken');
+  useEffect(() => {
+    if (accessToken !== null) {
+      dispatch(addAccessToken(accessToken));
+      token.set(accessToken);
+    }
+  }, [accessToken, dispatch]);
 
   // useEffect(() => {
   //   dispatch(refreshUser({ sid }));

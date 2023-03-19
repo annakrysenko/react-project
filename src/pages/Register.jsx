@@ -6,17 +6,10 @@ import Media from 'react-media';
 
 const Register = () => {
   return (
-    <>
-      <Section>
-      <RegistrationForm />
-       <Media query="(min-width: 768px)" render={() =>
-          (
-            <AboutAppRegistr />
-          )}
-        /> 
-        {/* <AboutAppRegistr /> */}
-        </Section>
-    </>
+    <Section>
+      <Media query="(min-width: 768px)" render={() => <RegistrationForm />} />
+     <AboutAppRegistr />
+    </Section>
   );
 };
 

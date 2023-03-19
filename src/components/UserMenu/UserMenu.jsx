@@ -1,14 +1,12 @@
 import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { logOut } from 'redux/auth/authOperation';
-import { getUserName } from 'redux/auth/authSelectors';
+import { getUserName, getAccessToken } from 'redux/auth/authSelectors';
 import { ReactComponent as Home } from 'images/svg/home.svg';
 import { ReactComponent as Library } from 'images/svg/library.svg';
 import { ReactComponent as Line } from 'images/svg/line.svg';
 import {
-  HomeLink,
-  HoverBtn,
-  LibraryLink,
+  MenuHoverLink,
   LineStyled,
   LogoName,
   ModalText,
@@ -27,31 +25,28 @@ import { Modal } from 'components/Modal/Modal';
 export const UserMenu = () => {
   const [isShowModal, setIsShowModal] = useState(false);
   const userName = useSelector(getUserName);
-  const dispatch = useDispatch();
+  const accessToken = useSelector(getAccessToken);
   const firstLetter = userName && userName[0].toUpperCase();
+  const dispatch = useDispatch();
 
   const toggleModal = () => {
     setIsShowModal(!isShowModal);
   };
 
   const onLogOut = () => {
-    dispatch(logOut());
+    dispatch(logOut(accessToken));
     toggleModal();
   };
   return (
     <>
       <UserMenuContainer>
         <LinkBox>
-          <LibraryLink to="library">
-            <HoverBtn>
-              <Library />
-            </HoverBtn>
-          </LibraryLink>
-          <HomeLink to="training">
-            <HoverBtn>
-              <Home />
-            </HoverBtn>
-          </HomeLink>
+          <MenuHoverLink to="training">
+            <Library />
+          </MenuHoverLink>
+          <MenuHoverLink to="library">
+            <Home />
+          </MenuHoverLink>
           <LineStyled>
             <Line />
           </LineStyled>

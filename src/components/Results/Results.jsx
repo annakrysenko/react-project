@@ -1,149 +1,56 @@
-import { useDispatch, useSelector } from 'react-redux';
 
-import StatisticsTablet from './StatisticsTablet';
-import { useState } from 'react';
-import { Modal } from 'components/Modal/Modal';
-import {
-  getCurrentlyReading,
-  getPagesPerDay,
-  getStats,
-} from 'redux/books/booksSelectors';
-import StatPagesContainer from './ResultsStyles/StatPagesContainer.styled';
-import StatTextResolt from './ResultsStyles/StatTextResolt.styled';
-import StatSubContainerTable from './ResultsStyles/StatSubContainerTable.styled';
-import StatCommonContainer from './ResultsStyles/StatCommonContainer.styled';
-import StatSubContainer from './ResultsStyles/StatSubContainer.styled';
-import StatLabel from './ResultsStyles/StatLabel.styled';
-import StatInput from './ResultsStyles/StatInput.styled';
-import StatisticsButton from './ResultsStyles/StatisticsButton.styled';
-import {
-  ButtonConteinerCentred,
-  ButtonConteinerStats,
-  ButtonLogout,
-  ButtonTreining,
-  ConteinerStats,
-  IconConteiner,
-  ModalLogoutText,
-} from './ResultsStyles/Modal.styled';
-import { ReactComponent as Finger } from '../../images/finger.svg';
-import { addFinishedPages } from 'redux/books/booksOperations';
+import React, { useState } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import { addFinishedPages } from '../../redux/books/booksOperations';
+import { getFinishedReading } from '../../redux/books/booksSelectors';
 
 const Results = () => {
   const dispatch = useDispatch();
+  const results = useSelector(getFinishedReading);
+  const [date, setDate] = useState('');
   const [pages, setPages] = useState('');
-  const [isModal, setIsModal] = useState(true);
-  const [isModal2, setIsModal2] = useState(true);
+  const [enteredData, setEnteredData] = useState([]);
 
-  const currentlyReading = useSelector(getCurrentlyReading);
-  const pagesPerDay = useSelector(getPagesPerDay);
-  const pagesStats = useSelector(getStats);
-  const today = new Date().getUTCDate();
-
-  const toogleModal = () => {
-    setIsModal(!isModal);
-  };
-
-  const toogleModal2 = () => {
-    setIsModal2(!isModal2);
-  };
-
-  const total = pagesStats.reduce((acc, el) => {
-    const dateNow = Number(el.time.slice(8, 10));
-    let totalPages = 0;
-    if (today === dateNow) {
-      totalPages = acc + el.pagesCount;
-    }
-    return totalPages;
-  }, 0);
-
-  const handleChangePage = evt => {
-    setPages(Number(evt.target.value));
-  };
-
-  const handleAddResults = pages => {
-    dispatch(addFinishedPages(pages));
+  const handleSubmit = event => {
+    event.preventDefault();
+    dispatch(addFinishedPages({ date, pages }));
+    setEnteredData([...enteredData, { date, pages }]);
+    setDate('');
     setPages('');
   };
-  // console.log(total);
-  // console.log(pagesStats);
-  // console.log(pagesStats.length !== 0 && total < pagesPerDay);
 
   return (
-    <StatPagesContainer>
-      <StatTextResolt>Результаты</StatTextResolt>
-      <StatSubContainerTable>
-        <StatCommonContainer>
-          <StatSubContainer>
-            <StatLabel htmlFor="data">Дата</StatLabel>
-            <StatInput
-              id="data"
-              type="text"
-              defaultValue={new Date().toLocaleDateString()}
-            />
-          </StatSubContainer>
-          <StatSubContainer>
-            <StatLabel htmlFor="pages">Кількість сторінок </StatLabel>
-            <StatInput
-              id="pages"
-              type="text"
-              onChange={handleChangePage}
-              value={pages}
-            />
-          </StatSubContainer>
-        </StatCommonContainer>
-        <StatisticsButton
-          type="button"
-          onClick={() => {
-            handleAddResults({ pages });
-          }}
-        >
-          Додати результат
-        </StatisticsButton>
-      </StatSubContainerTable>
-      <StatisticsTablet />
-
-      {isModal2 &&
-        currentlyReading.some(
-          book => book.pagesFinished === book.pagesTotal
-        ) && (
-          <Modal toogleModal={toogleModal2}>
-            <Modal>
-              <IconConteiner>
-                <Finger />
-              </IconConteiner>
-              <ModalLogoutText>Вітаю! Ще одна книга прочитана.</ModalLogoutText>
-              <ButtonConteinerCentred>
-                <ButtonLogout type="button" onClick={toogleModal2}>
-                  готово
-                </ButtonLogout>
-              </ButtonConteinerCentred>
-            </Modal>
-          </Modal>
-        )}
-
-      {isModal && pagesStats.length !== 0 && total < pagesPerDay && (
-        <Modal toogleModal={toogleModal}>
-          <ConteinerStats>
-            <Finger />
-            <ModalLogoutText>
-              Ти молодчина, але потрібно швидше! Наступного разу тобі все
-              вдасться &#41;
-            </ModalLogoutText>
-            <ButtonConteinerStats>
-              <ButtonTreining type="button" onClick={toogleModal}>
-                Новє тренування
-              </ButtonTreining>
-              <ButtonTreining type="button" onClick={toogleModal}>
-                Назад
-              </ButtonTreining>
-            </ButtonConteinerStats>
-          </ConteinerStats>
-        </Modal>
-      )}
-      {/* <button type="button" onClick={toogleModal}>
-				модалка "ти молодець"
-			</button> */}
-    </StatPagesContainer>
+    <div>
+      <h2>Results</h2>
+      <ul>
+        {results.map(result => (
+          <li key={result.id}>
+            <p>Date: {result.date}</p>
+            <p>Pages: {result.pages}</p>
+          </li>
+        ))}
+      </ul>
+      <h3>Entered data:</h3>
+      <ul>
+        {enteredData.map(data => (
+          <li key={`${data.date}-${data.pages}`}>
+            <p>Date: {data.date}</p>
+            <p>Pages: {data.pages}</p>
+          </li>
+        ))}
+      </ul>
+      <form onSubmit={handleSubmit}>
+        <label>
+          Date:
+          <input type="text" value={date} onChange={event => setDate(event.target.value)} />
+        </label>
+        <label>
+          Pages:
+          <input type="text" value={pages} onChange={event => setPages(event.target.value)} />
+        </label>
+        <button type="submit">Add result</button>
+      </form>
+    </div>
   );
 };
 
