@@ -42,18 +42,21 @@ function TrainingList({ books, startDate, endDate, booksDelete }) {
 	};
 
 	const CheckBox = ({ pagesFinished, pagesTotal }) => {
+		console.log(pagesFinished,pagesTotal )
 		return pagesFinished !== pagesTotal ? (
 			<CheckboxDisabled />
 		) : (
 			<CheckboxCheked />
 		);
 	};
-
+console.log(books, 'books')
 	return (
+		
 		<>
 			<Wrapper>
 				{books ? 
 					<ListMob>
+						
 						{books?.map(
 							({
 								_id,
@@ -143,7 +146,7 @@ function TrainingList({ books, startDate, endDate, booksDelete }) {
 										color: '#898F9F',
 										width: '35%',
 									}}>
-									Автор:
+									Author:
 								</div>
 								<div>...</div>
 							</div>
@@ -191,10 +194,10 @@ function TrainingList({ books, startDate, endDate, booksDelete }) {
 		{/* desk */}
 			<ListDesk>
 				<Title>
-					<BookName>Назва книги</BookName>
-					<AuthorName>Автор</AuthorName>
-					<PublishYear>Рік</PublishYear>
-					<Pages>Стор.</Pages>
+					<BookName>Book name</BookName>
+					<AuthorName>Author</AuthorName>
+					<PublishYear>Year</PublishYear>
+					<Pages>Page</Pages>
 				</Title>
 				{/* <ListDesk> */}
 				{books?.map(
@@ -233,7 +236,7 @@ function TrainingList({ books, startDate, endDate, booksDelete }) {
 			</ListDesk>
 				{books.length > 0 && location.pathname === '/training' && (
 					<Button type="button" onClick={handleAddBookPlanning}>
-						Почати тренування
+						Start training
 					</Button>
 				)}
 		</>

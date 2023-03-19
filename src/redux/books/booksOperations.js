@@ -77,6 +77,7 @@ export const getBookPlanning = createAsyncThunk(
 export const addFinishedPages = createAsyncThunk(
   'books/addFinishedPages',
   async (pages, thunkAPI) => {
+    console.log('pages', pages);
     try {
       const { data } = await axios.patch('/planning', pages);
       // console.log('addFinishedPages====>', data);
