@@ -1,76 +1,52 @@
-import React, { useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import {
-  getFinishedReading,
-  getEndDate,
-  getStartDate,
-  getPagesPerDay,
-  getStats
-} from "../../redux/books/booksSelectors";
-// import { addReadingResult } from "./booksSlice";
+import React, { useState } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import { addFinishedPages } from '../../redux/books/booksOperations';
+import { getFinishedReading } from '../../redux/books/booksSelectors';
 
 const Results = () => {
   const dispatch = useDispatch();
+  const results = useSelector(getFinishedReading);
+  const [date, setDate] = useState('');
+  const [pages, setPages] = useState('');
+  const [enteredData, setEnteredData] = useState([]);
 
-  // local component state to store user input
-  const [formData, setFormData] = useState({
-    date: "",
-    pages: "",
-  });
-
-  // handle changes in the input fields
-  const handleChange = (event) => {
-    const { name, value } = event.target;
-    setFormData({ ...formData, [name]: value });
-  };
-
-  // handle form submission
-  const handleSubmit = (event) => {
+  const handleSubmit = event => {
     event.preventDefault();
-
-    // dispatchs an action to add the reading result to the store
-    dispatch(getStats(formData));
-    
-    // clear the input fields
-    setFormData({ date: "", pages: "" });
+    dispatch(addFinishedPages({ date, pages }));
+    setEnteredData([...enteredData, { date, pages }]);
+    setDate('');
+    setPages('');
   };
-
-  // get data from the store using selectors
-  const finishedReading = useSelector(getFinishedReading);
-  const endDate = useSelector(getEndDate);
-  const startDate = useSelector(getStartDate);
-  const pagesPerDay = useSelector(getPagesPerDay);
 
   return (
     <div>
       <h2>Results</h2>
-
-      <p>Finished reading: {finishedReading}</p>
-      <p>End date: {endDate}</p>
-      <p>Start date: {startDate}</p>
-      <p>Pages per day: {pagesPerDay}</p>
-
+      <ul>
+        {results.map(result => (
+          <li key={result.id}>
+            <p>Date: {result.date}</p>
+            <p>Pages: {result.pages}</p>
+          </li>
+        ))}
+      </ul>
+      <h3>Entered data:</h3>
+      <ul>
+        {enteredData.map(data => (
+          <li key={`${data.date}-${data.pages}`}>
+            <p>Date: {data.date}</p>
+            <p>Pages: {data.pages}</p>
+          </li>
+        ))}
+      </ul>
       <form onSubmit={handleSubmit}>
         <label>
           Date:
-          <input
-            type="text"
-            name="date"
-            value={formData.date}
-            onChange={handleChange}
-          />
+          <input type="text" value={date} onChange={event => setDate(event.target.value)} />
         </label>
-
         <label>
           Pages:
-          <input
-            type="number"
-            name="pages"
-            value={formData.pages}
-            onChange={handleChange}
-          />
+          <input type="text" value={pages} onChange={event => setPages(event.target.value)} />
         </label>
-
         <button type="submit">Add result</button>
       </form>
     </div>
