@@ -2,24 +2,7 @@ import styled from 'styled-components';
 import device from 'styles/deviceSize';
 import { NavLink } from 'react-router-dom';
 
-export const HoverBtn = styled.button`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 8px;
-  border: none;
-  border-radius: 50%;
-  background-color: ${({ theme }) => theme.colors.white};
-  :hover,
-  :focus {
-    background-color: ${({ theme }) => theme.colors.inputBackground};
-  }
-  &:active {
-    background-color: ${({ theme }) => theme.colors.inputBackground};
-  }
-`;
-
-export const HomeLink = styled(NavLink)`
+export const MenuHoverLink = styled(NavLink)`
   display: flex;
   justify-content: center;
   align-items: center;
@@ -27,16 +10,15 @@ export const HomeLink = styled(NavLink)`
   width: 33px;
   height: 33px;
   border-radius: 50%;
-  @media ${device.desktop} {
-    margin-right: 6px;
+  border: none;
+  background-color: ${({ theme }) => theme.colors.white};
+  :hover,
+  :focus {
+    background-color: ${({ theme }) => theme.colors.inputBackground};
   }
-`;
-
-export const LibraryLink = styled(NavLink)`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin-right: 8px;
+  &.active {
+    background-color: ${({ theme }) => theme.colors.inputBackground};
+  }
   @media ${device.desktop} {
     margin-right: 6px;
   }
@@ -163,6 +145,7 @@ export const LinkBox = styled.div`
     margin: 0;
   }
 `;
+
 export const UserBox = styled.div`
   display: flex;
   order: 2;
@@ -175,6 +158,7 @@ export const UserBox = styled.div`
     transform: translate(-50%, -50%);
   }
 `;
+
 export const LogOutBox = styled.div`
   display: flex;
   order: 3;

@@ -58,6 +58,7 @@ export const logOut = createAsyncThunk(
 export const loginWithGoogle = createAsyncThunk(
   'auth/loginwithgoogle',
   async (credentials, { rejectWithValue }) => {
+    console.log('credentialsGoogle', credentials);
     try {
       const { data } = await axios.get('/auth/google');
       token.set(credentials.data.token);
