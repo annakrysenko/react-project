@@ -145,6 +145,7 @@ export const LinkBox = styled.div`
     margin: 0;
   }
 `;
+
 export const UserBox = styled.div`
   display: flex;
   order: 2;
@@ -157,6 +158,7 @@ export const UserBox = styled.div`
     transform: translate(-50%, -50%);
   }
 `;
+
 export const LogOutBox = styled.div`
   display: flex;
   order: 3;
