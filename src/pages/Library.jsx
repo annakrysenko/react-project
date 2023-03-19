@@ -1,7 +1,13 @@
+
+import { Container } from 'components/Library/BookProcesing/Books.styled';
+import BooksTables from 'components/Library/BookProcesing/BooksTables';
+
  import LibraryFilld from 'components/Library/BookProcesing/BookProcesing';
 // import BooksTables from 'components/Library/BookProcesing/BooksTables';
+
 import LibraryForm from 'components/LibraryForm/LIbaryForm';
 import LibraryInfo from 'components/Libraryinfo/Libaryinfo';
+import { LibaryContainer } from 'components/Libraryinfo/Libraryinfo.styled';
 import React, { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { fetchCurrentUser } from 'redux/books/booksOperations';
@@ -66,14 +72,19 @@ const Library = () => {
   }, [dispatch]);
 
   return (
-    <>
-      <LibraryForm />
+    <section>
+      <Container><LibaryContainer>
+    <LibraryForm />
       <LibraryInfo />
+    </LibaryContainer></Container>
+    
+    
 
       {/* <Books /> */}
-      {/* <BooksTables /> */}
-       <LibraryFilld/>
-    </>
+
+      <BooksTables />
+    </section>
+
   );
 };
 
