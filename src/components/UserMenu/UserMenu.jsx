@@ -43,12 +43,12 @@ export const UserMenu = () => {
     <>
       <UserMenuContainer>
         <LinkBox>
-          <LibraryLink to="library">
+          <LibraryLink to="training">
             <HoverBtn>
               <Library />
             </HoverBtn>
           </LibraryLink>
-          <HomeLink to="training">
+          <HomeLink to="library">
             <HoverBtn>
               <Home />
             </HoverBtn>

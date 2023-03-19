@@ -10,18 +10,19 @@ export const DivStyled = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  margin: 0;
   background-color: ${theme.colors.white};
 
   @media ${device.mobile} {
-    padding: 16px 46px;
+    padding: 32px 25px 40px;
   }
 
   @media ${device.tablet} {
-    padding: 71px 121px;
+    padding: 64px 159px 88px;
   }
 
   @media ${device.desktop} {
-    padding: 266px 167px;
+    padding: 179px 127px 239px;
   }
 `;
 
@@ -39,10 +40,6 @@ export const SubtitleStyled = styled.h2`
   @media ${device.tablet} {
     margin-bottom: 48px;
   }
-
-  @media ${device.desktop} {
-    margin-bottom: 48px;
-  }
 `;
 
 export const Hstyled = styled.h3`
@@ -58,12 +55,6 @@ export const ListSlyled = styled.ul`
 `;
 
 export const LiStyled = styled.li``;
-
-export const ButtonsBox = styled.div`
-  display: flex;
-  justify-content: center;
-  gap: 20px;
-`;
 
 export const LinkStyled = styled(NavLink)`
   display: flex;
@@ -89,12 +80,19 @@ export const LinkStyled = styled(NavLink)`
   }
 `;
 
+export const ButtonsBox = styled.div`
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  margin-top: 60px;
+`;
+
 export const BtnAboutApp = styled(NavLink)`
   display: flex;
   justify-content: center;
   align-items: center;
   width: 130px;
-  padding: 6px;
+  height: 40px;
   font-family: 'Montserrat';
   font-weight: 500;
   font-size: 14px;
