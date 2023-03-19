@@ -13,6 +13,7 @@ import {
 } from '../components/MyGoal/styles';
 
 import MyGoal from '../components/MyGoal/MyGoal';
+import Results from 'components/Results/Results';
 export const Training = () => {
 	return (
 		
@@ -30,7 +31,7 @@ export const Training = () => {
 					</GoalTrainingBox>
 					<Graph />
 				</BoxPageStatistics>
-				
+				<Results/>
 			</Container>
 		</Section>
 	);
