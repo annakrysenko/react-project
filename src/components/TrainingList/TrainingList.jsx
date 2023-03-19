@@ -31,7 +31,6 @@ function TrainingList({ books, startDate, endDate, booksDelete }) {
 	// console.log('books statistics', books);
 
 	const booksId = books.map(book => book._id);
-
 	const data = {
 		startDate: startDate,
 		endDate: endDate,

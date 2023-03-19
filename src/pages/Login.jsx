@@ -6,15 +6,10 @@ import Media from 'react-media';
 
 const Login = () => {
   return (
-    <Media
-      query="(min-width: 768px)"
-      render={() => (
-        <Section>
-          <LoginForm />
-          <AboutApp />
-        </Section>
-      )}
-    />
+    <Section>
+      <LoginForm />
+      <AboutApp />
+    </Section>
   );
 };
 

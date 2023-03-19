@@ -11,7 +11,6 @@ import {
 } from './AboutAppRegistStyled.js';
 
 const AboutAppRegistr = () => {
-  //   const { isMobile } = useMatchMedia();
   return (
     <>
   
