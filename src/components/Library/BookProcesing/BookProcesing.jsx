@@ -1,6 +1,5 @@
 
 import { useSelector } from 'react-redux';
-// import { useHistory } from "react-router-dom"; // тільки додав
 import {
 	LibraryBooklistContainer,
 	LibraryBooklistTitle,
@@ -30,7 +29,7 @@ import ConteinerModal from '../LibraryFilld/ConteinerModal.styled';
 import Rating from '@mui/material/Rating';
 import { getCurrentlyReading, getFinishedReading, getGoingToRead } from 'redux/books/booksSelectors';
 import { useState } from 'react';
-// import { Link } from 'react-router-dom';
+
 
 function LibraryFilld() {
   const goingToRead = useSelector(getGoingToRead);
