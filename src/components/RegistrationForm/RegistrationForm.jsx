@@ -82,7 +82,7 @@ const RegistrationForm = () => {
     const { password, name, email } = values;
     const registrationData = { name, email, password };
     const registretion = await dispatch(register(registrationData));
-    // console.log(registretion)
+    console.log('registretion', registretion)
 
     isLoggedIn && actions.resetForm();
   };
