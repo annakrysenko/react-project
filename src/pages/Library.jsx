@@ -1,8 +1,7 @@
-
 import { Container } from 'components/Library/BookProcesing/Books.styled';
 import BooksTables from 'components/Library/BookProcesing/BooksTables';
 
- import LibraryFilld from 'components/Library/BookProcesing/BookProcesing';
+//  import LibraryFilld from 'components/Library/BookProcesing/BookProcesing';
 // import BooksTables from 'components/Library/BookProcesing/BooksTables';
 
 import LibraryForm from 'components/LibraryForm/LIbaryForm';
@@ -73,18 +72,17 @@ const Library = () => {
 
   return (
     <section>
-      <Container><LibaryContainer>
-    <LibraryForm />
-      <LibraryInfo />
-    </LibaryContainer></Container>
-    
-    
+      <Container>
+        <LibaryContainer>
+          <LibraryForm />
+          <LibraryInfo />
+        </LibaryContainer>
+      </Container>
 
       {/* <Books /> */}
 
       <BooksTables />
     </section>
-
   );
 };
 
