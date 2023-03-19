@@ -1,7 +1,8 @@
+import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import device from 'styles/deviceSize';
 
-const Button = styled.button`
+const NavLink = styled(Link)`
   display: flex;
   justify-content: center;
   padding: 13px;
@@ -30,4 +31,4 @@ const Button = styled.button`
   }
 `;
 
-export default Button;
+export default NavLink;

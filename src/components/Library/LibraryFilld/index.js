@@ -22,4 +22,5 @@ export { default as LibraryBooklistTabletBodyCell } from './LibraryBooklistTable
 export { default as LibraryBooklistTabletRow } from './LibraryBooklistTabletRow.styled';
 // export { default as StyledButton } from './StyledButton.styled';
 export { default as StyledBtn } from './StyledBtn.styled';
-export { default as Button } from './Button.styled';
+export { default as NavLink } from './NavLink.styled';
+export { default as LibraryWraper } from './LibraryWraper.styled';

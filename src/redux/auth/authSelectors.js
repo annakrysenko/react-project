@@ -8,3 +8,4 @@ export const getAccessToken = state => state.auth.token;
 export const getUserName = state => state.auth.userData.name;
 export const getfetchCurrentUser = state => state.auth.isFetchingUser;
 export const getIsRegistrated = state => state.auth.isRegistratedIn;
+export const getSid = state => state.auth.sid;

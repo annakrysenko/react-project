@@ -71,7 +71,7 @@ export const Books = ({ title, status, data }) => {
         </thead>
         <tbody>
           {booksReaded.map(book => {
-            console.log(book);
+            // console.log(book);
             return (
               <tr key={book._id}>
                 <td>{book.title}</td>
@@ -109,7 +109,7 @@ export const Books = ({ title, status, data }) => {
         </thead>
         <tbody>
           {booksReading.map(book => {
-            console.log(book);
+            // console.log(book);
             return (
               <tr key={book._id}>
                 <td>{book.title}</td>

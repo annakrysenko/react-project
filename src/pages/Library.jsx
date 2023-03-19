@@ -61,7 +61,7 @@ const Library = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    console.log('first');
+    // console.log('first');
     dispatch(fetchCurrentUser());
   }, [dispatch]);
 

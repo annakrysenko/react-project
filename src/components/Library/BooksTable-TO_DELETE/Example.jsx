@@ -76,7 +76,7 @@ export const Books = ({ status, data }) => {
             </thead>
             <tbody>
               {alreadyRead.map(book => {
-                console.log(book);
+                // console.log(book);
                 return (
                   <tr key={book._id}>
                     <td>{book.title}</td>
@@ -113,7 +113,7 @@ export const Books = ({ status, data }) => {
             </thead>
             <tbody>
               {nowReading.map(book => {
-                console.log(book);
+                // console.log(book);
                 return (
                   <tr key={book._id}>
                     <td>{book.title}</td>

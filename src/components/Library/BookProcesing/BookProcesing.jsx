@@ -1,5 +1,6 @@
 
 import { useSelector } from 'react-redux';
+// import { useHistory } from "react-router-dom"; // тільки додав
 import {
 	LibraryBooklistContainer,
 	LibraryBooklistTitle,
@@ -18,7 +19,8 @@ import {
 	LibraryBooklistTabletBody,
 	LibraryBooklistTabletBodyCell,
 	LibraryBooklistTabletRow,
-	Button  
+	NavLink, 
+	LibraryWraper
 } from '../LibraryFilld';
 
 import ResumeModal from '../BookProcesing/Resume/ResumeModal';
@@ -28,17 +30,24 @@ import ConteinerModal from '../LibraryFilld/ConteinerModal.styled';
 import Rating from '@mui/material/Rating';
 import { getCurrentlyReading, getFinishedReading, getGoingToRead } from 'redux/books/booksSelectors';
 import { useState } from 'react';
+// import { Link } from 'react-router-dom';
 
 function LibraryFilld() {
   const goingToRead = useSelector(getGoingToRead);
-  const finishedReading = useSelector(getFinishedReading);
-  const currentlyReading = useSelector(getCurrentlyReading);
-  const [isVisible, setIsVisible] = useState(false);
+  const alreadyRead = useSelector(getFinishedReading);
+  const nowReading = useSelector(getCurrentlyReading);
+//   const [isVisible, setIsVisible] = useState(false);
   const [selectedBookId, setSelectedBookId] = useState(null); // додали новий стан
+  
+	// const [isClicked, setIsClicked] = useState(false); // тільки додав
+	// const history = useHistory(); // тільки додав
 
-  const handleClick = () => {
-    setIsVisible(true);
-  };
+//   const handleClick = () => {
+//     setIsVisible(true);
+	
+// 	  setIsClicked(true); // тільки додав
+// 	//   history.push("/new-page"); // тільки додав
+//   };
 
   const closeModal = () => {
     setSelectedBookId(null); // оновлюємо стан
@@ -50,8 +59,10 @@ function LibraryFilld() {
 
 	return (
 		<>
+			<LibraryWraper>
 			<LibraryControlTabletSection>
-				{(isVisible && finishedReading.length > 0) && (
+				{/* {(isVisible && finishedReading.length > 0) && ( */}
+					{alreadyRead.length > 0 && (
 					<LibraryBooklistContainer tabletSize>
 						<LibraryBooklistTitle tabletSize>Already read</LibraryBooklistTitle>
 						<LibraryBooklistTabletTable>
@@ -75,7 +86,7 @@ function LibraryFilld() {
 								</tr>
 							</LibraryBooklistTabletHead>
 							<LibraryBooklistTabletBody>
-								{finishedReading.map(
+								{alreadyRead.map(
 									({ title, author, publishYear, pagesTotal, _id, rating }) => {
 										return (
 											<LibraryBooklistTabletRow key={_id}>
@@ -120,9 +131,10 @@ function LibraryFilld() {
                                     				)}
 							</LibraryBooklistTabletBody>
 						</LibraryBooklistTabletTable>
-					</LibraryBooklistContainer>
-                )}
-        {(isVisible && currentlyReading.length > 0) && (
+					</LibraryBooklistContainer>)}
+                
+				{/* {(isVisible && currentlyReading.length > 0) && ( */}
+				 {nowReading.length > 0 && (
 					<LibraryBooklistContainer tabletSize>
 						<LibraryBooklistTitle tabletSize>Reading now</LibraryBooklistTitle>
 						<LibraryBooklistTabletTable>
@@ -143,7 +155,7 @@ function LibraryFilld() {
 								</tr>
 							</LibraryBooklistTabletHead>
 							<LibraryBooklistTabletBody>
-								{currentlyReading.map(
+								{nowReading.map(
 									({ title, author, publishYear, pagesTotal, _id }) => {
 										return (
 											<LibraryBooklistTabletRow key={_id}>
@@ -170,8 +182,8 @@ function LibraryFilld() {
 								)}
 							</LibraryBooklistTabletBody>
 						</LibraryBooklistTabletTable>
-					</LibraryBooklistContainer>
-                )}
+					</LibraryBooklistContainer>)}
+                
         	{goingToRead.length > 0 && (
 					<LibraryBooklistContainer tabletSize>
 						<LibraryBooklistTitle tabletSize>
@@ -226,10 +238,10 @@ function LibraryFilld() {
             </LibraryControlTabletSection>
         
         <LibraryControlMobileSection>
-				{(isVisible && finishedReading.length > 0) && (
+				{alreadyRead.length > 0 && (
 					<LibraryBooklistContainer>
 						<LibraryBooklistTitle>Already read</LibraryBooklistTitle>
-						{finishedReading.map(
+						{alreadyRead.map(
 							({ title, author, publishYear, pagesTotal, _id, rating }) => {
 								return (
 									<LibraryBooklistSubContainer key={_id}>
@@ -285,10 +297,10 @@ function LibraryFilld() {
 						)}
 					</LibraryBooklistContainer>
                 )}
-        {(isVisible && currentlyReading.length > 0) && (
+        {nowReading.length > 0 && (
 					<LibraryBooklistContainer>
 						<LibraryBooklistTitle>Reading now</LibraryBooklistTitle>
-						{currentlyReading.map(
+						{nowReading.map(
 							({ title, author, publishYear, pagesTotal, _id }) => {
 								return (
 									<LibraryBooklistSubContainer key={_id}>
@@ -361,8 +373,12 @@ function LibraryFilld() {
 						)}
 					</LibraryBooklistContainer>
 				)}
-            </LibraryControlMobileSection>
+			</LibraryControlMobileSection>
+			{/* {isClicked ? null : (
 			< Button onClick={handleClick}>My training </Button>
+			)} */}
+				{!nowReading && <NavLink to={'/training'}>My training </NavLink>}
+				</LibraryWraper>
         </>
         
 	);
