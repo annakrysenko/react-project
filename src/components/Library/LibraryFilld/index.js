@@ -20,3 +20,7 @@ export { default as LibraryBooklistTabletHeadCell } from './LibraryBooklistTable
 export { default as LibraryBooklistTabletBody } from './LibraryBooklistTabletBody.styled';
 export { default as LibraryBooklistTabletBodyCell } from './LibraryBooklistTabletBodyCell.styled';
 export { default as LibraryBooklistTabletRow } from './LibraryBooklistTabletRow.styled';
+// export { default as StyledButton } from './StyledButton.styled';
+export { default as StyledBtn } from './StyledBtn.styled';
+export { default as NavLink } from './NavLink.styled';
+export { default as LibraryWraper } from './LibraryWraper.styled';
