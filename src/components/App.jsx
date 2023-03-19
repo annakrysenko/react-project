@@ -16,23 +16,23 @@ import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import AboutAppRegistr from './AboutAppRegist/AboutAppRegist';
 import Media from 'react-media';
-import { refreshUser } from 'redux/auth/authOperation';
-import { useDispatch, useSelector } from 'react-redux';
-import { getSid } from 'redux/auth/authSelectors';
+// import { refreshUser } from 'redux/auth/authOperation';
+// import { useDispatch, useSelector } from 'react-redux';
+// import { getSid } from 'redux/auth/authSelectors';
 
 export const App = () => {
   const [firstRenderEnded, setFirstRenderEnded] = useState(false);
-  const sid = useSelector(getSid);
-  const dispatch = useDispatch();
+  // const sid = useSelector(getSid);
+  // const dispatch = useDispatch();
 
   useEffect(() => {
     setFirstRenderEnded(true);
   }, []);
 
-  useEffect(() => {
-    dispatch(refreshUser({ sid }));
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [dispatch]);
+  // useEffect(() => {
+  //   dispatch(refreshUser({ sid }));
+  //   // eslint-disable-next-line react-hooks/exhaustive-deps
+  // }, [dispatch]);
   return (
     firstRenderEnded && (
       <>
