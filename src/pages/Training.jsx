@@ -1,8 +1,8 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import TextField from '@mui/material/TextField';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import Notiflix from 'notiflix';
 import { getGoingToRead } from '../redux/books/booksSelectors';
 
@@ -34,8 +34,15 @@ import TrainingList from '../components/TrainingList/TrainingList';
 import InfoMobileLink from 'components/MyTraining/styles/containerTraining/InfoMobileLink.styled';
 import LibraryMobileButton from 'components/MyTraining/styles/containerTraining/LibraryMobileButton.styled';
 import Results from 'components/Results/Results';
+import { fetchCurrentUser } from 'redux/books/booksOperations';
 
 export const Training = () => {
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(fetchCurrentUser());
+  }, [dispatch]);
+
   const [booksId, setBooksId] = useState([]);
   const [start, setStart] = useState(null);
   const [finish, setFinish] = useState(null);
@@ -46,7 +53,7 @@ export const Training = () => {
   const goingToRead = useSelector(getGoingToRead);
 
   const receiveDataFromStart = newValue => {
-    console.log(newValue, 'newValue');
+    // console.log(newValue, 'newValue');
     setStart(newValue);
     const startDate = `${newValue.$y}-${newValue.$M + 1}-${newValue.$D}`;
     setStartDate(startDate);
@@ -59,7 +66,7 @@ export const Training = () => {
   };
 
   const handleChange = event => {
-    console.log(event.target.value);
+    // console.log(event.target.value);
     const {
       target: { value },
     } = event;

@@ -46,7 +46,7 @@ const booksSlice = createSlice({
       state.error = payload;
     },
     [logIn.fulfilled](state, action) {
-      console.log('logIn payload', action.payload);
+      // console.log('logIn payload', action.payload);
       state.userData = action.payload.userData;
     },
     [logOut.fulfilled](state) {
@@ -57,7 +57,7 @@ const booksSlice = createSlice({
       state.error = null;
     },
     [createBook.fulfilled](state, action) {
-      console.log('action.payload.newBook', action.payload);
+      // console.log('action.payload.newBook', action.payload);
 
       state.userData.goingToRead.push(action.payload);
     },
@@ -69,7 +69,7 @@ const booksSlice = createSlice({
     },
 
     [getBookPlanning.fulfilled](state, action) {
-      console.log('getBookPlanning', action.payload);
+      // console.log('getBookPlanning', action.payload);
       if (!action.payload) {
         return;
       }

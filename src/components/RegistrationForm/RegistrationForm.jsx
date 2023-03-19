@@ -1,7 +1,7 @@
-import {  Formik } from 'formik';
+import { Formik } from 'formik';
 import * as yup from 'yup';
 import { useDispatch, useSelector } from 'react-redux';
-import {  register } from 'redux/auth/authOperation';
+import { register } from 'redux/auth/authOperation';
 import { getIsLoggedIn } from 'redux/auth/authSelectors';
 import {
   AccentSpan,
@@ -12,15 +12,20 @@ import {
   FieldLabel,
   FieldWrapper,
   InputField,
-  } from 'components/LoginForm/LoginForm.styled';
+} from 'components/LoginForm/LoginForm.styled';
 import { FcGoogle } from 'react-icons/fc';
-import {  FormnWrapper, GoogleButton, LoginWrapper, Paragraph, StyledLink, Wrapper } from './RegistrationForm.styled';
+import {
+  FormnWrapper,
+  GoogleButton,
+  LoginWrapper,
+  Paragraph,
+  StyledLink,
+  Wrapper,
+} from './RegistrationForm.styled';
 import { toast } from 'react-toastify';
 // import MobileRoute from 'components/MobileRoute/MobileRoute';
 // import AboutAppRegistr from 'components/AboutAppRegist/AboutAppRegist';
 // import Media from 'react-media';
-
-
 
 const validationSchema = yup.object().shape({
   name: yup
@@ -63,7 +68,6 @@ const initialValues = {
   repeatPassword: '',
 };
 
-
 const RegistrationForm = () => {
   const dispatch = useDispatch();
   const isLoggedIn = useSelector(getIsLoggedIn);
@@ -71,147 +75,142 @@ const RegistrationForm = () => {
 
   // useEffect(() => {
   // isRegistrated && dispatch(logIn)
-  
+
   // },[isRegistrated])
 
-
-    const handleSubmit = async (values, actions) => {
-        const { password,  name, email } = values;
-       const registrationData = { name, email, password };
-      const registretion = await dispatch(register(registrationData));
-      console.log(registretion)
+  const handleSubmit = async (values, actions) => {
+    const { password, name, email } = values;
+    const registrationData = { name, email, password };
+    const registretion = await dispatch(register(registrationData));
+    // console.log(registretion)
 
     isLoggedIn && actions.resetForm();
   };
- const handleButtonClick = () => {
+  const handleButtonClick = () => {
     toast.error('Please, try later!');
   };
 
   return (
     <>
-      
       <Container>
         <BgContainer>
-     <Wrapper>
-        <Formik
-          initialValues={initialValues}
-          validationSchema={validationSchema}
-          onSubmit={handleSubmit}
-        >
-          {({ isValid, touched }) => {
-            return (
-              <FormnWrapper name="SignupForm">
-                
-                <GoogleButton type="submit"
-                  onClick={handleButtonClick}>
+          <Wrapper>
+            <Formik
+              initialValues={initialValues}
+              validationSchema={validationSchema}
+              onSubmit={handleSubmit}
+            >
+              {({ isValid, touched }) => {
+                return (
+                  <FormnWrapper name="SignupForm">
+                    <GoogleButton type="submit" onClick={handleButtonClick}>
                       <FcGoogle size="18px" />
                       Google
-                  </GoogleButton>
-                  
-                <FieldWrapper>
-                  <FieldLabel htmlFor="name">
-                    Name <span>*</span>
-                  </FieldLabel>
-                  <InputField
-                    id="name"
-                    name="name"
-                    type="text"
-                    placeholder="name"
-                    // autoComplete="off"
-                  />
-                  <Error name="name" component="div" />
-                </FieldWrapper>
+                    </GoogleButton>
 
-                <FieldWrapper>
-                  <FieldLabel htmlFor="email">
-                    Email <AccentSpan>*</AccentSpan>
-                  </FieldLabel>
-                  <InputField
-                    id="email"
-                    name="email"
-                    type="email"
-                    placeholder="your@email.com"
-                    // autoComplete="off"
-                  />
-                  <Error name="email" component="div" />
-                </FieldWrapper>
+                    <FieldWrapper>
+                      <FieldLabel htmlFor="name">
+                        Name <span>*</span>
+                      </FieldLabel>
+                      <InputField
+                        id="name"
+                        name="name"
+                        type="text"
+                        placeholder="name"
+                        // autoComplete="off"
+                      />
+                      <Error name="name" component="div" />
+                    </FieldWrapper>
 
-                <FieldWrapper>
-                  <FieldLabel htmlFor="password">
-                    Password <AccentSpan>*</AccentSpan>
-                  </FieldLabel>
-                  <InputField
-                    id="password"
-                    name="password"
-                    type="password"
-                    maxLength="24"
-                    placeholder="..."
-                    // autoComplete="off"
-                  />
-             
-                  <Error name="password" component="div" />
-                </FieldWrapper>
+                    <FieldWrapper>
+                      <FieldLabel htmlFor="email">
+                        Email <AccentSpan>*</AccentSpan>
+                      </FieldLabel>
+                      <InputField
+                        id="email"
+                        name="email"
+                        type="email"
+                        placeholder="your@email.com"
+                        // autoComplete="off"
+                      />
+                      <Error name="email" component="div" />
+                    </FieldWrapper>
 
-                <FieldWrapper>
-                  <FieldLabel htmlFor="repeatPassword">
-                    Confirm password <AccentSpan>*</AccentSpan>
-                  </FieldLabel>
-                  <InputField
-                    id="repeatPassword"
-                    name="repeatPassword"
-                    type="password"
-                    placeholder="..."
-                    // autoComplete="off"
-                    onPaste={e => e.preventDefault()}
-                  />
-                  <Error name="repeatPassword" component="div" />
-                </FieldWrapper>
+                    <FieldWrapper>
+                      <FieldLabel htmlFor="password">
+                        Password <AccentSpan>*</AccentSpan>
+                      </FieldLabel>
+                      <InputField
+                        id="password"
+                        name="password"
+                        type="password"
+                        maxLength="24"
+                        placeholder="..."
+                        // autoComplete="off"
+                      />
 
-                <Button
-                  type="submit"
-                  disabled={
-                    (!touched.name &&
-                      !touched.email &&
-                      !touched.password &&
-                      !touched.repeatPassword) ||
-                    !isValid
-                  }
-                        variant="filled"
-                >
-                  Register
-                </Button>
-                <LoginWrapper>
-                  <Paragraph> Already have an account?</Paragraph>
-                  <StyledLink to="/login">Log in</StyledLink>
-                </LoginWrapper>
-              </FormnWrapper>
-            )
-          }}
+                      <Error name="password" component="div" />
+                    </FieldWrapper>
+
+                    <FieldWrapper>
+                      <FieldLabel htmlFor="repeatPassword">
+                        Confirm password <AccentSpan>*</AccentSpan>
+                      </FieldLabel>
+                      <InputField
+                        id="repeatPassword"
+                        name="repeatPassword"
+                        type="password"
+                        placeholder="..."
+                        // autoComplete="off"
+                        onPaste={e => e.preventDefault()}
+                      />
+                      <Error name="repeatPassword" component="div" />
+                    </FieldWrapper>
+
+                    <Button
+                      type="submit"
+                      disabled={
+                        (!touched.name &&
+                          !touched.email &&
+                          !touched.password &&
+                          !touched.repeatPassword) ||
+                        !isValid
+                      }
+                      variant="filled"
+                    >
+                      Register
+                    </Button>
+                    <LoginWrapper>
+                      <Paragraph> Already have an account?</Paragraph>
+                      <StyledLink to="/login">Log in</StyledLink>
+                    </LoginWrapper>
+                  </FormnWrapper>
+                );
+              }}
             </Formik>
-            </Wrapper>
-          </BgContainer>
-        </Container>
-        
-{/* 
+          </Wrapper>
+        </BgContainer>
+      </Container>
+
+      {/* 
          <MobileRoute redirectTo="/register">
 
   <AboutAppRegistr />
 </MobileRoute> */}
-      
-       {/* <Media
+
+      {/* <Media
           queries={{
             small: '(min-width: 768px)',
           }}
         >
           {matches => <>{matches.small && <AboutAppRegistr />}</>}
         </Media> */}
-      
-         {/* <Media query="(min-width: 768px)" render={() =>
+
+      {/* <Media query="(min-width: 768px)" render={() =>
           (
             <AboutAppRegistr />
           )}
         />  */}
-     
     </>
   );
 };
