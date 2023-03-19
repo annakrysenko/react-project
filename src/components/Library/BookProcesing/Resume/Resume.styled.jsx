@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import device from 'styles/deviceSize';
 
 export const ResumeTitle = styled.div`
   margin-bottom: 8px;
@@ -10,6 +11,7 @@ export const ResumeTitle = styled.div`
 `;
 
 export const ButtonBlock = styled.div`
+gap: 28px;
   width: 300px;
   margin: 0 auto;
   display: flex;
@@ -32,7 +34,6 @@ export const ConteinerModal = styled.div`
 
 export const InputModal = styled.div`
   margin-bottom: 20px;
-  // width: -webkit-fill-available;
 `;
 
 export const ModalTitle = styled.h3`
@@ -57,4 +58,37 @@ export const RaitingBlok = styled.div`
 
 export const RaitingStar = styled.div`
   margin-bottom: 20px;
+`;
+
+export const ButtonModal = styled.div`
+  display: flex;
+  flex-direction: column;
+  background-color: #ff6b08;
+  color: #fff;
+  width: 130px;
+  height: 40px;
+  font-family: 'Montserrat';
+  font-weight: 500;
+  line-height: 1.2;
+  font-size: 14px;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  border: 1px solid #ff6b08;
+  margin: 0 auto;
+
+  :hover {
+    color: #242a37;
+    background-color: #fff;
+    border: 1px solid #242a37;
+  }
+
+  @media screen and (max-width: 767px) {
+    width: 97px;
+  }
+
+  @media ${device.tablet} {
+    width: 200px;
+    margin-top: 50px;
+  }
 `;

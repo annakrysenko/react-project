@@ -1,6 +1,6 @@
 import Rating from '@mui/material/Rating';
 import Typography from '@mui/material/Typography';
-import { ButtonModal } from 'components/Library/BooksTable-TO_DELETE/BooksTable.styled.jsx';
+import { ButtonModal } from './Resume.styled';
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { addBookReview } from 'redux/books/booksOperations';
@@ -11,7 +11,9 @@ import {
   RaitingBlok,
   RaitingStar,
   ResumeTitle,
-} from './Resume.styled.js';
+} from './Resume.styled.jsx';
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 function ResumeModal({ toggleModal, bookId }) {
   console.log('id', bookId);
@@ -41,10 +43,12 @@ function ResumeModal({ toggleModal, bookId }) {
       toggleModal();
       setNewValue(null);
       setComent('');
-    }
-    alert('чогось не вистачає');
+      toast.success('Your review has been saved!');
+    } else {
+      toast.error('Please fill in all fields!');
+    } 
   };
-
+  
   return (
     <>
       <ModalTitle>Choose rating of the book</ModalTitle>

@@ -18,49 +18,59 @@ import {
 	LibraryBooklistTabletBody,
 	LibraryBooklistTabletBodyCell,
 	LibraryBooklistTabletRow,
+	Button  
 } from '../LibraryFilld';
 
 import ResumeModal from '../BookProcesing/Resume/ResumeModal';
 
 import {Modal} from 'components/Modal/Modal';
 import ConteinerModal from '../LibraryFilld/ConteinerModal.styled';
-
 import Rating from '@mui/material/Rating';
 import { getCurrentlyReading, getFinishedReading, getGoingToRead } from 'redux/books/booksSelectors';
+import { useState } from 'react';
 
-function LibraryFilld(props) {
-	const goingToRead = useSelector(getGoingToRead);
-	const finishedReading = useSelector(getFinishedReading);
-    const currentlyReading = useSelector(getCurrentlyReading);
-    
-//      const toggleModal = (id) => {
-//     // ваш код для відкриття/закриття модального вікна
-//          console.log(toggleModal);
-//   };
+function LibraryFilld() {
+  const goingToRead = useSelector(getGoingToRead);
+  const finishedReading = useSelector(getFinishedReading);
+  const currentlyReading = useSelector(getCurrentlyReading);
+  const [isVisible, setIsVisible] = useState(false);
+  const [selectedBookId, setSelectedBookId] = useState(null); // додали новий стан
+
+  const handleClick = () => {
+    setIsVisible(true);
+  };
+
+  const closeModal = () => {
+    setSelectedBookId(null); // оновлюємо стан
+  };
+
+  const toggleModal = (id) => {
+    setSelectedBookId(id); // оновлюємо стан
+  };
 
 	return (
 		<>
 			<LibraryControlTabletSection>
-				{finishedReading.length > 0 && (
+				{(isVisible && finishedReading.length > 0) && (
 					<LibraryBooklistContainer tabletSize>
 						<LibraryBooklistTitle tabletSize>Already read</LibraryBooklistTitle>
 						<LibraryBooklistTabletTable>
 							<LibraryBooklistTabletHead>
 								<tr>
 									<LibraryBooklistTabletHeadCell colspan="2">
-										Назва книги
+										Book title
 									</LibraryBooklistTabletHeadCell>
 									<LibraryBooklistTabletHeadCell authorPadding>
-										Автор
+										Author
 									</LibraryBooklistTabletHeadCell>
 									<LibraryBooklistTabletHeadCell right yearPadding>
-										Рік
+										Year
 									</LibraryBooklistTabletHeadCell>
 									<LibraryBooklistTabletHeadCell right>
-										Стор.
+										Pages
 									</LibraryBooklistTabletHeadCell>
 									<LibraryBooklistTabletHeadCell colspan="2" ratingPadding>
-										Рейтинг книги
+										Rating
 									</LibraryBooklistTabletHeadCell>
 								</tr>
 							</LibraryBooklistTabletHead>
@@ -90,18 +100,18 @@ function LibraryFilld(props) {
 												</LibraryBooklistTabletBodyCell>
 												<LibraryBooklistTabletBodyCell buttonPadding>
 													<LibraryBooklistTabletButton
-														type="button"
-														onClick={() => props.toggleModal(_id)}
+  														type="button"
+ 														onClick={() => toggleModal(_id)}
 													>
-														Резюме
+ 															 Resume
 													</LibraryBooklistTabletButton>
 
-													{props.isModal === _id && (
-														<Modal toggleModal={props.toggleModal}>
-															<ConteinerModal>
-																<ResumeModal toggleModal={props.toggleModal} />
-															</ConteinerModal>
-														</Modal>
+													{selectedBookId === _id && (
+													<Modal toggleModal={toggleModal} closeModal={closeModal}>
+														<ConteinerModal>
+																 <ResumeModal toggleModal={toggleModal} bookId={_id} />
+														</ConteinerModal>
+													</Modal>
 													)}
 												</LibraryBooklistTabletBodyCell>
 											</LibraryBooklistTabletRow>
@@ -112,23 +122,23 @@ function LibraryFilld(props) {
 						</LibraryBooklistTabletTable>
 					</LibraryBooklistContainer>
                 )}
-        {currentlyReading.length > 0 && (
+        {(isVisible && currentlyReading.length > 0) && (
 					<LibraryBooklistContainer tabletSize>
-						<LibraryBooklistTitle tabletSize>Читаю</LibraryBooklistTitle>
+						<LibraryBooklistTitle tabletSize>Reading now</LibraryBooklistTitle>
 						<LibraryBooklistTabletTable>
 							<LibraryBooklistTabletHead>
 								<tr>
 									<LibraryBooklistTabletHeadCell colspan="2">
-										Назва книги
+										Book title
 									</LibraryBooklistTabletHeadCell>
 									<LibraryBooklistTabletHeadCell authorPadding>
-										Автор
+										Author
 									</LibraryBooklistTabletHeadCell>
 									<LibraryBooklistTabletHeadCell right yearPadding>
-										Рік
+										Year
 									</LibraryBooklistTabletHeadCell>
 									<LibraryBooklistTabletHeadCell right pagesPadding>
-										Стор.
+										Pages
 									</LibraryBooklistTabletHeadCell>
 								</tr>
 							</LibraryBooklistTabletHead>
@@ -165,22 +175,22 @@ function LibraryFilld(props) {
         	{goingToRead.length > 0 && (
 					<LibraryBooklistContainer tabletSize>
 						<LibraryBooklistTitle tabletSize>
-							Маю намір прочитати
+							Going to read 
 						</LibraryBooklistTitle>
 						<LibraryBooklistTabletTable>
 							<LibraryBooklistTabletHead>
 								<tr>
 									<LibraryBooklistTabletHeadCell colspan="2">
-										Назва книги
+										Book title
 									</LibraryBooklistTabletHeadCell>
 									<LibraryBooklistTabletHeadCell authorPadding>
-										Автор
+										Author
 									</LibraryBooklistTabletHeadCell>
 									<LibraryBooklistTabletHeadCell right yearPadding>
-										Рік
+										Year
 									</LibraryBooklistTabletHeadCell>
 									<LibraryBooklistTabletHeadCell right pagesPadding>
-										Стор.
+										Pages
 									</LibraryBooklistTabletHeadCell>
 								</tr>
 							</LibraryBooklistTabletHead>
@@ -216,9 +226,9 @@ function LibraryFilld(props) {
             </LibraryControlTabletSection>
         
         <LibraryControlMobileSection>
-				{finishedReading.length > 0 && (
+				{(isVisible && finishedReading.length > 0) && (
 					<LibraryBooklistContainer>
-						<LibraryBooklistTitle>Прочитано</LibraryBooklistTitle>
+						<LibraryBooklistTitle>Already read</LibraryBooklistTitle>
 						{finishedReading.map(
 							({ title, author, publishYear, pagesTotal, _id, rating }) => {
 								return (
@@ -231,24 +241,24 @@ function LibraryFilld(props) {
 													</LibraryBooklistNameCell>
 												</LibraryBooklistRow>
 												<LibraryBooklistRow>
-													<LibraryBooklistCell>Автор:</LibraryBooklistCell>
+													<LibraryBooklistCell>Author:</LibraryBooklistCell>
 													<LibraryBooklistCell>{author}</LibraryBooklistCell>
 												</LibraryBooklistRow>
 												<LibraryBooklistRow>
-													<LibraryBooklistCell>Рік:</LibraryBooklistCell>
+													<LibraryBooklistCell>Year:</LibraryBooklistCell>
 													<LibraryBooklistCell>
 														{publishYear}
 													</LibraryBooklistCell>
 												</LibraryBooklistRow>
 												<LibraryBooklistRow>
-													<LibraryBooklistCell>Стор.:</LibraryBooklistCell>
+													<LibraryBooklistCell>Pages:</LibraryBooklistCell>
 													<LibraryBooklistCell>
 														{pagesTotal}
 													</LibraryBooklistCell>
 												</LibraryBooklistRow>
 												<LibraryBooklistRow>
 													<LibraryBooklistCell middle>
-														Рейтинг:
+														Rating:
 													</LibraryBooklistCell>
 													<LibraryBooklistCell middle>
 														<Rating name="read-only" value={rating} readOnly />
@@ -258,17 +268,16 @@ function LibraryFilld(props) {
 										</LibraryBooklistTable>
 										<LibraryBooklistButton
 											type="button"
-											onClick={() => props.toggleModal(_id)}
+											onClick={() => toggleModal(_id)}
 										>
-											Резюме
+											Resume
 										</LibraryBooklistButton>
-
-										{props.isModal === _id && (
-	<Modal toggleModal={props.toggleModal}>
-		<ConteinerModal>
-			<ResumeModal toggleModal={props.toggleModal} />
-		</ConteinerModal>
-	</Modal>
+											{selectedBookId === _id && (
+													<Modal toggleModal={toggleModal} closeModal={closeModal}>
+														<ConteinerModal>
+														 <ResumeModal toggleModal={toggleModal} bookId={_id} />
+														</ConteinerModal>
+													</Modal>
 )}
 									</LibraryBooklistSubContainer>
 								);
@@ -276,9 +285,9 @@ function LibraryFilld(props) {
 						)}
 					</LibraryBooklistContainer>
                 )}
-        {currentlyReading.length > 0 && (
+        {(isVisible && currentlyReading.length > 0) && (
 					<LibraryBooklistContainer>
-						<LibraryBooklistTitle>Читаю</LibraryBooklistTitle>
+						<LibraryBooklistTitle>Reading now</LibraryBooklistTitle>
 						{currentlyReading.map(
 							({ title, author, publishYear, pagesTotal, _id }) => {
 								return (
@@ -291,17 +300,17 @@ function LibraryFilld(props) {
 													</LibraryBooklistNameCell>
 												</LibraryBooklistRow>
 												<LibraryBooklistRow>
-													<LibraryBooklistCell>Автор:</LibraryBooklistCell>
+													<LibraryBooklistCell>Author:</LibraryBooklistCell>
 													<LibraryBooklistCell>{author}</LibraryBooklistCell>
 												</LibraryBooklistRow>
 												<LibraryBooklistRow>
-													<LibraryBooklistCell>Рік:</LibraryBooklistCell>
+													<LibraryBooklistCell>Year:</LibraryBooklistCell>
 													<LibraryBooklistCell>
 														{publishYear}
 													</LibraryBooklistCell>
 												</LibraryBooklistRow>
 												<LibraryBooklistRow>
-													<LibraryBooklistCell>Стор.:</LibraryBooklistCell>
+													<LibraryBooklistCell>Pages:</LibraryBooklistCell>
 													<LibraryBooklistCell>
 														{pagesTotal}
 													</LibraryBooklistCell>
@@ -316,7 +325,7 @@ function LibraryFilld(props) {
 				)}
 				{goingToRead.length > 0 && (
 					<LibraryBooklistContainer>
-						<LibraryBooklistTitle>Маю намір прочитати</LibraryBooklistTitle>
+						<LibraryBooklistTitle>Going to read </LibraryBooklistTitle>
 						{goingToRead.map(
 							({ title, author, publishYear, pagesTotal, _id }) => {
 								return (
@@ -329,17 +338,17 @@ function LibraryFilld(props) {
 													</LibraryBooklistNameCell>
 												</LibraryBooklistRow>
 												<LibraryBooklistRow>
-													<LibraryBooklistCell>Автор:</LibraryBooklistCell>
+													<LibraryBooklistCell>Author:</LibraryBooklistCell>
 													<LibraryBooklistCell>{author}</LibraryBooklistCell>
 												</LibraryBooklistRow>
 												<LibraryBooklistRow>
-													<LibraryBooklistCell>Рік:</LibraryBooklistCell>
+													<LibraryBooklistCell>Year:</LibraryBooklistCell>
 													<LibraryBooklistCell>
 														{publishYear}
 													</LibraryBooklistCell>
 												</LibraryBooklistRow>
 												<LibraryBooklistRow>
-													<LibraryBooklistCell>Стор.:</LibraryBooklistCell>
+													<LibraryBooklistCell>Pages:</LibraryBooklistCell>
 													<LibraryBooklistCell>
 														{pagesTotal}
 													</LibraryBooklistCell>
@@ -352,8 +361,10 @@ function LibraryFilld(props) {
 						)}
 					</LibraryBooklistContainer>
 				)}
-			</LibraryControlMobileSection>
-		</>
+            </LibraryControlMobileSection>
+			< Button onClick={handleClick}>My training </Button>
+        </>
+        
 	);
 }
 
