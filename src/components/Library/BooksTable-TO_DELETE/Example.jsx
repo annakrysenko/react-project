@@ -77,6 +77,7 @@ export const Books = ({ status, data }) => {
             <tbody>
               {alreadyRead.map(book => {
                 // console.log(book);
+                // console.log(book);
                 return (
                   <tr key={book._id}>
                     <td>{book.title}</td>
