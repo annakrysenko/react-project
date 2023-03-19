@@ -20,7 +20,7 @@ import {
 } from '../../redux/books/booksSelectors';
 
 
-const MyGoals = () => {
+const MyGoal = () => {
 	const location = useLocation();
 
 	const currentlyReading = useSelector(getCurrentlyReading);
@@ -96,4 +96,4 @@ const MyGoals = () => {
 		</>
 	);
 };
-export default MyGoals
+export default MyGoal
