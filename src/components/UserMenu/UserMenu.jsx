@@ -6,9 +6,7 @@ import { ReactComponent as Home } from 'images/svg/home.svg';
 import { ReactComponent as Library } from 'images/svg/library.svg';
 import { ReactComponent as Line } from 'images/svg/line.svg';
 import {
-  HomeLink,
-  HoverBtn,
-  LibraryLink,
+  MenuHoverLink,
   LineStyled,
   LogoName,
   ModalText,
@@ -43,16 +41,12 @@ export const UserMenu = () => {
     <>
       <UserMenuContainer>
         <LinkBox>
-          <LibraryLink to="training">
-            <HoverBtn>
-              <Library />
-            </HoverBtn>
-          </LibraryLink>
-          <HomeLink to="library">
-            <HoverBtn>
-              <Home />
-            </HoverBtn>
-          </HomeLink>
+          <MenuHoverLink to="training">
+            <Library />
+          </MenuHoverLink>
+          <MenuHoverLink to="library">
+            <Home />
+          </MenuHoverLink>
           <LineStyled>
             <Line />
           </LineStyled>

@@ -29,7 +29,7 @@ function LibraryInfo() {
       <InfoGapContainer>
         <div>
           <div>
-            <InfoTitle>Крок 1.</InfoTitle>
+            <InfoTitle>Step 1.</InfoTitle>
           </div>
           <div>
             <InfoPositioningContainer>
@@ -60,7 +60,7 @@ function LibraryInfo() {
                 </svg>
               </InfoIcon>
               <InfoDescription>
-                Створіть особисту бібліотеку
+              Create your own library
               </InfoDescription>
             </InfoPositioningContainer>
             <InfoList>
@@ -80,7 +80,7 @@ function LibraryInfo() {
                   </svg>
                 </InfoIcon>
                 <InfoText>
-                  Додайте до неї книжки, які маєте намір прочитати
+                Add there books which you are going to read.
                 </InfoText>
               </InfoItem>
             </InfoList>
@@ -90,7 +90,7 @@ function LibraryInfo() {
       <InfoGapContainer>
         <div>
           <div>
-            <InfoTitle>Крок 2.</InfoTitle>
+            <InfoTitle>Step 2.</InfoTitle>
           </div>
           <div>
             <InfoPositioningContainer>
@@ -109,7 +109,7 @@ function LibraryInfo() {
                 </svg>
               </InfoIcon>
               <InfoDescription>
-                Сформуйте своє перше тренування
+              Create your first training
               </InfoDescription>
             </InfoPositioningContainer>
             <InfoList>
@@ -129,7 +129,7 @@ function LibraryInfo() {
                   </svg>
                 </InfoIcon>
                 <InfoText>
-                  Визначте ціль, оберіть період, розпочинайте тренування
+                Set a goal, choose period, start training. 
                 </InfoText>
               </InfoItem>
             </InfoList>
