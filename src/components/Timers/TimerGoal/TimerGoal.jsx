@@ -4,8 +4,11 @@ import {
   TimerLetters,
   TimerNumbers,
   TimerWrapper,
-  TimerYearContainer,
-} from '../TimerYear/TimerYear.styled';
+  TimerGoalContainer,
+} from './TimerGoal.styled';
+
+import { getEndDate, getStartDate } from 'redux/books/booksSelectors';
+import { useSelector } from 'react-redux';
 
 const TimerGoal = () => {
   const [days, setDays] = useState(0);
@@ -13,14 +16,18 @@ const TimerGoal = () => {
   const [minutes, setMinutes] = useState(0);
   const [seconds, setSeconds] = useState(0);
 
-  const newYear = 'July, 11, 2023';
+  // const endDate = 'July, 11, 2023';
+  const endDate = useSelector(getEndDate);
+  const startDate = useSelector(getStartDate);
+  // console.log(startDate);
+  // console.log(endDate);
 
   function addInitialZero(value) {
     return String(value).padStart(2, '0');
   }
 
   const getTime = () => {
-    const time = Date.parse(newYear) - Date.now();
+    const time = Date.parse(endDate) - Date.now();
     // console.log(time);
     setDays(Math.floor(time / (1000 * 60 * 60 * 24)));
     setHours(Math.floor((time / (1000 * 60 * 60)) % 24));
@@ -29,12 +36,12 @@ const TimerGoal = () => {
   };
 
   useEffect(() => {
-    const interval = setInterval(() => getTime(newYear), 1000);
+    const interval = setInterval(() => getTime(), 1000);
     return () => clearInterval(interval);
   }, []);
 
   return (
-    <TimerYearContainer>
+    <TimerGoalContainer>
       <TimerHeader>Goals countdown</TimerHeader>
       <TimerWrapper>
         <TimerNumbers>
@@ -53,7 +60,7 @@ const TimerGoal = () => {
           <span>SECS</span>
         </TimerLetters>
       </TimerWrapper>
-    </TimerYearContainer>
+    </TimerGoalContainer>
   );
 };
 
