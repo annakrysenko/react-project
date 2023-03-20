@@ -16,6 +16,7 @@ import {
   GoalTrainingBox,
   BoxPageTraining,
   BoxPageStatistics,
+  StatlTrainingBox
 } from '../components/MyGoal/styles';
 
 import MyGoal from '../components/MyGoal/MyGoal';
@@ -200,8 +201,10 @@ export const Training = () => {
             <MyGoal />
             <MyTraining />
           </GoalTrainingBox>
-          <Graph />
-          <Results />
+          <StatlTrainingBox>
+            <Graph />
+            <Results />
+          </StatlTrainingBox>
         </BoxPageStatistics>
       </Container>
     </Section>
