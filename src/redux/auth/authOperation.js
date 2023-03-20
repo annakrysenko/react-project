@@ -88,3 +88,16 @@ export const refreshUser = createAsyncThunk(
     }
   }
 );
+
+export const getUser = createAsyncThunk(
+  'user/books',
+  async (_, { rejectWithValue }) => {
+    try {
+      const { data } = await axios.get('user/books');
+      console.log(data);
+      return data;
+    } catch (error) {
+      return rejectWithValue(error.message);
+    }
+  }
+);

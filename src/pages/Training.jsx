@@ -6,42 +6,44 @@ import { useEffect } from 'react';
 import MyTraining from 'components/MyTraining/MyTraining';
 import Graph from '../components/Graph/Graph';
 
-import { Section, Container } from '../components/MyTraining/styles/containerTraining';
 import {
-	GoalTrainingBox,
-	BoxPageStatistics,
+  Section,
+  Container,
+} from '../components/MyTraining/styles/containerTraining';
+import {
+  GoalTrainingBox,
+  BoxPageStatistics,
 } from '../components/MyGoal/styles';
 
 import MyGoal from '../components/MyGoal/MyGoal';
 import { useDispatch } from 'react-redux';
 import { fetchCurrentUser } from 'redux/books/booksOperations';
+
 export const Training = () => {
-	const dispatch = useDispatch();
+  const dispatch = useDispatch();
 
   useEffect(() => {
     // console.log('first');
     dispatch(fetchCurrentUser());
   }, [dispatch]);
-	return (
-		
-		<Section>
-			<Container>
-				<TimerMainContainer>
-        			<TimerYear />
-        			<TimerGoal />
-      			</TimerMainContainer>
+  return (
+    <Section>
+      <Container>
+        <TimerMainContainer>
+          <TimerYear />
+          <TimerGoal />
+        </TimerMainContainer>
 
-				<BoxPageStatistics>
-					<GoalTrainingBox>
-						<MyGoal />
-						<MyTraining />
-					</GoalTrainingBox>
-					<Graph />
-				</BoxPageStatistics>
-				
-			</Container>
-		</Section>
-	);
+        <BoxPageStatistics>
+          <GoalTrainingBox>
+            <MyGoal />
+            <MyTraining />
+          </GoalTrainingBox>
+          <Graph />
+        </BoxPageStatistics>
+      </Container>
+    </Section>
+  );
 };
 
-export default Training
+export default Training;
