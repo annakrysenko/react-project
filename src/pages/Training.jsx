@@ -19,6 +19,7 @@ import MyGoal from '../components/MyGoal/MyGoal';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchCurrentUser } from 'redux/books/booksOperations';
 import { getCurrentlyReading } from 'redux/books/booksSelectors';
+import { BoxTimersAndTraining } from 'components/MyGoal/styles/GoalTrainingBox.styled';
 
 export const Training = () => {
   const dispatch = useDispatch();
@@ -32,17 +33,20 @@ export const Training = () => {
   return (
     <Section>
       <Container>
-        {currentlyReading !== null && currentlyReading.length > 0 && (
-          <TimerMainContainer>
-            <TimerYear />
-            <TimerGoal />
-          </TimerMainContainer>
-        )}
         <BoxPageStatistics>
           <GoalTrainingBox>
+            <BoxTimersAndTraining>
+              {currentlyReading !== null && currentlyReading.length > 0 && (
+                <TimerMainContainer>
+                  <TimerYear />
+                  <TimerGoal />
+                </TimerMainContainer>
+              )}
+              <MyTraining />
+            </BoxTimersAndTraining>
             <MyGoal />
-            <MyTraining />
           </GoalTrainingBox>
+
           <Graph />
         </BoxPageStatistics>
       </Container>
