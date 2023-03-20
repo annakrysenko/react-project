@@ -85,17 +85,32 @@ const booksSlice = createSlice({
       state.pagesPerDay = action.payload.planning.pagesPerDay;
     },
 
+    // [addFinishedPages.fulfilled](state, action) {
+    //   state.stats = action.payload.planning.stats;
+    //   state.userData.currentlyReading.splice(
+    //     state.currentlyReading.findIndex(
+    //       book => book._id === action.payload.book._id
+    //     ),
+    //     1,
+    //     action.payload.book
+    //   );
+    // },
     [addFinishedPages.fulfilled](state, action) {
-      state.stats = action.payload.planning.stats;
-      state.userData.currentlyReading.splice(
-        state.currentlyReading.findIndex(
-          book => book._id === action.payload.book._id
-        ),
-        1,
-        action.payload.book
+      const currentlyReadingCopy = [...state.userData.currentlyReading];
+      const index = currentlyReadingCopy.findIndex(
+        book => book._id === action.payload.book._id
       );
-    },
+      currentlyReadingCopy.splice(index, 1, action.payload.book);
 
+      return {
+        ...state,
+        stats: action.payload.planning.stats,
+        userData: {
+          ...state.userData,
+          currentlyReading: currentlyReadingCopy,
+        },
+      };
+    },
     [loginWithGoogle.fulfilled](state, action) {
       state.userData.goingToRead = action.payload.data.goingToRead;
       state.userData.currentlyReading = action.payload.data.currentlyReading;
