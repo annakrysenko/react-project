@@ -1,8 +1,7 @@
 {
-  "name": "react-homework-template",
+  "name": "book-reading-goit",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://annakrysenko.github.io/react-project/",
   "dependencies": {
     "@emotion/react": "^11.10.6",
     "@emotion/styled": "^11.10.6",
