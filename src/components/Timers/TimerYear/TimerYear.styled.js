@@ -14,6 +14,8 @@ export const TimerMainContainer = styled.div`
 
   @media ${device.desktop} {
     margin-top: 0px;
+    margin-left: 153px;
+    margin-bottom: 44px;
     display: flex;
   }
 `;
@@ -34,7 +36,7 @@ export const TimerYearContainer = styled.div`
   }
 
   @media ${device.desktop} {
-    padding-left: 137px;
+    /* padding-left: 137px; */
     margin-right: 74px;
   }
 `;
