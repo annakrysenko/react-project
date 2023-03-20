@@ -37,6 +37,7 @@ function Books() {
   const goingToRead = useSelector(getGoingToRead);
   const alreadyRead = useSelector(getFinishedReading);
   const nowReading = useSelector(getCurrentlyReading);
+  console.log(goingToRead, alreadyRead, nowReading);
   //   const [isVisible, setIsVisible] = useState(false);
   const [selectedBookId, setSelectedBookId] = useState(null); // додали новий стан
 
@@ -63,7 +64,7 @@ function Books() {
       <LibraryWraper>
         <LibraryControlTabletSection>
           {/* {(isVisible && finishedReading.length > 0) && ( */}
-          {alreadyRead && alreadyRead.length > 0 && (
+          {alreadyRead !== null && alreadyRead.length > 0 && (
             <LibraryBooklistContainer tabletSize>
               <LibraryBooklistTitle tabletSize>
                 Already read
@@ -89,69 +90,74 @@ function Books() {
                   </tr>
                 </LibraryBooklistTabletHead>
                 <LibraryBooklistTabletBody>
-                  {alreadyRead.map(
-                    ({
-                      title,
-                      author,
-                      publishYear,
-                      pagesTotal,
-                      _id,
-                      rating,
-                    }) => {
-                      return (
-                        <LibraryBooklistTabletRow key={_id}>
-                          <LibraryBooklistTabletBodyCell
-                            colspan="2"
-                            booknamePadding
-                            tabletBooknameWidth
-                          >
-                            {title}
-                          </LibraryBooklistTabletBodyCell>
-                          <LibraryBooklistTabletBodyCell authorPadding>
-                            {author}
-                          </LibraryBooklistTabletBodyCell>
-                          <LibraryBooklistTabletBodyCell right yearPadding>
-                            {publishYear}
-                          </LibraryBooklistTabletBodyCell>
-                          <LibraryBooklistTabletBodyCell right>
-                            {pagesTotal}
-                          </LibraryBooklistTabletBodyCell>
-                          <LibraryBooklistTabletBodyCell ratingPadding middle>
-                            <Rating name="read-only" value={rating} readOnly />
-                          </LibraryBooklistTabletBodyCell>
-                          <LibraryBooklistTabletBodyCell buttonPadding>
-                            <LibraryBooklistTabletButton
-                              type="button"
-                              onClick={() => toggleModal(_id)}
+                  {alreadyRead !== null &&
+                    alreadyRead.map(
+                      ({
+                        title,
+                        author,
+                        publishYear,
+                        pagesTotal,
+                        _id,
+                        rating,
+                      }) => {
+                        return (
+                          <LibraryBooklistTabletRow key={_id}>
+                            <LibraryBooklistTabletBodyCell
+                              colspan="2"
+                              booknamePadding
+                              tabletBooknameWidth
                             >
-                              Resume
-                            </LibraryBooklistTabletButton>
-
-                            {selectedBookId === _id && (
-                              <Modal
-                                toggleModal={toggleModal}
-                                closeModal={closeModal}
+                              {title}
+                            </LibraryBooklistTabletBodyCell>
+                            <LibraryBooklistTabletBodyCell authorPadding>
+                              {author}
+                            </LibraryBooklistTabletBodyCell>
+                            <LibraryBooklistTabletBodyCell right yearPadding>
+                              {publishYear}
+                            </LibraryBooklistTabletBodyCell>
+                            <LibraryBooklistTabletBodyCell right>
+                              {pagesTotal}
+                            </LibraryBooklistTabletBodyCell>
+                            <LibraryBooklistTabletBodyCell ratingPadding middle>
+                              <Rating
+                                name="read-only"
+                                value={rating}
+                                readOnly
+                              />
+                            </LibraryBooklistTabletBodyCell>
+                            <LibraryBooklistTabletBodyCell buttonPadding>
+                              <LibraryBooklistTabletButton
+                                type="button"
+                                onClick={() => toggleModal(_id)}
                               >
-                                <ConteinerModal>
-                                  <ResumeModal
-                                    toggleModal={toggleModal}
-                                    bookId={_id}
-                                  />
-                                </ConteinerModal>
-                              </Modal>
-                            )}
-                          </LibraryBooklistTabletBodyCell>
-                        </LibraryBooklistTabletRow>
-                      );
-                    }
-                  )}
+                                Resume
+                              </LibraryBooklistTabletButton>
+
+                              {selectedBookId === _id && (
+                                <Modal
+                                  toggleModal={toggleModal}
+                                  closeModal={closeModal}
+                                >
+                                  <ConteinerModal>
+                                    <ResumeModal
+                                      toggleModal={toggleModal}
+                                      bookId={_id}
+                                    />
+                                  </ConteinerModal>
+                                </Modal>
+                              )}
+                            </LibraryBooklistTabletBodyCell>
+                          </LibraryBooklistTabletRow>
+                        );
+                      }
+                    )}
                 </LibraryBooklistTabletBody>
               </LibraryBooklistTabletTable>
             </LibraryBooklistContainer>
           )}
 
           {/* {(isVisible && currentlyReading.length > 0) && ( */}
-          {nowReading && nowReading.length > 0 && (
+          {nowReading !== null && nowReading.length > 0 && (
             <LibraryBooklistContainer tabletSize>
               <LibraryBooklistTitle tabletSize>
                 Reading now
@@ -174,7 +180,7 @@ function Books() {
                   </tr>
                 </LibraryBooklistTabletHead>
                 <LibraryBooklistTabletBody>
-                  {nowReading &&
+                  {nowReading !== null &&
                     nowReading.map(
                       ({ title, author, publishYear, pagesTotal, _id }) => {
                         return (
@@ -205,7 +211,7 @@ function Books() {
             </LibraryBooklistContainer>
           )}
 
-          {goingToRead && goingToRead.length > 0 && (
+          {goingToRead !== null && goingToRead.length > 0 && (
             <LibraryBooklistContainer tabletSize>
               <LibraryBooklistTitle tabletSize>
                 Going to read
@@ -228,7 +234,7 @@ function Books() {
                   </tr>
                 </LibraryBooklistTabletHead>
                 <LibraryBooklistTabletBody>
-                  {goingToRead &&
+                  {goingToRead !== null &&
                     goingToRead.map(
                       ({ title, author, publishYear, pagesTotal, _id }) => {
                         return (
@@ -260,10 +266,11 @@ function Books() {
         </LibraryControlTabletSection>
 
         <LibraryControlMobileSection>
-          {alreadyRead && alreadyRead.length > 0 && (
+          {alreadyRead !== null && alreadyRead.length > 0 && (
             <LibraryBooklistContainer>
               <LibraryBooklistTitle>Already read</LibraryBooklistTitle>
-              {alreadyRead &&
+
+              {alreadyRead !== null &&
                 alreadyRead.map(
                   ({ title, author, publishYear, pagesTotal, _id, rating }) => {
                     return (
@@ -332,80 +339,86 @@ function Books() {
                 )}
             </LibraryBooklistContainer>
           )}
-          {nowReading.length > 0 && (
+          {nowReading !== 0 && nowReading.length > 0 && (
             <LibraryBooklistContainer>
               <LibraryBooklistTitle>Reading now</LibraryBooklistTitle>
-              {nowReading.map(
-                ({ title, author, publishYear, pagesTotal, _id }) => {
-                  return (
-                    <LibraryBooklistSubContainer key={_id}>
-                      <LibraryBooklistTable>
-                        <tbody>
-                          <LibraryBooklistRow>
-                            <LibraryBooklistNameCell orange colspan="2">
-                              {title}
-                            </LibraryBooklistNameCell>
-                          </LibraryBooklistRow>
-                          <LibraryBooklistRow>
-                            <LibraryBooklistCell>Author:</LibraryBooklistCell>
-                            <LibraryBooklistCell>{author}</LibraryBooklistCell>
-                          </LibraryBooklistRow>
-                          <LibraryBooklistRow>
-                            <LibraryBooklistCell>Year:</LibraryBooklistCell>
-                            <LibraryBooklistCell>
-                              {publishYear}
-                            </LibraryBooklistCell>
-                          </LibraryBooklistRow>
-                          <LibraryBooklistRow>
-                            <LibraryBooklistCell>Pages:</LibraryBooklistCell>
-                            <LibraryBooklistCell>
-                              {pagesTotal}
-                            </LibraryBooklistCell>
-                          </LibraryBooklistRow>
-                        </tbody>
-                      </LibraryBooklistTable>
-                    </LibraryBooklistSubContainer>
-                  );
-                }
-              )}
+              {nowReading !== 0 &&
+                nowReading.map(
+                  ({ title, author, publishYear, pagesTotal, _id }) => {
+                    return (
+                      <LibraryBooklistSubContainer key={_id}>
+                        <LibraryBooklistTable>
+                          <tbody>
+                            <LibraryBooklistRow>
+                              <LibraryBooklistNameCell orange colspan="2">
+                                {title}
+                              </LibraryBooklistNameCell>
+                            </LibraryBooklistRow>
+                            <LibraryBooklistRow>
+                              <LibraryBooklistCell>Author:</LibraryBooklistCell>
+                              <LibraryBooklistCell>
+                                {author}
+                              </LibraryBooklistCell>
+                            </LibraryBooklistRow>
+                            <LibraryBooklistRow>
+                              <LibraryBooklistCell>Year:</LibraryBooklistCell>
+                              <LibraryBooklistCell>
+                                {publishYear}
+                              </LibraryBooklistCell>
+                            </LibraryBooklistRow>
+                            <LibraryBooklistRow>
+                              <LibraryBooklistCell>Pages:</LibraryBooklistCell>
+                              <LibraryBooklistCell>
+                                {pagesTotal}
+                              </LibraryBooklistCell>
+                            </LibraryBooklistRow>
+                          </tbody>
+                        </LibraryBooklistTable>
+                      </LibraryBooklistSubContainer>
+                    );
+                  }
+                )}
             </LibraryBooklistContainer>
           )}
-          {goingToRead.length > 0 && (
+          {goingToRead !== 0 && goingToRead.length > 0 && (
             <LibraryBooklistContainer>
               <LibraryBooklistTitle>Going to read </LibraryBooklistTitle>
-              {goingToRead.map(
-                ({ title, author, publishYear, pagesTotal, _id }) => {
-                  return (
-                    <LibraryBooklistSubContainer key={_id}>
-                      <LibraryBooklistTable>
-                        <tbody>
-                          <LibraryBooklistRow>
-                            <LibraryBooklistNameCell colspan="2">
-                              {title}
-                            </LibraryBooklistNameCell>
-                          </LibraryBooklistRow>
-                          <LibraryBooklistRow>
-                            <LibraryBooklistCell>Author:</LibraryBooklistCell>
-                            <LibraryBooklistCell>{author}</LibraryBooklistCell>
-                          </LibraryBooklistRow>
-                          <LibraryBooklistRow>
-                            <LibraryBooklistCell>Year:</LibraryBooklistCell>
-                            <LibraryBooklistCell>
-                              {publishYear}
-                            </LibraryBooklistCell>
-                          </LibraryBooklistRow>
-                          <LibraryBooklistRow>
-                            <LibraryBooklistCell>Pages:</LibraryBooklistCell>
-                            <LibraryBooklistCell>
-                              {pagesTotal}
-                            </LibraryBooklistCell>
-                          </LibraryBooklistRow>
-                        </tbody>
-                      </LibraryBooklistTable>
-                    </LibraryBooklistSubContainer>
-                  );
-                }
-              )}
+              {goingToRead !== 0 &&
+                goingToRead.map(
+                  ({ title, author, publishYear, pagesTotal, _id }) => {
+                    return (
+                      <LibraryBooklistSubContainer key={_id}>
+                        <LibraryBooklistTable>
+                          <tbody>
+                            <LibraryBooklistRow>
+                              <LibraryBooklistNameCell colspan="2">
+                                {title}
+                              </LibraryBooklistNameCell>
+                            </LibraryBooklistRow>
+                            <LibraryBooklistRow>
+                              <LibraryBooklistCell>Author:</LibraryBooklistCell>
+                              <LibraryBooklistCell>
+                                {author}
+                              </LibraryBooklistCell>
+                            </LibraryBooklistRow>
+                            <LibraryBooklistRow>
+                              <LibraryBooklistCell>Year:</LibraryBooklistCell>
+                              <LibraryBooklistCell>
+                                {publishYear}
+                              </LibraryBooklistCell>
+                            </LibraryBooklistRow>
+                            <LibraryBooklistRow>
+                              <LibraryBooklistCell>Pages:</LibraryBooklistCell>
+                              <LibraryBooklistCell>
+                                {pagesTotal}
+                              </LibraryBooklistCell>
+                            </LibraryBooklistRow>
+                          </tbody>
+                        </LibraryBooklistTable>
+                      </LibraryBooklistSubContainer>
+                    );
+                  }
+                )}
             </LibraryBooklistContainer>
           )}
         </LibraryControlMobileSection>

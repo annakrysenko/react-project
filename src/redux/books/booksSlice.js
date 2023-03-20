@@ -51,10 +51,11 @@ const booksSlice = createSlice({
       state.userData = action.payload.userData;
     },
     [logOut.fulfilled](state) {
-      state.userData = [];
-      state.startDate = null;
-      state.endDate = null;
-      state.stats = [];
+      // state.userData.currentlyReading = [];
+      // state.userData.finishedReading = [];
+      // state.startDate = null;
+      // state.endDate = null;
+      // state.stats = [];
       state.error = null;
     },
     [createBook.fulfilled](state, action) {
