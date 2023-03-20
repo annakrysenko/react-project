@@ -16,11 +16,14 @@ import {
 } from '../components/MyGoal/styles';
 
 import MyGoal from '../components/MyGoal/MyGoal';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { fetchCurrentUser } from 'redux/books/booksOperations';
+import { getCurrentlyReading } from 'redux/books/booksSelectors';
 
 export const Training = () => {
   const dispatch = useDispatch();
+
+  const currentlyReading = useSelector(getCurrentlyReading);
 
   useEffect(() => {
     // console.log('first');
@@ -29,11 +32,12 @@ export const Training = () => {
   return (
     <Section>
       <Container>
-        <TimerMainContainer>
-          <TimerYear />
-          <TimerGoal />
-        </TimerMainContainer>
-
+        {currentlyReading !== null && currentlyReading.length > 0 && (
+          <TimerMainContainer>
+            <TimerYear />
+            <TimerGoal />
+          </TimerMainContainer>
+        )}
         <BoxPageStatistics>
           <GoalTrainingBox>
             <MyGoal />
