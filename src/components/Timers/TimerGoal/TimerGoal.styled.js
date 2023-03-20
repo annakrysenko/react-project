@@ -18,7 +18,6 @@ export const TimerGoalContainer = styled.div`
   }
 
   @media ${device.desktop} {
-    padding-left: 137px;
     margin-right: 74px;
   }
 `;
