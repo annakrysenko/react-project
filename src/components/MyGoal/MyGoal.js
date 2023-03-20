@@ -1,6 +1,6 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
-import { useLocation } from 'react-router-dom';
+
 // import { useState } from "react";
 import {
 	ProgressItem,
@@ -21,7 +21,7 @@ import {
 
 
 const MyGoal = () => {
-	const location = useLocation();
+
 
 	const currentlyReading = useSelector(getCurrentlyReading);
 	const finishedReading = useSelector(getFinishedReading);
@@ -34,35 +34,35 @@ const MyGoal = () => {
 
 	return (
 		<>
-			{location.pathname !== '/statistics' && (
+			{currentlyReading.length === 0 && (
 				<ProgressContainer progressContainerNoStat>
 					<ProgressSubContainer progressTitle progressTitleNoStat>
-						<ProgressTitle>Моя мета прочитати</ProgressTitle>
+						<ProgressTitle>My goal</ProgressTitle>
 					</ProgressSubContainer>
 					<ProgressSubContainer progressList>
 						<ProgressList progressListNoStat>
 							<ProgressItem progressItemNoStat>
 								<ProgressNumber progressNumberNoStat>
 									<span>
-										{currentlyReading.length<1? 0 : currentlyReading.length + finishedReading.length}
+										{currentlyReading.length <1 ? 0 : currentlyReading.length + finishedReading.length}
 									</span>
 								</ProgressNumber>
-								<ProgressText progressTextNoStat>Кількість книжок</ProgressText>
+								<ProgressText progressTextNoStat>Amount of books</ProgressText>
 							</ProgressItem>
 							<ProgressItem progressItemNoStat>
 								<ProgressNumber progressNumberNoStat>
 									<span>{Boolean(numberOfDays) ? numberOfDays : 0}</span>
 								</ProgressNumber>
-								<ProgressText progressTextNoStat>Кількість днів</ProgressText>
+								<ProgressText progressTextNoStat>Amount of days</ProgressText>
 							</ProgressItem>
 						</ProgressList>
 					</ProgressSubContainer>
 				</ProgressContainer>
 			)}
-			{location.pathname === '/statistics' && (
+			{currentlyReading.length !== 0 && (
 				<ProgressContainer>
 					<ProgressSubContainer progressTitle>
-						<ProgressTitle>Моя мета прочитати</ProgressTitle>
+						<ProgressTitle>My goal</ProgressTitle>
 					</ProgressSubContainer>
 					<ProgressSubContainer progressList>
 						<ProgressList>
@@ -72,13 +72,13 @@ const MyGoal = () => {
 										{currentlyReading.length + finishedReading.length}
 									</span>
 								</ProgressNumber>
-								<ProgressText>Кількість книжок</ProgressText>
+								<ProgressText>Amount of books</ProgressText>
 							</ProgressItem>
 							<ProgressItem>
 								<ProgressNumber>
 									<span>{Boolean(numberOfDays) ? numberOfDays : 0}</span>
 								</ProgressNumber>
-								<ProgressText>Кількість днів</ProgressText>
+								<ProgressText>Amount of days</ProgressText>
 							</ProgressItem>
 
 							<ProgressItem>
@@ -87,7 +87,7 @@ const MyGoal = () => {
 										{currentlyReading.length}
 									</ProgressNumberLast>
 								</ProgressNumber>
-								<ProgressText>Залишилось книжок</ProgressText>
+								<ProgressText>Books left</ProgressText>
 							</ProgressItem>
 						</ProgressList>
 					</ProgressSubContainer>

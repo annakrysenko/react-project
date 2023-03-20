@@ -16,19 +16,24 @@ import {
 import { ReactComponent as Flat } from '../../images/svg/Flat.svg';
 import { ReactComponent as Del } from '../../images/svg/delete.svg';
 import css from './TrainingList.module.css';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { addBookPlanning } from '../../redux/books/booksOperations';
 // import { Navigate } from 'react-router-dom';
-import { useLocation } from 'react-router-dom';
+
 import { ReactComponent as CheckboxCheked } from '../../images/svg/checkboxChecked.svg';
 import { ReactComponent as CheckboxDisabled } from '../../images/svg/checkboxDisabled.svg';
+import { getCurrentlyReading } from 'redux/books/booksSelectors';
 
 function TrainingList({ books, startDate, endDate, booksDelete }) {
 	const dispatch = useDispatch();
-	const location = useLocation();
-	// console.log(location.pathname);
-	// location.pathname === '/training'
+
+	const currentlyReading = useSelector(getCurrentlyReading)
+	// console.log(currentlyReading, 'currentlyReading' , books, 'books');
+
 	// console.log('books statistics', books);
+	let booksToRender;
+	books.length > 0 ? booksToRender = books : booksToRender = currentlyReading
+
 
 	const booksId = books.map(book => book._id);
 	const data = {
@@ -49,14 +54,15 @@ function TrainingList({ books, startDate, endDate, booksDelete }) {
 			<CheckboxCheked />
 		);
 	};
-console.log(books, 'books')
+// console.log('currentlyReading',currentlyReading )
+	
 	return (
 		
 		<>
 			<Wrapper>
-				{books ? 
+				{currentlyReading ? 
 					<ListMob>
-						
+						{/* booksToReading */}
 						{books?.map(
 							({
 								_id,
@@ -69,7 +75,7 @@ console.log(books, 'books')
 								<ItemMob key={_id}>
 									<div className={css.bookNameMob}>
 										<FlatWrapper>
-											{location.pathname === '/training' ? (
+											{currentlyReading.length === 0 ? (
 												<Flat />
 											) : (
 												<CheckBox
@@ -87,7 +93,7 @@ console.log(books, 'books')
 												color: '#898F9F',
 												width: '35%',
 											}}>
-											Автор:
+											Author:1
 										</div>
 										<div>{author}</div>
 									</div>
@@ -99,7 +105,7 @@ console.log(books, 'books')
 												width: '35%',
 											}}
 										>
-											Рік:
+											Year:
 										</div>
 										<div>{publishYear}</div>
 									</div>
@@ -111,11 +117,11 @@ console.log(books, 'books')
 												width: '35%',
 											}}
 										>
-											Стор.:
+											Page:
 										</div>
 										<div>{pagesTotal}</div>
 									</div>
-									{location.pathname === '/training' && (
+									{currentlyReading.length === 0 && (
 										<DeleteIcon>
 											<Del className={css.delButton} />
 											
@@ -123,16 +129,16 @@ console.log(books, 'books')
 									)}
 								</ItemMob>
 							)
-						)} <ItemDesk>
-								<Flat style={{marginRight: '12px'}} />
-								<p>...</p>
-							</ItemDesk>
+						)} {currentlyReading.length === 0 &&(<ItemDesk>
+							<Flat style={{ marginRight: '12px' }} />
+							<p>...</p>
+						</ItemDesk>)}
 					</ListMob> : 
 					<ListMob>
 						<ItemMob>
 							<div className={css.bookNameMob}>
 								<FlatWrapper>
-									{location.pathname === '/training' ? (
+									{currentlyReading.length === 0 ? (
 										<Flat />
 									) : (
 										<CheckBox />
@@ -158,7 +164,7 @@ console.log(books, 'books')
 										width: '35%',
 									}}
 								>
-									Рік:
+									Year:
 								</div>
 								<div>...</div>
 							</div>
@@ -170,11 +176,11 @@ console.log(books, 'books')
 										width: '35%',
 									}}
 								>
-									Стор.:
+									Page:
 								</div>
 								<div>...</div>
 							</div>
-							{location.pathname === '/training' && (
+							{currentlyReading.length === 0 && (
 								<DeleteIcon>
 									<Del className={css.delButton} />
 								</DeleteIcon>
@@ -186,9 +192,9 @@ console.log(books, 'books')
 
 				
 				
-					{/* {books.length > 0 && location.pathname === '/training' && (
-						<Button>Почати тренування</Button>
-					)} */}
+					
+						<Button>Start training</Button>
+					
 			</Wrapper>
 
 		{/* desk */}
@@ -199,13 +205,15 @@ console.log(books, 'books')
 					<PublishYear>Year</PublishYear>
 					<Pages>Page</Pages>
 				</Title>
-				{/* <ListDesk> */}
-				{books?.map(
+				
+
+				
+				{booksToRender?.map(
 					({ _id, title, author, publishYear, pagesTotal, pagesFinished }) => (
 						<ItemDesk key={_id}>
 							<BookName className={css.bookName}>
 								<div style={{ marginRight: '15px' }}>
-									{location.pathname === '/training' ? (
+									{currentlyReading.length === 0? (
 										<Flat />
 									) : (
 										<CheckBox
@@ -219,22 +227,23 @@ console.log(books, 'books')
 							<AuthorName>{author}</AuthorName>
 							<PublishYear>{publishYear}</PublishYear>
 							<Pages>{pagesTotal}</Pages>
-							{location.pathname === '/training' && (
-								<button
+							{currentlyReading.length === 0 &&(
+								< button
 									className={css.delButton}
-									type="button"
-									onClick={() => booksDelete(_id)}
+							type="button"
+							onClick={() => booksDelete(_id)}
 								>
-									<Del className={css.svgDel} />
-								</button>
+							<Del className={css.svgDel} />
+						</button>
 							)}
 						</ItemDesk>
 					)
-				)} <ItemDesk>
-						<Flat style={{marginRight: '16px'}} /><p>...</p>
-					</ItemDesk>
+				)} {currentlyReading.length === 0 &&(<ItemDesk>
+							<Flat style={{ marginRight: '12px' }} />
+							<p>...</p>
+						</ItemDesk>)}
 			</ListDesk>
-				{books.length > 0 && location.pathname === '/training' && (
+				{currentlyReading.length > 0 && currentlyReading.length === 0 && (
 					<Button type="button" onClick={handleAddBookPlanning}>
 						Start training
 					</Button>
