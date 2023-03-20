@@ -19,17 +19,17 @@ import css from './TrainingList.module.css';
 import { useDispatch, useSelector } from 'react-redux';
 import { addBookPlanning } from '../../redux/books/booksOperations';
 // import { Navigate } from 'react-router-dom';
-import { useLocation } from 'react-router-dom';
+
 import { ReactComponent as CheckboxCheked } from '../../images/svg/checkboxChecked.svg';
 import { ReactComponent as CheckboxDisabled } from '../../images/svg/checkboxDisabled.svg';
 import { getCurrentlyReading } from 'redux/books/booksSelectors';
 
 function TrainingList({ books, startDate, endDate, booksDelete }) {
 	const dispatch = useDispatch();
-	const location = useLocation();
+
 	const currentlyReading = useSelector(getCurrentlyReading)
 	// console.log(currentlyReading, 'currentlyReading' , books, 'books');
-	// location.pathname === '/training'
+
 	// console.log('books statistics', books);
 	let booksToRender;
 	books.length > 0 ? booksToRender = books : booksToRender = currentlyReading
@@ -192,9 +192,9 @@ function TrainingList({ books, startDate, endDate, booksDelete }) {
 
 				
 				
-					{/* {books.length > 0 && location.pathname === '/training' && (
-						<Button>Почати тренування</Button>
-					)} */}
+					
+						<Button>Start training</Button>
+					
 			</Wrapper>
 
 		{/* desk */}
@@ -205,21 +205,9 @@ function TrainingList({ books, startDate, endDate, booksDelete }) {
 					<PublishYear>Year</PublishYear>
 					<Pages>Page</Pages>
 				</Title>
-				{/* <ListDesk> */}
+				
 
-				{/* {currentlyReading?.map(
-					({ _id, title, author, publishYear, pagesTotal, pagesFinished }) => (
-						<ItemDesk key={_id}>
-							<BookName className={css.bookName}>
-								<div style={{ marginRight: '15px' }}>
-									{location.pathname === '/training' ? (
-										<Flat />
-									) : (
-										<CheckBox
-											pagesFinished={pagesFinished}
-											pagesTotal={pagesTotal}
-										/>
-									)} */}
+				
 				{booksToRender?.map(
 					({ _id, title, author, publishYear, pagesTotal, pagesFinished }) => (
 						<ItemDesk key={_id}>

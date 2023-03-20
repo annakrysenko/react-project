@@ -1,6 +1,6 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
-import { useLocation } from 'react-router-dom';
+
 // import { useState } from "react";
 import {
 	ProgressItem,
@@ -21,7 +21,7 @@ import {
 
 
 const MyGoal = () => {
-	const location = useLocation();
+
 
 	const currentlyReading = useSelector(getCurrentlyReading);
 	const finishedReading = useSelector(getFinishedReading);
