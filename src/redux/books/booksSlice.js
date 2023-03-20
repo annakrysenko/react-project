@@ -88,7 +88,7 @@ const booksSlice = createSlice({
     // [addFinishedPages.fulfilled](state, action) {
     //   state.stats = action.payload.planning.stats;
     //   state.userData.currentlyReading.splice(
-    //     state.currentlyReading.findIndex(
+    //     state.currentlyReadinga.findIndex(
     //       book => book._id === action.payload.book._id
     //     ),
     //     1,
