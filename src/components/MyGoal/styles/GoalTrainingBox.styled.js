@@ -31,6 +31,14 @@ export const BoxTimersAndTraining = styled.div`
   }
 `;
 
+export const BoxGoalAndResult = styled.div`
+  @media screen and (min-width: 1280px) {
+    display: flex;
+    flex-direction: column;
+    margin-right: 32px;
+  }
+`;
+
 export const StatlTrainingBox = styled.div`
   @media screen and (min-width: 1280px) {
     display: flex;

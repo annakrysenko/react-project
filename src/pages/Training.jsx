@@ -20,7 +20,10 @@ import { useDispatch, useSelector } from 'react-redux';
 import { fetchCurrentUser } from 'redux/books/booksOperations';
 import { getCurrentlyReading } from 'redux/books/booksSelectors';
 import Results from 'components/Results/Results';
-import { BoxTimersAndTraining } from 'components/MyGoal/styles/GoalTrainingBox.styled';
+import {
+  BoxGoalAndResult,
+  BoxTimersAndTraining,
+} from 'components/MyGoal/styles/GoalTrainingBox.styled';
 
 export const Training = () => {
   const dispatch = useDispatch();
@@ -44,12 +47,13 @@ export const Training = () => {
                 </TimerMainContainer>
               )}
               <MyTraining />
+              <Graph />
             </BoxTimersAndTraining>
-            <MyGoal />
+            <BoxGoalAndResult>
+              <MyGoal />
+              <Results />
+            </BoxGoalAndResult>
           </GoalTrainingBox>
-
-          <Graph />
-          <Results />
         </BoxPageStatistics>
       </Container>
     </Section>
