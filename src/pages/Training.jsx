@@ -19,6 +19,7 @@ import MyGoal from '../components/MyGoal/MyGoal';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchCurrentUser } from 'redux/books/booksOperations';
 import { getCurrentlyReading } from 'redux/books/booksSelectors';
+import Results from 'components/Results/Results';
 import { BoxTimersAndTraining } from 'components/MyGoal/styles/GoalTrainingBox.styled';
 
 export const Training = () => {
@@ -48,6 +49,7 @@ export const Training = () => {
           </GoalTrainingBox>
 
           <Graph />
+          <Results />
         </BoxPageStatistics>
       </Container>
     </Section>

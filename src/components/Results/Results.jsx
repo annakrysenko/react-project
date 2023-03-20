@@ -70,11 +70,11 @@ const Results = () => {
 
   return (
     <StatPagesContainer>
-      <StatTextResolt>Результаты</StatTextResolt>
+      <StatTextResolt>Results</StatTextResolt>
       <StatSubContainerTable>
         <StatCommonContainer>
           <StatSubContainer>
-            <StatLabel htmlFor="data">Дата</StatLabel>
+            <StatLabel htmlFor="data">Date</StatLabel>
             <StatInput
               id="data"
               type="text"
@@ -82,7 +82,7 @@ const Results = () => {
             />
           </StatSubContainer>
           <StatSubContainer>
-            <StatLabel htmlFor="pages">Кількість сторінок </StatLabel>
+            <StatLabel htmlFor="pages">Per pages </StatLabel>
             <StatInput
               id="pages"
               type="text"
@@ -97,7 +97,7 @@ const Results = () => {
             handleAddResults({ pages });
           }}
         >
-          Додати результат
+          Add results
         </StatisticsButton>
       </StatSubContainerTable>
       <StatisticsTablet />

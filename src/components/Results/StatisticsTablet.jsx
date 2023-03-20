@@ -12,7 +12,7 @@ import StatTableTextPage from './ResultsStyles/StatTableTextPage.styled';
 
 const StatisticsTablet = () => {
   const stats = useSelector(getStats);
-
+  console.log('stats', stats);
   const dateAndTime = stats.map(({ time, pagesCount }) => {
     const splitDateAndTime = time.split(' ');
 
@@ -25,7 +25,7 @@ const StatisticsTablet = () => {
 
   return (
     <StatisticsContainerTablet>
-      <StatisticsTabletText>Статистика</StatisticsTabletText>
+      <StatisticsTabletText>Statistic</StatisticsTabletText>
 
       <StatTableScroll>
         <StatTable>
