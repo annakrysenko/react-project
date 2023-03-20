@@ -48,7 +48,7 @@ const booksSlice = createSlice({
     },
     [logIn.fulfilled](state, action) {
       console.log('logIn payload', action.payload);
-      state.userData = action.payload.data.userData;
+      state.userData = action.payload.userData;
     },
     [logOut.fulfilled](state) {
       state.userData = [];
