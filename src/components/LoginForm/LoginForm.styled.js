@@ -13,17 +13,17 @@ import { ErrorMessage, Field, Form } from 'formik';
 import { Link } from 'react-router-dom';
 
 export const Container = styled.div`
-display: flex;
+  display: flex;
   flex-direction: column;
   justify-content: center;
   @media ${device.desktop} {
-   
     width: 100%;
-    margin: 0 auto;}
+    margin: 0 auto;
+  }
 `;
 
 export const BgContainer = styled.div`
-max-width: 100%;
+  max-width: 100%;
   background: ${theme.colors.overlay};
   background-repeat: no-repeat;
   background-position-x: center;
@@ -44,7 +44,7 @@ max-width: 100%;
       ),
       url(${bgpcmob2x});
   }
-  @media  ${device.tablet} {
+  @media ${device.tablet} {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -88,7 +88,6 @@ max-width: 100%;
 `;
 
 export const Wrapper = styled.div`
-
   max-width: 480px;
   margin: 0 auto;
   padding: 0 20px;
@@ -105,7 +104,7 @@ export const Wrapper = styled.div`
 `;
 
 export const FormnWrapper = styled(Form)`
-display: flex;
+  display: flex;
   flex-direction: column;
   justify-content: center;
   padding: 32px 20px;
@@ -152,7 +151,6 @@ export const FieldWrapper = styled.div`
   flex-direction: column;
   margin-bottom: 20px;
   color: ${theme.colors.secondaryFontColor};
- 
 `;
 
 export const FieldLabel = styled.label`
@@ -220,5 +218,5 @@ export const StyledLink = styled(Link)`
   text-align: center;
   margin-top: 16px;
   text-decoration: underline;
- color: ${theme.colors.accentColor};
+  color: ${theme.colors.accentColor};
 `;

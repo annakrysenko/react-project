@@ -50,16 +50,19 @@ const options = {
     },
 
     scales: {
-        y: {
+        y: {border: {
+                display: true,
+                color: '#B1B5C2' 
+            },
             grid: { display: false },
             ticks: {
-                beginAtZero: true,
+                display: false
             },
-            min: 0,
         },
         x: {
             border: {
-                display: true
+                display: true,
+                color: '#B1B5C2' 
             },
             grid: {
                 display: true,
