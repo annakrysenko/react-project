@@ -19,6 +19,7 @@ const initialState = {
     finishedReading: [],
     id: null,
   },
+  startDate: null,
   endDate: null,
   pagesPerDay: null,
   stats: [],
@@ -46,14 +47,15 @@ const booksSlice = createSlice({
       state.error = payload;
     },
     [logIn.fulfilled](state, action) {
-      // console.log('logIn payload', action.payload);
+      console.log('logIn payload', action.payload);
       state.userData = action.payload.userData;
     },
     [logOut.fulfilled](state) {
-      state.userData = [];
-      state.startDate = null;
-      state.endDate = null;
-      state.stats = [];
+      // state.userData.currentlyReading = [];
+      // state.userData.finishedReading = [];
+      // state.startDate = null;
+      // state.endDate = null;
+      // state.stats = [];
       state.error = null;
     },
     [createBook.fulfilled](state, action) {
