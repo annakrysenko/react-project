@@ -23,7 +23,6 @@ import {
 } from '../LibraryFilld';
 
 import ResumeModal from './Resume/ResumeModal';
-
 import {Modal} from 'components/Modal/Modal';
 import ConteinerModal from '../LibraryFilld/ConteinerModal.styled';
 import Rating from '@mui/material/Rating';
