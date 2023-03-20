@@ -373,10 +373,7 @@ function Books() {
 					</LibraryBooklistContainer>
 				)}
 			</LibraryControlMobileSection>
-			{/* {isClicked ? null : (
-			< Button onClick={handleClick}>My training </Button>
-			)} */}
-				{!nowReading && <NavLink to={'/training'}>My training </NavLink>}
+				{nowReading.length === 0 && goingToRead.length > 0 && <NavLink to={'/training'}>My training </NavLink>}
 				</LibraryWraper>
         </>
         
