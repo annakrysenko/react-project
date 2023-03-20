@@ -9,7 +9,6 @@ const StatPagesContainer = styled.div`
   box-shadow: 0px 2px 3px rgba(9, 30, 63, 0.1);
   align-items: center;
   @media screen and (min-width: 768px) {
-    width: 704px;
     /* min-height: 309px; */
 
     background: #ffffff;
