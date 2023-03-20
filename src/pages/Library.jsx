@@ -1,5 +1,4 @@
- import LibraryFilld from 'components/Library/BookProcesing/BookProcesing';
-// import BooksTables from 'components/Library/BookProcesing/BooksTables';
+import Books from 'components/Library/BookProcesing/Books';
 import LibraryForm from 'components/LibraryForm/LIbaryForm';
 import LibraryInfo from 'components/Libraryinfo/Libaryinfo';
 import React, { useEffect } from 'react';
@@ -70,9 +69,7 @@ const Library = () => {
       <LibraryForm />
       <LibraryInfo />
 
-      {/* <Books /> */}
-      {/* <BooksTables /> */}
-       <LibraryFilld/>
+      <Books/>
     </>
   );
 };
