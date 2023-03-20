@@ -28,7 +28,7 @@ export const Training = () => {
   const currentlyReading = useSelector(getCurrentlyReading);
 
   useEffect(() => {
-    // console.log('first');
+    // console.log('fivrst');
     dispatch(fetchCurrentUser());
   }, [dispatch]);
   return (
