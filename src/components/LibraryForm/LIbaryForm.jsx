@@ -20,6 +20,7 @@ const LibraryForm = () => {
   const dispatch = useDispatch();
   const date = new Date();
   const year = date.getFullYear();
+const number =1000
   const schema = yup.object().shape({
     title: yup
       .string()
@@ -28,11 +29,10 @@ const LibraryForm = () => {
     author: yup.string().required('Mandatory field'),
     publishYear: yup
       .number()
-      .typeError('The field can only contain numbers')
-      .required('Mandatory field')
-      .min(1000,`The year of publication cannot be less 1000`)
+      .min(number,`The year of publication cannot be less 1000`)
       .max(year, `The year of publication cannot be greater ${year}`)
-      .positive('The field can contain only positive numbers'),
+      .typeError('The field can only contain numbers')
+      .required('Mandatory field'),
     pagesTotal: yup
       .number()
       .typeError('The field can only contain numbers')
