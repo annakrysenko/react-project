@@ -31,9 +31,9 @@ const LibraryComponent = () => {
   const alreadyRead = useSelector(getFinishedReading);
   const nowReading = useSelector(getCurrentlyReading);
 
-  useEffect(() => {
-    console.log(goingToRead);
-  }, [goingToRead]);
+  // useEffect(() => {
+  //   console.log(goingToRead);
+  // }, [goingToRead]);
 
   return (
     <>
