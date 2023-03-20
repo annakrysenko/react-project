@@ -36,9 +36,9 @@ export const Training = () => {
 						<MyGoal />
 						<MyTraining />
 					</GoalTrainingBox>
-					<Graph />
+					
 				</BoxPageStatistics>
-				
+				<Graph />
 			</Container>
 		</Section>
 	);

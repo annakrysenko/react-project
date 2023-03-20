@@ -23,6 +23,7 @@ export const ChartWrapper = styled(Line)`
 export const ChartBox = styled.div`
 @media screen and (min-width: 320px) {    
 position: relative;
+margin-top: 32px;
 	height: 290px;
 	justify-content: center;
 	align-items: center;

@@ -1,0 +1,27 @@
+[{
+  "book": {
+    "title": "The Book of Five Rings",
+    "author": "Miyamoto Musashi",
+    "publishYear": 1643,
+    "totalPages": 110,
+    "pagesFinished": 10,
+    "_id": "507f1f77bcf86cd799439013",
+    "__v": 0
+  },
+  "planning": {
+    "startDate": "2020-12-31",
+    "endDate": "2020-01-05",
+    "books": [
+      {
+        "_id": "507f1f77bcf86cd799439013",
+        "duration": 5,
+        "pagesPerDay": 2,
+        "stats": {
+          "date": "2021-01-06",
+          "pagesCount": "35"
+        }
+      }
+    ],
+    "_id": "507f1f77bcf86cd799439014"
+  }}
+]
