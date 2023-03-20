@@ -72,7 +72,7 @@ const MyGoal = () => {
               <ProgressItem>
                 <ProgressNumber>
                   {/* <span>{Boolean(numberOfDays) ? numberOfDays : 0}</span> */}
-                  <span>{numberOfDays}</span>
+                  <span>{Boolean(numberOfDays) ? numberOfDays : 0}</span>
                 </ProgressNumber>
                 <ProgressText>Amount of days</ProgressText>
               </ProgressItem>

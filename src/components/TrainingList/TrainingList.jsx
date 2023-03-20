@@ -55,7 +55,7 @@ function TrainingList({ books, startDate, endDate, booksDelete }) {
       <CheckboxCheked />
     );
   };
-  // console.log('currentlyReading',currentlyReading )
+  // c console.log('currentlyReading',currentlyReading )
 
   return (
     <>

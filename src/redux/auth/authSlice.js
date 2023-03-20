@@ -5,6 +5,7 @@ import {
   register,
   logOut,
   refreshUser,
+  getUser,
 } from './authOperation';
 
 const initialState = {
@@ -85,6 +86,13 @@ const authSlice = createSlice({
     },
     [refreshUser.rejected](state) {
       state.isRefreshing = false;
+    },
+    [getUser.fulfilled](state, { payload }) {
+      const { name, email } = payload;
+      state.userData = { name, email };
+      state.isRefreshing = false;
+      state.isLoggedIn = true;
+      state.error = null;
     },
   },
 });

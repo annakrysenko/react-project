@@ -17,8 +17,9 @@ import 'react-toastify/dist/ReactToastify.css';
 import AboutAppRegistr from './AboutAppRegist/AboutAppRegist';
 import Media from 'react-media';
 import { addAccessToken } from 'redux/auth/authSlice';
-import { token } from 'redux/auth/authOperation';
-import { useDispatch } from 'react-redux';
+import { getUser, token } from 'redux/auth/authOperation';
+import { useDispatch, useSelector } from 'react-redux';
+import { getAccessToken } from 'redux/auth/authSelectors';
 // import { refreshUser } from 'redux/auth/authOperation';
 // import { useDispatch, useSelector } from 'react-redux';
 // import { getSid } from 'redux/auth/authSelectors';
@@ -40,6 +41,13 @@ export const App = () => {
       token.set(accessToken);
     }
   }, [accessToken, dispatch]);
+
+  const userToken = useSelector(getAccessToken);
+  useEffect(() => {
+    if (userToken !== null) {
+      dispatch(getUser());
+    }
+  }, [userToken, dispatch]);
 
   // useEffect(() => {
   //   dispatch(refreshUser({ sid }));
