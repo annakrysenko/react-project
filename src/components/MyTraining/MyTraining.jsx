@@ -5,7 +5,7 @@ import { useState } from 'react';
 import { useSelector } from 'react-redux';
  import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import { getGoingToRead } from '../../redux/books/booksSelectors';
+import {  getCurrentlyReading, getGoingToRead } from '../../redux/books/booksSelectors';
 import Graph from 'components/Graph/Graph';
 import LibraryMobileButton from 'components/MyTraining/styles/LibraryMobileButton.styled';
 import {
@@ -32,9 +32,13 @@ export default function MyTraining() {
   const [startDate, setStartDate] = useState(null);
   const [endDate, setEndDate] = useState(null);
   const [books, setBooks] = useState([]);
-
+	
+	
   const goingToRead = useSelector(getGoingToRead);
 
+
+const currentlyReading = useSelector(getCurrentlyReading)
+	
   const receiveDataFromStart = newValue => {
     setStart(newValue);
     const startDate = `${newValue.$y}-${String(newValue.$M + 1).padStart(
@@ -83,7 +87,7 @@ const [toggle, setToggle] = useState(true);
   const handleDelete = id => {
     return setBooks(books.filter(book => book._id !== id));
   };
-
+// console.log('currentlyReading', currentlyReading )
 	return (
 		<>
 		<BoxPageTraining>
@@ -112,7 +116,8 @@ const [toggle, setToggle] = useState(true);
 					{!toggle&&<><GoalTrainingBox>
 						<MyGoal />
 						<TrainingList
-							books={books}
+						books={books}
+						currentlyReading={books}
 							startDate={startDate}
 							endDate={endDate}
 							booksDelete={handleDelete}
@@ -136,46 +141,47 @@ const [toggle, setToggle] = useState(true);
 					</>}
 				</BoxPageTraining>
 					<Wrapper>
-			<Title>My training1</Title>
-			<BoxForm>
-				<WrapperCallendar>
-					<BoxCallendar>
-				<LocalizationProvider dateAdapter={AdapterDayjs}>
-					<WrapperDatePicker
-						label="Початок"
-						value={start}
-						disablePast={true}
-						onChange={receiveDataFromStart}
-						renderInput={params => <TextField {...params} />}
-					/>
-				</LocalizationProvider>
-				</BoxCallendar>
-				<BoxCallendar>
-				<LocalizationProvider dateAdapter={AdapterDayjs}>
-					<WrapperDatePicker
-						label="Завершення"
-						value={finish}
-						disablePast={true}
-						onChange={receiveDataFromEnd}
-						renderInput={params => <TextField {...params} />}
-					/>
-				</LocalizationProvider>
-				</BoxCallendar>
-				</WrapperCallendar>
-				<WrapperSelect>
-				<SelectForm name="select"  onChange={handleChange}>
-					<option>Обрати книги з бібліотеки</option>
-					{goingToRead?.map(({ _id, title, author }) => (
+				{/* {currentlyReading.length !== 0 && (<Title>My training</Title>)} */}
+				<Title>My training</Title>
+				{currentlyReading.length === 0 && (<BoxForm>
+					<WrapperCallendar>
+						<BoxCallendar>
+							<LocalizationProvider dateAdapter={AdapterDayjs}>
+								<WrapperDatePicker
+									label="Початок"
+									value={start}
+									disablePast={true}
+									onChange={receiveDataFromStart}
+									renderInput={params => <TextField {...params} />}
+								/>
+							</LocalizationProvider>
+						</BoxCallendar>
+						<BoxCallendar>
+							<LocalizationProvider dateAdapter={AdapterDayjs}>
+								<WrapperDatePicker
+									label="Завершення"
+									value={finish}
+									disablePast={true}
+									onChange={receiveDataFromEnd}
+									renderInput={params => <TextField {...params} />}
+								/>
+							</LocalizationProvider>
+						</BoxCallendar>
+					</WrapperCallendar>
+					<WrapperSelect>
+						<SelectForm name="select" onChange={handleChange}>
+							<option>Choose book from the library</option>
+							{goingToRead?.map(({ _id, title, author }) => (
 								<option key={_id} value={_id}>
 									{title} ({author})
 								</option>
 							))}
-				</SelectForm>
-				<Button type="button" onClick={handleSubmit}>
-					Додати
-				</Button>
-				</WrapperSelect> 
-			</BoxForm>
+						</SelectForm>
+						<Button type="button" onClick={handleSubmit}>
+							Add
+						</Button>
+					</WrapperSelect>
+				</BoxForm>)}
 			
 			<TrainingList
 				books={books}
