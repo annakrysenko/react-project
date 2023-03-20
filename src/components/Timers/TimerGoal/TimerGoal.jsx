@@ -7,7 +7,7 @@ import {
   TimerGoalContainer,
 } from './TimerGoal.styled';
 
-import { getEndDate, getStartDate } from 'redux/books/booksSelectors';
+import { getEndDate } from 'redux/books/booksSelectors';
 import { useSelector } from 'react-redux';
 
 const TimerGoal = () => {
@@ -18,7 +18,7 @@ const TimerGoal = () => {
 
   // const endDate = 'July, 11, 2023';
   const endDate = useSelector(getEndDate);
-  const startDate = useSelector(getStartDate);
+  // const startDate = useSelector(getStartDate);
   // console.log(startDate);
   // console.log(endDate);
 
@@ -38,6 +38,7 @@ const TimerGoal = () => {
   useEffect(() => {
     const interval = setInterval(() => getTime(), 1000);
     return () => clearInterval(interval);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
