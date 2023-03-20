@@ -16,13 +16,26 @@ import {
 const authPersistConfig = {
   key: 'auth',
   storage,
-  whitelist: ['token', 'userData', 'refreshToken', 'sid'],
+  whitelist: ['token', 'userData', 'refreshToken', 'sid', 'endDate'],
+};
+
+const booksPersistConfig = {
+  key: 'books',
+  storage,
+  whitelist: [
+    'userData',
+    'endDate',
+    'pagesPerDay',
+    'stats',
+    'rating',
+    'startDate',
+  ],
 };
 
 export const store = configureStore({
   reducer: {
     auth: persistReducer(authPersistConfig, authReducer),
-    books: booksReducer,
+    books: persistReducer(booksPersistConfig, booksReducer),
   },
   middleware: getDefaultMiddleware =>
     getDefaultMiddleware({
