@@ -5,7 +5,7 @@ import { token } from 'redux/auth/authOperation';
 export const fetchCurrentUser = createAsyncThunk(
   'books/fetchCurrentUser',
   async (_, thunkAPI) => {
-    console.log('ffff');
+    // console.log('ffff');
     const state = thunkAPI.getState();
     const persistedToken = state.auth.token;
     if (persistedToken === null) {
@@ -77,7 +77,7 @@ export const getBookPlanning = createAsyncThunk(
 export const addFinishedPages = createAsyncThunk(
   'books/addFinishedPages',
   async (pages, thunkAPI) => {
-    console.log('pages', pages);
+    // console.log('pages', pages);
     try {
       const { data } = await axios.patch('/planning', pages);
       // console.log('addFinishedPages====>', data);
