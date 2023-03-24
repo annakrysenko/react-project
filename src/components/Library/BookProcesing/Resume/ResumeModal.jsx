@@ -16,7 +16,7 @@ import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 function ResumeModal({ toggleModal, bookId }) {
-  console.log('id', bookId);
+  // console.log('id', bookId);
   const [newValue, setNewValue] = useState(null);
   const [coment, setComent] = useState('');
 

@@ -37,7 +37,7 @@ function Books() {
   const goingToRead = useSelector(getGoingToRead);
   const alreadyRead = useSelector(getFinishedReading);
   const nowReading = useSelector(getCurrentlyReading);
-  console.log(goingToRead, alreadyRead, nowReading);
+  // console.log(goingToRead, alreadyRead, nowReading);
   //   const [isVisible, setIsVisible] = useState(false);
   const [selectedBookId, setSelectedBookId] = useState(null); // додали новий стан
 
