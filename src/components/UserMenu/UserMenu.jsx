@@ -41,7 +41,7 @@ export const UserMenu = () => {
     <>
       <UserMenuContainer>
         <LinkBox>
-          <MenuHoverLink to="training">
+          <MenuHoverLink to="statistics">
             <Library />
           </MenuHoverLink>
           <MenuHoverLink to="library">

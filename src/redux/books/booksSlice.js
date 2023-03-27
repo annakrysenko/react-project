@@ -117,8 +117,9 @@ const booksSlice = createSlice({
       state.userData.finishedReading = action.payload.data.finishedReading;
     },
     [addBookReview.fulfilled](state, action) {
+      console.log(action.payload)
       state.userData.finishedReading.splice(
-        state.finishedReading.findIndex(
+        state.userData.finishedReading.findIndex(
           book => book._id === action.payload._id
         ),
         1,

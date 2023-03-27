@@ -7,7 +7,7 @@ import {
   ModalText,
   ModalDiv,
   ModalButton,
-} from 'components/Statistics_TO_DELETE?/Statistics.styled';
+} from 'components/Statistics_TO_DELETE/Statistics.styled';
 import { useState } from 'react';
 
 const Statistics = () => {
