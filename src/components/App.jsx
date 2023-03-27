@@ -20,7 +20,7 @@ import { addAccessToken } from 'redux/auth/authSlice';
 import { getUser, token } from 'redux/auth/authOperation';
 import { useDispatch, useSelector } from 'react-redux';
 import { getAccessToken } from 'redux/auth/authSelectors';
-import Statistics from './Statistics_TO_DELETE/Statistics';
+import  Statistics  from 'pages/Statistic';
 // import { refreshUser } from 'redux/auth/authOperation';
 // import { useDispatch, useSelector } from 'react-redux';
 // import { getSid } from 'redux/auth/authSelectors';
