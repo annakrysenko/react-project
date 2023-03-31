@@ -1,7 +1,11 @@
 import React from 'react';
 import { useState } from 'react';
 import { useSelector } from 'react-redux';
-import { getGoingToRead } from 'redux/books/booksSelectors';
+import {
+  getCurrentlyReading,
+  getFinishedReading,
+  getGoingToRead,
+} from 'redux/books/booksSelectors';
 import {
   InfoTitle,
   InfoMainContainer,
@@ -18,13 +22,24 @@ import {
 
 function LibraryInfo() {
   const [visibility, setVisibility] = useState(true);
+
   const goingToRead = useSelector(getGoingToRead);
+  const finished = useSelector(getFinishedReading);
+  const redingNow = useSelector(getCurrentlyReading);
+
+  const notEmptyBooks = () => {
+    return (
+      goingToRead.length > 0 && finished.length > 0 && redingNow.length > 0
+    );
+  };
+
   const closeModal = () => {
     setVisibility(false);
   };
+  console.log(notEmptyBooks());
   return (
     <>
-      {goingToRead && visibility && goingToRead.length === 0 && (
+      {notEmptyBooks() && visibility && (
         <InfoMainContainer>
           <InfoContainer>
             <InfoGapContainer>
