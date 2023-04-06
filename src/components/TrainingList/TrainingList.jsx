@@ -192,7 +192,7 @@ function TrainingList({ books, startDate, endDate, booksDelete }) {
           </ListMob>
         )}
 
-        {currentlyReading.length === 0 && <Button>Start training</Button>}
+        {/* {currentlyReading.length === 0 && <Button>Start training</Button>} */}
       </Wrapper>
 
       {/* desk */}

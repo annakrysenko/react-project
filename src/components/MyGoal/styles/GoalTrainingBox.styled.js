@@ -9,7 +9,7 @@ export const BoxPageTraining = styled.div`
 `;
 
 export const BoxPageStatistics = styled.div`
-  display: none;
+  /* display: none; */
   @media screen and (min-width: 768px) {
     display: block;
   }
