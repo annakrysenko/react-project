@@ -87,7 +87,7 @@ const [toggle, setToggle] = useState(true);
   const handleDelete = id => {
     return setBooks(books.filter(book => book._id !== id));
   };
-// console.log('currentlyReading', currentlyReading )
+
 	return (
 		<>
 		<BoxPageTraining>

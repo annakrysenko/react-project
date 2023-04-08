@@ -18,7 +18,7 @@ import { ReactComponent as Del } from '../../images/svg/delete.svg';
 import css from './TrainingList.module.css';
 import { useDispatch, useSelector } from 'react-redux';
 import { addBookPlanning } from '../../redux/books/booksOperations';
-// import { Navigate } from 'react-router-dom';
+
 
 import { ReactComponent as CheckboxCheked } from '../../images/svg/checkboxChecked.svg';
 import { ReactComponent as CheckboxDisabled } from '../../images/svg/checkboxDisabled.svg';
@@ -28,9 +28,7 @@ function TrainingList({ books, startDate, endDate, booksDelete }) {
 	const dispatch = useDispatch();
 
 	const currentlyReading = useSelector(getCurrentlyReading)
-	// console.log(currentlyReading, 'currentlyReading' , books, 'books');
 
-	// console.log('books statistics', books);
 	let booksToRender;
 	books.length > 0 ? booksToRender = books : booksToRender = currentlyReading
 
@@ -54,7 +52,7 @@ function TrainingList({ books, startDate, endDate, booksDelete }) {
 			<CheckboxCheked />
 		);
 	};
-// console.log('currentlyReading',currentlyReading )
+
 	
 	return (
 		
@@ -62,7 +60,7 @@ function TrainingList({ books, startDate, endDate, booksDelete }) {
 			<Wrapper>
 				{currentlyReading ? 
 					<ListMob>
-						{/* booksToReading */}
+						
 						{books?.map(
 							({
 								_id,

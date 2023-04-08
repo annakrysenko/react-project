@@ -19,7 +19,7 @@ export const Training = () => {
 	const dispatch = useDispatch();
 
   useEffect(() => {
-    // console.log('first');
+ 
     dispatch(fetchCurrentUser());
   }, [dispatch]);
 	return (
